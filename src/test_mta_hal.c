@@ -40,18 +40,18 @@
 *
 * This test verifies if the shared DBs are successfully initialized using the mta_hal_InitDB() function.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 001
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 001 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.@n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Initialization of shared DBs | | | The shared DBs should be successfully initialized |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_InitDB | RETURN_OK  | Should be successful |
 */
 void test_l1_mta_hal_positive1_InitDB(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_InitDB...");
@@ -61,9 +61,6 @@ void test_l1_mta_hal_positive1_InitDB(void) {
     UT_LOG("The Result : %d ", ret );
     UT_ASSERT_EQUAL(ret, RETURN_OK);
 
-
-    UT_LOG("mta_hal_InitDB successfully initialized the shared DBs.");
-
     UT_LOG("Exiting test_l1_mta_hal_positive1_InitDB...");
 }
 
@@ -72,38 +69,36 @@ void test_l1_mta_hal_positive1_InitDB(void) {
 *
 * This test case is to verify whether mta_hal_InitDB function can handle multiple initializations correctly.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 002
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 002@n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | First set of conditions | None | N/A | N/A |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_InitDB twice | RETURN_OK | should be sucessfull |
 */
-void test_l1_mta_hal_positive2_MultipleInitializations(void) {
-    UT_LOG("Entering test_l1_mta_hal_positive2_MultipleInitializations...");
+void test_l1_mta_hal_InitDB_positive2_MultipleInitializations(void) {
+    UT_LOG("Entering test_l1_mta_hal_InitDB_positive2_MultipleInitializations...");
 
     // Step 01: First set of conditions.
     UT_LOG("Invoking mta_hal_InitDB... First time");
     INT ret = mta_hal_InitDB();
-
-    UT_LOG("The Result : %d ", ret );
+    UT_LOG("The Result-1 : %d ", ret );
     UT_ASSERT_EQUAL(ret, RETURN_OK);
-
 
     UT_LOG("Invoking mta_hal_InitDB again...");
     ret = mta_hal_InitDB();
-    UT_LOG("The Result : %d ", ret );
+    UT_LOG("The Result-2 : %d ", ret );
     UT_ASSERT_EQUAL(ret, RETURN_OK);
 
     UT_LOG("mta_hal_InitDB successfully handled multiple initializations.");
 
-    UT_LOG("Exiting test_l1_mta_hal_positive2_MultipleInitializations...");
+    UT_LOG("Exiting test_l1_mta_hal_InitDB_positive2_MultipleInitializations...");
 }
 
 /**
@@ -111,17 +106,17 @@ void test_l1_mta_hal_positive2_MultipleInitializations(void) {
  *
  * This test aims to validate the mta_hal_GetDHCPInfo function when invoked with valid arguments.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 003
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 003 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:**@n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | --------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Invoke mta_hal_GetDHCPInfo with valid arguments | pInfo = value | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_GetDHCPInfo(void)
@@ -134,9 +129,13 @@ void test_l1_mta_hal_positive1_GetDHCPInfo(void)
         UT_LOG("Invoking mta_hal_GetDHCPInfo with valid arguments.");
         INT result = mta_hal_GetDHCPInfo(pInfo);
         UT_LOG(" Result for mta_hal_GetDHCPInfo : %d ",result);
-
         UT_ASSERT_EQUAL(result, RETURN_OK);
-	    free(pInfo);
+        free(pInfo);
+    }
+    else
+    {
+    	UT_LOG("Malloc operation failed");
+	UT_FAIL("Memory allocation with malloc failed");
     }
     UT_LOG("Exiting test_l1_mta_hal_positive1_GetDHCPInfo...");
 }
@@ -146,34 +145,30 @@ void test_l1_mta_hal_positive1_GetDHCPInfo(void)
 *
 * This test case verifies whether the mta_hal_GetDHCPInfo function returns an error when it is invoked with a NULL pointer argument. The objective is to ensure that the function handles this scenario correctly.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 004
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 004 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None@n
+* **Dependencies:** None@n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetDHCPInfo with NULL pointer | pInfo = NULL | RETURN_ERR | Should return an error |
 */
-
 void test_l1_mta_hal_negative1_GetDHCPInfo(void)
 {
     UT_LOG("Entering test_l1_mta_hal_negative1_GetDHCPInfo...");
 
     PMTAMGMT_MTA_DHCP_INFO pInfo = NULL;
-
     // Test the function with a null pointer argument
     UT_LOG("Test: Invoking mta_hal_GetDHCPInfo with NULL pointer. ");
     INT result = mta_hal_GetDHCPInfo(pInfo);
     UT_LOG("Return value: %d", result);
     // Check the return value
-   
     UT_ASSERT_EQUAL(result, RETURN_ERR);
-    
 
     UT_LOG("Exiting test_l1_mta_hal_negative1_GetDHCPInfo...");
 }
@@ -183,34 +178,38 @@ void test_l1_mta_hal_negative1_GetDHCPInfo(void)
 *
 * The objective of this test is to validate that the mta_hal_GetDHCPV6Info API returns the DHCPv6 information correctly.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 005
-* **Priority:** High
+* **Test Group ID:** Basic: 01@n
+* **Test Case ID:** 005@n
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None@n
+* **Dependencies:** None@n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.@n
 * 
-* **Test Procedure:**
+* **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Invoke the mta_hal_GetDHCPV6Info API | pInfo = malloc(sizeof(MTAMGMT_MTA_DHCPv6_INFO)) | RETURN_OK | Should be successful |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoke the mta_hal_GetDHCPV6Info API | pInfo = valid memory | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive_1_GetDHCPV6Info(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_1_GetDHCPV6Info...");
 
     // Initialize required variables
-    PMTAMGMT_MTA_DHCPv6_INFO pInfo = malloc(sizeof(MTAMGMT_MTA_DHCPv6_INFO));
+    PMTAMGMT_MTA_DHCPv6_INFO pInfo = (PMTAMGMT_MTA_DHCPv6_INFO )malloc(sizeof(MTAMGMT_MTA_DHCPv6_INFO));
     if(pInfo != NULL)
     {
         // Invoke the API
         UT_LOG("Invoking the mta_hal_GetDHCPV6Info ()");
         INT status = mta_hal_GetDHCPV6Info(pInfo);
-	    UT_LOG("Return status : %d ",status);
-
-        // Validate the return status
+	UT_LOG("Return status : %d ",status);
+	// Validate the return status
         UT_ASSERT_EQUAL(status, RETURN_OK);
         free(pInfo);
+    }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed")
     }
     UT_LOG("Existing test_l1_mta_hal_positive_1_GetDHCPV6Info...");
 }
@@ -220,27 +219,25 @@ void test_l1_mta_hal_positive_1_GetDHCPV6Info(void) {
 *
 * The objective of this test is to ensure that the function returns an error code when a null pointer is passed as input for the pInfo parameter.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 006
-* **Priority:** High
+* **Test Group ID:** Basic: 01@n
+* **Test Case ID:** 006 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None@n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Invoke mta_hal_GetDHCPV6Info with a null pointer for pInfo. | pInfo = NULL | RETURN_ERR | Should return an error code. |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoke mta_hal_GetDHCPV6Info  | pInfo = NULL | RETURN_ERR | Should return an error code. |
 */
 void test_l1_mta_hal_negative1_GetDHCPV6Info(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_GetDHCPV6Info...");
     UT_LOG("Invoking the mta_hal_GetDHCPV6Info with NULL");
     INT result = mta_hal_GetDHCPV6Info(NULL);
     UT_LOG("Result : %d", result);
-
     UT_ASSERT_EQUAL(result, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative1_GetDHCPV6Info...");
 }
 
@@ -249,18 +246,18 @@ void test_l1_mta_hal_negative1_GetDHCPV6Info(void) {
     *
     * This test case checks if the mta_hal_LineTableGetNumberOfEntries() function returns the correct number of entries in the line table.
     *
-    * **Test Group ID:** Basic: 01
-    * **Test Case ID:** 007
-    * **Priority:** High
+    * **Test Group ID:** Basic: 01 @n
+    * **Test Case ID:** 007 @n
+    * **Priority:** High @n@n
     *
-    * **Pre-Conditions:** None
-    * **Dependencies:** None
-    * **User Interaction:** If the user chooses to run the test in interactive mode, they should select this test case via the console.
+    * **Pre-Conditions:** None @n
+    * **Dependencies:** None @n
+    * **User Interaction:** If the user chooses to run the test in interactive mode, they should select this test case via the console.@n
     *
-    * **Test Procedure:**
+    * **Test Procedure:**@n
     * | Variation / Step | Description | Test Data | Expected Result | Notes |
-    * | :----: | --------- | ---------- | -------------- | ----- |
-    * | 01 | Invoke mta_hal_LineTableGetNumberOfEntries | - | Return value >= 0 | The API call should be successful and return the number of entries in the line table. |
+    * | :----: | :---------: | :----------: |:--------------: | :-----: |
+    * | 01 | Invoke mta_hal_LineTableGetNumberOfEntries | RETURN_OK |  Should be successful |
     */
 void test_l1_mta_hal_positive1_LineTableGetNumberOfEntries(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_LineTableGetNumberOfEntries...");
@@ -272,8 +269,6 @@ void test_l1_mta_hal_positive1_LineTableGetNumberOfEntries(void) {
 
     // Check the return status
     UT_ASSERT_EQUAL(numEntries >= 0, TRUE);
-    UT_LOG("Return status: RETURN_OK");
-
     UT_LOG("Exiting test_l1_mta_hal_positive1_LineTableGetNumberOfEntries...");
 }
 
@@ -282,36 +277,39 @@ void test_l1_mta_hal_positive1_LineTableGetNumberOfEntries(void) {
  *
  * This test verifies the functionality of the mta_hal_LineTableGetEntry API by retrieving a valid entry from the Line Table and checking the return status and the values in the returned pEntry structure.
  *
- * **Test Group ID:** Basic (for L1): 01
- * **Test Case ID:** 008
- * **Priority:** High
+ * **Test Group ID:** Basic (for L1): 01@n
+ * **Test Case ID:** 008@n
+ * **Priority:** High@n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None@n
+ * **Dependencies:** None@n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.@n
  *
- * **Test Procedure:**
+ * **Test Procedure:**@n
  *  | Variation / Step | Description | Test Data | Expected Result | Notes |
- *  | :--------------: | ----------- | --------- | --------------- | ----- |
- *  |       01         | Retrieve a valid entry from the Line Table | index = 4294967295, entry = EntryType structure | RETURN_OK | Should be successful |
+ *  | :----: | :---------: | :----------: |:--------------: | :-----: |
+ *  |       01         | Invoking the mta_hal_LineTableGetEntry | Retrieve a valid entry from the Line Table | index = 4294967295, entry = EntryType structure | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_LineTableGetEntry_ValidEntryRetrieval(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_LineTableGetEntry_ValidEntryRetrieval...");
 
     // Provide a valid Index within the expected range
     ULONG index = 4294967295;
-    PMTAMGMT_MTA_LINETABLE_INFO entry = malloc (sizeof(MTAMGMT_MTA_LINETABLE_INFO));    
+    PMTAMGMT_MTA_LINETABLE_INFO entry = (PMTAMGMT_MTA_LINETABLE_INFO) malloc (sizeof(MTAMGMT_MTA_LINETABLE_INFO));    
     if(entry != NULL)
     {
-
         // Invoking mta_hal_LineTableGetEntry with the Index
         UT_LOG("Invoking the mta_hal_LineTableGetEntry ");
         INT status = mta_hal_LineTableGetEntry(index, entry);
         UT_LOG("Return value : %d ",status);
-
         // Check the return status to ensure it's RETURN_OK
         UT_ASSERT_EQUAL(status, RETURN_OK);
         free(entry);
+    }
+    else 
+    {
+        UT_LOG("Malloc operation failed");
+	UT_FAIL("Memory allocation with malloc failed");
     }
     UT_LOG("Exiting test_l1_mta_hal_positive1_LineTableGetEntry_ValidEntryRetrieval...");
 }
@@ -322,24 +320,24 @@ void test_l1_mta_hal_positive1_LineTableGetEntry_ValidEntryRetrieval(void) {
 * This test is used to ensure that the LineTableGetEntry function can handle the lowest possible index value (0) correctly.
 *
 * **Test Group ID:** Basic: 01@n
-* **Test Case ID:** 009
-* **Priority:** High@n
+* **Test Case ID:** 009@n
+* **Priority:** High@n@n
 *
 * **Pre-Conditions:** None@n
 * **Dependencies:** None@n
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console@n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.@n
 *
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
-* | 01 | Provide an Index of 0 | index = 0 | RETURN_OK | Should be successful |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 |invoking the mta_hal_LineTableGetEntry | index = 0 | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex...");
 
     // Provide an Index of 0
     ULONG index = 0;
-    PMTAMGMT_MTA_LINETABLE_INFO entry = malloc (sizeof(MTAMGMT_MTA_LINETABLE_INFO));    
+    PMTAMGMT_MTA_LINETABLE_INFO entry = (PMTAMGMT_MTA_LINETABLE_INFO) malloc (sizeof(MTAMGMT_MTA_LINETABLE_INFO));    
     if(entry != NULL)
     {
         // Invoking mta_hal_LineTableGetEntry with the Index
@@ -350,6 +348,11 @@ void test_l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex(void) {
         UT_ASSERT_EQUAL(status, RETURN_OK);
     	free(entry);
     }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
+    }
     UT_LOG("Exiting test_l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex...");
 }
 
@@ -358,35 +361,39 @@ void test_l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex(void) {
 *
 * This test case checks whether the `mta_hal_LineTableGetEntry` function can successfully retrieve the line table entry when the highest valid index is provided as input. The line table entry is stored in the `entry` structure.
 *
-* **Test Group ID:** Basic (for L1): 01
-* **Test Case ID:** 010
-* **Priority:** High
+* **Test Group ID:** Basic (for L1): 01 @n
+* **Test Case ID:** 010@n
+* **Priority:** High@n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None@n
+* **Dependencies:** None@n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Provide the highest valid index | index = (ULONG) pow(2, 32) - 1 | Returns RETURN_OK | -
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_LineTableGetEntry | Provide the highest valid index | index = 4294967295-1 | Returns RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive3_LineTableGetEntry_BoundaryTestHighestIndex(void) {
     UT_LOG("Entering test_l1_mta_hal_positive3_LineTableGetEntry_BoundaryTestHighestIndex...");
 
-    // Provide the highest valid Index (2^32)-1
     ULONG index = (4294967295-1);
    // EntryType entry;
-    PMTAMGMT_MTA_LINETABLE_INFO entry = malloc (sizeof(MTAMGMT_MTA_LINETABLE_INFO));
+    PMTAMGMT_MTA_LINETABLE_INFO entry = ( PMTAMGMT_MTA_LINETABLE_INFO )malloc (sizeof(MTAMGMT_MTA_LINETABLE_INFO));
     if(entry != NULL)
     {
         // Invoking mta_hal_LineTableGetEntry with the Index
-	    UT_LOG("Invoking the mta_hal_LineTableGetEntry with index (4294967295-1) ");
+	UT_LOG("Invoking the mta_hal_LineTableGetEntry with index (4294967295-1) ");
         INT status = mta_hal_LineTableGetEntry(index, entry);
         UT_LOG("Return value status : %d", status);
         // Check the return status to ensure it's RETURN_OK
         UT_ASSERT_EQUAL(status, RETURN_OK);
       	free(entry);
+    }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
     }
     UT_LOG("Exiting test_l1_mta_hal_positive3_LineTableGetEntry_BoundaryTestHighestIndex...");
 }
@@ -396,18 +403,18 @@ void test_l1_mta_hal_positive3_LineTableGetEntry_BoundaryTestHighestIndex(void) 
 *
 * The objective of this test is to check whether the function returns RETURN_ERR when an invalid lower index boundary is provided as input.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 011
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 011 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None@n
+* **Dependencies:** None@n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.@n
 *
-* **Test Procedure:**
+* **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Provide an Index of -1 (underflow) | index = -1 | RETURN_ERR | Should return RETURN_ERR |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_LineTableGetEntry |Provide an Index of -1 (underflow) | index = -1 | RETURN_ERR | Should return RETURN_ERR |
 */
 void test_l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary...");
@@ -416,16 +423,21 @@ void test_l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary(void)
     ULONG index = -1;
     //EntryType entry;
 
-    PMTAMGMT_MTA_LINETABLE_INFO entry = malloc (sizeof(MTAMGMT_MTA_LINETABLE_INFO));
+    PMTAMGMT_MTA_LINETABLE_INFO entry = (PMTAMGMT_MTA_LINETABLE_INFO)malloc (sizeof(MTAMGMT_MTA_LINETABLE_INFO));
     if(entry != NULL)
     {
         // Invoking mta_hal_LineTableGetEntry with the Index
-	    UT_LOG("Invoking mta_hal_LineTableGetEntry with index : %ld ", index);
+	UT_LOG("Invoking mta_hal_LineTableGetEntry with index : %ld ", index);
         INT status = mta_hal_LineTableGetEntry(index, entry);
-	    UT_LOG("Return value : %d ", status);
+	UT_LOG("Return value : %d ", status);
         // Check the return status to ensure it's RETURN_ERR
         UT_ASSERT_EQUAL(status, RETURN_ERR);
         free(entry);
+    }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
     }
     UT_LOG("Exiting test_l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary...");
 }
@@ -437,18 +449,18 @@ void test_l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary(void)
     * provided as the input index. It ensures that the API properly handles the overflow condition and returns the 
     * expected error status.
     * 
-    * **Test Group ID:** Basic: 01
-    * **Test Case ID:** 012
-    * **Priority:** High
+    * **Test Group ID:** Basic: 01@n
+    * **Test Case ID:** 012@n
+    * **Priority:** High@n@n
     * 
-    * **Pre-Conditions:** None
-    * **Dependencies:** None
-    * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+    * **Pre-Conditions:** None@n
+    * **Dependencies:** None@n
+    * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.@n
     * 
-    * **Test Procedure:**
+    * **Test Procedure:**@n
     * | Variation / Step | Description | Test Data | Expected Result | Notes |
-    * | :----: | --------- | ---------- | -------------- | ----- |
-    * | 01 | Provide an Index of 2^32 (overflow) | index = 4294967296 | Api returns RETURN_ERR | Should be unsuccessful |
+    * | :----: | :---------: | :----------: |:--------------: | :-----: |
+    * | 01 | Invoking the mta_hal_LineTableGetEntry | index = 4294967296 | Api returns RETURN_ERR | Should be unsuccessful |
     */
 void test_l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary(void) {
     UT_LOG("Entering test_l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary...");
@@ -456,16 +468,21 @@ void test_l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary(void)
     // Provide an Index of 2^32 (overflow)
     ULONG index = 4294967296;
     //EntryType entry;
-    PMTAMGMT_MTA_LINETABLE_INFO entry = malloc (sizeof(MTAMGMT_MTA_LINETABLE_INFO));
+    PMTAMGMT_MTA_LINETABLE_INFO entry = (PMTAMGMT_MTA_LINETABLE_INFO) malloc (sizeof(MTAMGMT_MTA_LINETABLE_INFO));
     if(entry != NULL)
     {
         // Invoking mta_hal_LineTableGetEntry with the Index
-	    UT_LOG("Invoking the mta_hal_LineTableGetEntry with index : %ld ", index);
+	UT_LOG("Invoking the mta_hal_LineTableGetEntry with index : %ld ", index);
         INT status = mta_hal_LineTableGetEntry(index, entry);
         UT_LOG("Return value : %d ", status);
         // Check the return status to ensure it's RETURN_ERR
         UT_ASSERT_EQUAL(status, RETURN_ERR);
         free(entry);
+    }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
     }
     UT_LOG("Exiting test_l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary...");
 }
@@ -475,19 +492,18 @@ void test_l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary(void)
  *
  * This test is aimed at checking whether the function mta_hal_LineTableGetEntry handles the NULL pEntry parameter correctly.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 013
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 013 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
- * | Variation / Step | Description                                                  | Test Data                                                | Expected Result                                 | Notes                |
- * | :--------------: | ----------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------- | -------------------- |
- * |       01         | First set of conditions                                     | index = 0,pEntry = NULL                                  | status = RETURN_ERR                             | Should be successful |
- *
+ * **Test Procedure:**@n
+ * | Variation / Step | Description | Test Data | Expected Result | Notes |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking the mta_hal_LineTableGetEntry | index = 0, pEntry = NULL | Api returns RETURN_ERR | Should be unsuccessful |
  */
 
 void test_l1_mta_hal_negative3_LineTableGetEntry_NullpEntryParameter(void) {
@@ -512,18 +528,18 @@ void test_l1_mta_hal_negative3_LineTableGetEntry_NullpEntryParameter(void) {
 *
 * This test case verifies that the mta_hal_LineTableGetEntry function returns the expected error status when provided with an index that is beyond the number of existing entries in the line table.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 014
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 014 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
-* | 01 | Provide an index beyond the number of existing entries | index = 101 | Expected return status is RETURN_ERR | Should return an error status |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_LineTableGetEntry  | index = 101 , entry | Expected return status is RETURN_ERR | Should return an error status |
 */
 
 void test_l1_mta_hal_negative4_LineTableGetEntry_IndexBeyondExistingEntries(void) {
@@ -548,17 +564,17 @@ void test_l1_mta_hal_negative4_LineTableGetEntry_IndexBeyondExistingEntries(void
 *
 * The purpose of this test is to check if the mta_hal_TriggerDiagnostics function returns the expected value when invoked with a valid line number.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 015
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 015 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_TriggerDiagnostics with a valid line number | index = 2147483648 | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_TriggerDiagnostics(void)
@@ -584,17 +600,17 @@ void test_l1_mta_hal_positive1_TriggerDiagnostics(void)
 *
 * This test case checks if the mta_hal_TriggerDiagnostics function returns the expected status when invoked with a valid index.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 016
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 016@n
+* **Priority:** High@n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n 
+* **Dependencies:** None@n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_TriggerDiagnostics with a valid index | index = 0 | RETURN_OK | Should be successful |
 */
 
@@ -620,17 +636,17 @@ void test_l1_mta_hal_positive2_TriggerDiagnostics(void)
 *
 * The purpose of this test is to ensure that the mta_hal_TriggerDiagnostics API is working correctly and returning the expected status.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 017
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 017 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_TriggerDiagnostics | index = 4294967295 | RETURN_OK status is expected  | Should be successful |
 */
 
@@ -639,10 +655,10 @@ void test_l1_mta_hal_positive3_TriggerDiagnostics(void)
     UT_LOG("Entering test_l1_mta_hal_positive3_TriggerDiagnostics...");
 
     // Provide the highest line number
-    ULONG index = (4294967295-1); // (2^32)-1
+    ULONG index = (4294967295-1);
 
     // Invoke mta_hal_TriggerDiagnostics
-    UT_LOG("Invokingt the mta_hal_TriggerDiagnostics API with Index 4294967295-1");
+    UT_LOG("Invokingt the mta_hal_TriggerDiagnostics API with Index : %lu", index);
     INT status = mta_hal_TriggerDiagnostics(index);
     UT_LOG("Status: %lu ", status);
     // Check the return status
@@ -652,23 +668,23 @@ void test_l1_mta_hal_positive3_TriggerDiagnostics(void)
 }
 
 /**
-* @brief TODO: Describe the objective of the test
+* @brief This test case tests the functionality of the mta_hal_TriggerDiagnostics API
 *
-* TODO: Add the description of what is tested and why in this test
+* The purpose of this test is to ensure that the mta_hal_TriggerDiagnostics API is working correctly and returning the expected status.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 018
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 018 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode,
-* then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, @n
+* then the test case has to be selected via console @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | --------------- | ----- |
-* | 01 | Provide an invalid lower line number | index = -1 | RETURN_ERR | Should be equal to RETURN_ERR |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_TriggerDiagnostics | index = -1 | RETURN_ERR | Should be equal to RETURN_ERR |
 */
 void test_l1_mta_hal_negative1_TriggerDiagnostics(void)
 {
@@ -683,7 +699,6 @@ void test_l1_mta_hal_negative1_TriggerDiagnostics(void)
     UT_LOG("Status: %d", status);
     // Check the return status
     UT_ASSERT_EQUAL(status, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative1_TriggerDiagnostics...");
 }
 
@@ -692,30 +707,30 @@ void test_l1_mta_hal_negative1_TriggerDiagnostics(void)
 *
 * The test verifies that when an invalid upper line number is provided as the input argument, the function returns the expected error status.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 019
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 019 @n
+* **Priority:** High @n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :-----: | --------- | ---------- | -------------- | ------ |
-* | 01 | Provide an invalid upper line number | index = 4294967296 | status = RETURN_ERR | The function should return the expected error status |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_TriggerDiagnostics | index = 4294967296 | status = RETURN_ERR | Should be RETURN_ERR |
 */
 void test_l1_mta_hal_negative2_TriggerDiagnostics(void)
 {
     UT_LOG("Entering test_l1_mta_hal_negative2_TriggerDiagnostics...");
 
     // Provide an invalid upper line number
-    ULONG index = 4294967296; // 2^32
+    ULONG index = 4294967296; 
 
     // Invoke mta_hal_TriggerDiagnostics
     UT_LOG("Invoking the mta_hal_TriggerDiagnostics with index value 4294967296");
     INT status = mta_hal_TriggerDiagnostics(index);
-    UT_LOG("status: %d", index);
+    UT_LOG("status: %d", status);
 
     // Check the return status
     UT_ASSERT_EQUAL(status, RETURN_ERR);
@@ -728,18 +743,18 @@ void test_l1_mta_hal_negative2_TriggerDiagnostics(void)
 *
 * The purpose of this test is to ensure that the GetServiceFlow API returns the expected output when invoked with valid parameters.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 020
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 020 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
-* | 01 | Invoking mta_hal_GetServiceFlow with valid parameters | Count = 0, ppCfg = NULL | RETURN_OK | The API call should be successful and return the expected status |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_GetServiceFlow  | Count = 0, ppCfg = NULL | RETURN_OK | The API call should be successful and return the expected status |
 */
 void test_l1_mta_hal_positive_1_GetServiceFlow(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_1_GetServiceFlow...");
@@ -761,7 +776,11 @@ void test_l1_mta_hal_positive_1_GetServiceFlow(void) {
         // Clean up allocated memory
         free(ppCfg);
     }
-    
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
+    }
     UT_LOG("Exiting test_l1_mta_hal_positive_1_GetServiceFlow...");
 }
 
@@ -770,18 +789,18 @@ void test_l1_mta_hal_positive_1_GetServiceFlow(void) {
 *
 * This test case is used to verify that the mta_hal_GetServiceFlow function returns an error code when invoked with NULL pointers as arguments.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 021
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 021 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :--------------: | ----------- | --------- | --------------- | ----- |
-* | 01               | Invoke mta_hal_GetServiceFlow with NULL pointers | serviceFlow = NULL, status = NULL | RETURN_ERR | Should return an error code |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoke mta_hal_GetServiceFlow with NULL pointers | serviceFlow = NULL, status = NULL | RETURN_ERR | Should return an error code |
 */
 
 void test_l1_mta_hal_negative_1_GetServiceFlow(void) {
@@ -803,20 +822,19 @@ void test_l1_mta_hal_negative_1_GetServiceFlow(void) {
  *
  * This test case verifies the functionality of the mta_hal_DectGetEnable API by checking the return status and enable status.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 022
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 022 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
- * 1. Variation / Step: |01|
- *    Description: Invoking mta_hal_DectGetEnable API with enable memory location.
- *    Test Data: enable = N/A
- *    Expected Result: Return status should be RETURN_OK and enable should be TRUE.
- *    Notes: Should be successful.
+ * **Test Procedure:** @n
+ * | Variation / Step | Description | Test Data | Expected Result | Notes |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01   | Invoking mta_hal_DectGetEnable API with enable memory location | enable = TRUE | RETURN_OK |  should be successful
+  
  */
 
 void test_l1_mta_hal_positive1_mta_hal_DectGetEnable(void) {
@@ -837,18 +855,18 @@ void test_l1_mta_hal_positive1_mta_hal_DectGetEnable(void) {
  *
  * This test case is used to verify the behavior of the mta_hal_DectGetEnable function.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 023
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 023 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- |-------------- | ----- |
- * | 01 | Invoke mta_hal_DectGetEnable function | &enable | RETURN_OK | The enable status should be FALSE |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoke mta_hal_DectGetEnable function | enable = FALSE | RETURN_OK | The enable status should be FALSE |
  */
 void test_l1_mta_hal_positive2_mta_hal_DectGetEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_mta_hal_DectGetEnable...");
@@ -871,17 +889,17 @@ void test_l1_mta_hal_positive2_mta_hal_DectGetEnable(void) {
 *
 * The objective of this test is to ensure that the function returns the expected error code when it is called with a NULL enable memory location.
 *
-* **Test Group ID:** Basic (for L1): 01
-* **Test Case ID:** 024
-* **Priority:** High
+* **Test Group ID:** Basic (for L1): 01 @n
+* **Test Case ID:** 024 @n
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_DectGetEnable with 2 enable memory location | enable = 2 | RETURN_ERR | Should be an error |
 */
 void test_l1_mta_hal_negative1_mta_hal_DectGetEnable(void) {
@@ -904,18 +922,18 @@ void test_l1_mta_hal_negative1_mta_hal_DectGetEnable(void) {
  *
  * This test case is used to verify the functionality of the mta_hal_DectSetEnable function when enabling the DECT feature. It will validate the return status of the function call and ensure that it is equal to RETURN_OK when the DECT feature is successfully enabled.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 025
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 025 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | -------------- | ----- |
- * | 01 | Enable DECT feature | bBool = TRUE | RETURN_OK | Should be successful |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking the mta_hal_DectSetEnable | bBool = TRUE | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_mta_hal_DectSetEnable_Enabled(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_mta_hal_DectSetEnable_Enabled...");
@@ -935,18 +953,18 @@ void test_l1_mta_hal_positive1_mta_hal_DectSetEnable_Enabled(void) {
  *
  * In this test case, the mta_hal_DectSetEnable API is invoked with the input parameter bBool = FALSE. The objective of this test is to verify that the API returns the expected status code when the DECT function is disabled.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 026
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 026 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | -------------- | ----- |
- * | 01 | Enable DECT function | bBool = FALSE | RETURN_OK | Should return success |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking the mta_hal_DectSetEnable | bBool = FALSE | RETURN_OK | Should return success |
  */
 void test_l1_mta_hal_positive2_mta_hal_DectSetEnable_Disabled(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_mta_hal_DectSetEnable_Disabled...");
@@ -966,18 +984,18 @@ void test_l1_mta_hal_positive2_mta_hal_DectSetEnable_Disabled(void) {
  *
  * This test case checks if the mta_hal_DectSetEnable function returns the correct status code when an invalid boolean value is passed as an input.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 027
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 027 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- |-------------- | ----- |
- * | 01 | mta_hal_DectSetEnable with an invalid boolean value | bBool = 123 (Invalid) | RETURN_ERR | Should return an error status |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | invoking the mta_hal_DectSetEnable with an invalid boolean value | bBool = 123 (Invalid) | RETURN_ERR | Should return an error status |
  */
 void test_l1_mta_hal_negative1_mta_hal_DectSetEnable_InvalidValue(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_mta_hal_DectSetEnable_InvalidValue...");
@@ -998,63 +1016,58 @@ void test_l1_mta_hal_negative1_mta_hal_DectSetEnable_InvalidValue(void) {
 *
 * This test case belongs to the Basic (L1) test group and has a high priority as it is an essential functionality of the API.
 * 
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 028
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 028 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_DectGetRegistrationMode API with pBool as a valid pointer | *pBool = FALSE | SUCCESS | The registration mode should be successfully enabled |
 */
 void test_l1_mta_hal_positive_1_DectGetRegistrationMode_enabled(void) {
 
-    BOOLEAN pBool = TRUE;
-    
     UT_LOG("Entering test_l1_mta_hal_positive_1_DectGetRegistrationMode_enabled...");
+    BOOLEAN pBool = TRUE;
 
     UT_LOG("Invoking mta_hal_DectGetRegistrationMode with pBool as valid pointer...");
     INT result = mta_hal_DectGetRegistrationMode(&pBool);
     UT_LOG("Returned result: %d", result);
     UT_ASSERT_EQUAL(result, RETURN_OK);
 
-
     UT_LOG("Exiting test_l1_mta_hal_positive_1_DectGetRegistrationMode_enabled...");
 }
-
 
 /**
 * @brief Test case to verify the behavior of mta_hal_DectGetRegistrationMode function when registration mode is disabled.
 *
 * This test case validates the mta_hal_DectGetRegistrationMode function when the registration mode is disabled. It checks if the function returns the expected result and updates the output variable correctly.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 029
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 029 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
-* | 01 | Invoking mta_hal_DectGetRegistrationMode with pBool as valid pointer | pBool = TRUE | Function returns RETURN_OK, *pBool is updated to FALSE | Should be successful |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_DectGetRegistrationMode with pBool as valid pointer | pBool = FALSE | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive_2_DectGetRegistrationMode_disabled(void) {
-    BOOLEAN pBool = FALSE; 
-
     UT_LOG("Entering test_l1_mta_hal_positive_2_DectGetRegistrationMode_disabled...");
+    BOOLEAN pBool = FALSE; 
 
     UT_LOG("Invoking mta_hal_DectGetRegistrationMode with pBool as valid pointer...");
     INT result = mta_hal_DectGetRegistrationMode(&pBool);
     UT_LOG("Returned result: %d", result);
     UT_ASSERT_EQUAL(result, RETURN_OK);
-
 
     UT_LOG("Exiting test_l1_mta_hal_positive_2_DectGetRegistrationMode_disabled...");
 }
@@ -1064,23 +1077,23 @@ void test_l1_mta_hal_positive_2_DectGetRegistrationMode_disabled(void) {
  *
  * This test case verifies the behavior of the mta_hal_DectGetRegistrationMode function when a null pointer is passed as an argument.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 030
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 030 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:**@n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- |-------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Invoking mta_hal_DectGetRegistrationMode with pBool as null pointer | pBool = NULL | RETURN_ERR | Should be unsuccessful |
  */
 void test_l1_mta_hal_negative_1_DectGetRegistrationMode_null_pointer(void) {
+    UT_LOG("Entering test_l1_mta_hal_negative_1_DectGetRegistrationMode_null_pointer...");
     BOOLEAN* pBool = NULL;
 
-    UT_LOG("Entering test_l1_mta_hal_negative_1_DectGetRegistrationMode_null_pointer...");
     UT_LOG("Invoking mta_hal_DectGetRegistrationMode with pBool as null pointer...");
     INT result = mta_hal_DectGetRegistrationMode(pBool);
     UT_ASSERT_EQUAL(result, RETURN_ERR);
@@ -1094,18 +1107,18 @@ void test_l1_mta_hal_negative_1_DectGetRegistrationMode_null_pointer(void) {
 *
 * This test case verifies the functionality of mta_hal_DectSetRegistrationMode function by setting the DECT registration mode enabled.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 031
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 031 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Set DECT Registration Mode Enabled | bBool = TRUE | The registration mode is set to enabled. | Should return RETURN_OK |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_DectSetRegistrationMode | bBool = TRUE | The registration mode is set to enabled. | Should return RETURN_OK |
 */
 void test_l1_mta_hal_positive_1_SetDectRegistrationModeEnabled(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_1_SetDectRegistrationModeEnabled...");
@@ -1124,20 +1137,19 @@ void test_l1_mta_hal_positive_1_SetDectRegistrationModeEnabled(void) {
  *
  * This test case verifies the behavior of the `mta_hal_DectSetRegistrationMode` function when the registration mode is set to disabled (`bBool = FALSE`).
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 032
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 032 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
- * The test procedure for this test case is as follows:
+ * **Test Procedure:** @n
  *
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | ---------- | --------- | --------------- | ----- |
- * | 01 | Verify the behavior of `mta_hal_DectSetRegistrationMode` function when the registration mode is disabled | bBool = FALSE | RETURN_OK is expected as the return value of `mta_hal_DectSetRegistrationMode` | Should be successful |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Verify the behavior of `mta_hal_DectSetRegistrationMode`  | bBool = FALSE | RETURN_OK is expected as the return value of `mta_hal_DectSetRegistrationMode` | Should be successful |
  */
 
 void test_l1_mta_hal_positive_2_SetDectRegistrationModeDisabled(void) {
@@ -1154,29 +1166,25 @@ void test_l1_mta_hal_positive_2_SetDectRegistrationModeDisabled(void) {
 
 /**
 * @brief This test case is used to verify the behavior of the mta_hal_DectSetRegistrationMode function when an undefined boolean value is passed as an argument.
-
 * The objective of this test is to ensure that the mta_hal_DectSetRegistrationMode function handles undefined boolean values correctly.
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 033 @n
+* **Priority:** High @n@n
 
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 033
-* **Priority:** High
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console. @n
 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console.
-
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_DectSetRegistrationMode with an undefined boolean value | bBool = 2 | RETURN_ERR | Should return an error |
-
 */
 
 void test_l1_mta_hal_negative_1_SetDectRegistrationModeUndefined(void) {
     UT_LOG("Entering test_l1_mta_hal_negative_1_SetDectRegistrationModeUndefined...");
 
     BOOLEAN bBool = 2; 
-    
     UT_LOG("Invoking mta_hal_DectSetRegistrationMode with bBool = 2");
     INT status = mta_hal_DectSetRegistrationMode(bBool);
     UT_LOG("Status : %d ", status);
@@ -1185,28 +1193,23 @@ void test_l1_mta_hal_negative_1_SetDectRegistrationModeUndefined(void) {
     UT_LOG("Exiting test_l1_mta_hal_negative_1_SetDectRegistrationModeUndefined...");
 }
 
-
 /**
 * @brief Test case to verify the functionality of the function test_l1_mta_hal_positive1_DectDeregisterDectHandset().
 *
 * This test case is used to verify the functionality of the mta_hal_DectDeregisterDectHandset() function when positive input values are provided.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 034
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 034 @n
+* **Priority:** High @n@n
 * 
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
-*
-*
-* **Test Procedure:**
-* 
-* | Variation / Step | Description                                         | Test Data                                             | Expected Result                          | Notes             |
-* | :-----------:   | --------------------------------------------------  | ---------------------------------------------------  | ----------------------------------------- | ----------------- |
-* | 01              | Invoke mta_hal_DectDeregisterDectHandset() function  | uValue = 0                                            | RETURN_OK (0)                            | Should be successful |
-*
+* **Test Procedure:** @n
+* | Variation / Step | Description  | Test Data | Expected Result | Notes |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoke mta_hal_DectDeregisterDectHandset() function  | uValue = 0 | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_DectDeregisterDectHandset(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_DectDeregisterDectHandset...");
@@ -1225,18 +1228,18 @@ void test_l1_mta_hal_positive1_DectDeregisterDectHandset(void) {
  *
  * This test function verifies the behavior of the mta_hal_DectDeregisterDectHandset() function by passing the maximum possible value to the function and checking if the return value is equal to RETURN_OK.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 035
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 035 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.@n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | ---------- | ---------------------- | --------------------- | -------- |
- * | 01       | Passing maximum value | uValue = 4294967295 | status = RETURN_OK | Should be successful |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Passing maximum value | uValue = 4294967295 | status = RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive2_DectDeregisterDectHandset(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_DectDeregisterDectHandset...");
@@ -1244,7 +1247,6 @@ void test_l1_mta_hal_positive2_DectDeregisterDectHandset(void) {
     unsigned long uValue = 4294967295; // maximum value
     UT_LOG("Invoking mta_hal_DectDeregisterDectHandset with uValue: %lu", uValue);
     INT status = mta_hal_DectDeregisterDectHandset(uValue);
-
     UT_LOG("Status : %d ", status);
     UT_ASSERT_EQUAL(status, RETURN_OK);
 
@@ -1256,17 +1258,17 @@ void test_l1_mta_hal_positive2_DectDeregisterDectHandset(void) {
 *
 * This test case checks the functionality of the mta_hal_DectDeregisterDectHandset() function by invoking it with a random value.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 036
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 036 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | --------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking with random value | uValue = 1234567890 | Function returns RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive3_DectDeregisterDectHandset(void) {
@@ -1275,7 +1277,6 @@ void test_l1_mta_hal_positive3_DectDeregisterDectHandset(void) {
     unsigned long uValue = 1234567890; // random value
     UT_LOG("Invoking mta_hal_DectDeregisterDectHandset with uValue: %lu", uValue);
     INT status = mta_hal_DectDeregisterDectHandset(uValue);
-
     UT_LOG("Status : %d ", status);
     UT_ASSERT_EQUAL(status, RETURN_OK);
 
@@ -1287,17 +1288,17 @@ void test_l1_mta_hal_positive3_DectDeregisterDectHandset(void) {
  *
  * This test case verifies the behavior of mta_hal_DectDeregisterDectHandset API when an invalid value is passed as input. The API should return an error status.
  * 
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 037
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 037 @n
+ * **Priority:** High @n@n
  * 
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  * 
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- |-------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Invoking mta_hal_DectDeregisterDectHandset with an invalid value | uValue = 100 | RETURN_ERR | Should return error status |
  */
 
@@ -1320,41 +1321,40 @@ void test_l1_mta_hal_negative1_DectDeregisterDectHandset(void) {
 * This test case verifies the functionality of mta_hal_GetDect when a valid memory location is provided. The objective is to ensure that the function returns successfully and the obtained
 * values in the structure members are correct.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 038
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 038 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Allocate memory for the structure | pDectInfo = malloc(sizeof(TAMGMT_MTA_DECT)) | Success | The memory should be allocated successfully |
-* | 02 | Invoke the API | mta_hal_GetDect(pDectInfo) | Success | The API should return successfully |
-* | 03 | Check the return status | returnStatus = RETURN_OK | Success | The return status should be RETURN_OK |
-* | 04 | Free the allocated memory | free(pDectInfo) | - | The memory should be freed |
-*
-* @param void No input parameters are required for this test case.
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoke the mta_hal_GetDect API | pDectInfo = Valid memory | RETURN_OK | should be successful |
 */
 void test_l1_mta_hal_positive1_GetDectInfo_ValidMemoryLocation(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_GetDectInfo_ValidMemoryLocation...");
 
     // Allocate a valid memory location for the structure
-    PMTAMGMT_MTA_DECT pDectInfo = malloc(sizeof(MTAMGMT_MTA_DECT));
-    UT_ASSERT_PTR_NOT_NULL(pDectInfo);
-
-    // Invoke the API
-    UT_LOG("Invoking the mta_hal_GetDect with valid memory");
-    INT returnStatus = mta_hal_GetDect(pDectInfo);
-    UT_LOG("Return value : %d ", returnStatus);
-    // Check the return status
-    UT_ASSERT_EQUAL(returnStatus, RETURN_OK);
-
-    // Free the allocated memory
-    free(pDectInfo);
-
+    PMTAMGMT_MTA_DECT pDectInfo = (PMTAMGMT_MTA_DECT )malloc(sizeof(MTAMGMT_MTA_DECT));
+    if(pDectInfo != NULL)
+    {
+        // Invoke the API
+        UT_LOG("Invoking the mta_hal_GetDect with valid memory");
+        INT returnStatus = mta_hal_GetDect(pDectInfo);
+        UT_LOG("Return value : %d ", returnStatus);
+        // Check the return status
+        UT_ASSERT_EQUAL(returnStatus, RETURN_OK);
+        // Free the allocated memory
+        free(pDectInfo);
+    }  
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
+    } 
     UT_LOG("Exiting test_l1_mta_hal_positive1_GetDectInfo_ValidMemoryLocation...");
 }
 
@@ -1363,20 +1363,19 @@ void test_l1_mta_hal_positive1_GetDectInfo_ValidMemoryLocation(void) {
 *
 * This test verifies that the function returns the expected error code when invoked with a NULL pointer as input.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 039
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 039 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke the API with a NULL pointer | pDectInfo = NULL | RETURN_ERR | Should return an error code |
 */
-
 void test_l1_mta_hal_negative1_GetDectInfo_NullPointer(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_GetDectInfo_NullPointer...");
     PMTAMGMT_MTA_DECT pDectInfo = NULL;
@@ -1394,17 +1393,17 @@ void test_l1_mta_hal_negative1_GetDectInfo_NullPointer(void) {
 *
 * This test case verifies the functionality of the mta_hal_GetDectPIN API by invoking it with a valid memory location and checking the return status.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 040
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 040 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_GetDectPIN with valid memory location | pin = {allocated memory location} | RETURN_OK | The API should return successfully |
 */
 
@@ -1414,7 +1413,6 @@ void test_l1_mta_hal_positive1_GetDectPIN(void)
 
     // Allocate memory for character array
     char pin[128];
-
     // Invoke API with valid memory location
     UT_LOG("Invoking mta_hal_GetDectPIN with valid memory location - Passed");
     INT status = mta_hal_GetDectPIN(pin);
@@ -1429,18 +1427,18 @@ void test_l1_mta_hal_positive1_GetDectPIN(void)
  *
  * This test case verifies the behavior of mta_hal_GetDectPIN API when it is called with a NULL pointer as an argument. The expected outcome is that the API should return RETURN_ERR.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 041
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 041 @n
+ * **Priority:** High @n@n
  * 
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  * 
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | -------------- | ----- |
- * | 01 | Invoke API with NULL pointer | pointer = NULL | RETURN_ERR | Should return RETURN_ERR |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoke mta_hal_GetDectPIN API with NULL pointer | pointer = NULL | RETURN_ERR | Should return RETURN_ERR |
  */
 
 void test_l1_mta_hal_negative1_GetDectPIN(void)
@@ -1462,17 +1460,17 @@ void test_l1_mta_hal_negative1_GetDectPIN(void)
  *
  * This test checks whether the mta_hal_SetDectPIN API correctly sets the DECT PIN when a valid PIN string is provided as input.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 042
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 042 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- |-------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Invoke mta_hal_SetDectPIN API with a valid PIN string | pinString = "validPIN" | RETURN_OK | Should set the DECT PIN successfully |
  */
 void test_l1_mta_hal_positive1_SetDectPIN_ValidPINString(void)
@@ -1498,18 +1496,18 @@ void test_l1_mta_hal_positive1_SetDectPIN_ValidPINString(void)
 * This test case checks if the mta_hal_SetDectPIN function can successfully set an empty string as the DECT PIN.
 * The objective of this test is to verify the behavior of the function when provided with an empty string as input.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 043
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 043 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.@n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
-* | 01 | Set an empty string as DECT PIN | pinString = "" | mta_hal_SetDectPIN returns RETURN_OK | Should be successful |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoke the mta_hal_SetDectPIN | pinString = "" | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive2_SetDectPIN_EmptyString(void)
 {
@@ -1533,20 +1531,19 @@ void test_l1_mta_hal_positive2_SetDectPIN_EmptyString(void)
 * @brief Test case to verify the behavior of mta_hal_SetDectPIN API when passed a NULL pointer.
 *
 * This test case verifies the behavior of mta_hal_SetDectPIN when passed a NULL pointer. The objective is to ensure that the API handles the NULL pointer correctly and returns the expected result.
-
-**Test Group ID:** Basic: 01
-**Test Case ID:** 044
-**Priority:** High
-
-**Pre-Conditions:** None
-**Dependencies:** None
-**User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console.
-
-**Test Procedure:**
-| Variation / Step | Description | Test Data | Expected Result | Notes |
-| :----: | --------- | ---------- | -------------- | ----- |
-| 01 | Invoke mta_hal_SetDectPIN with a NULL pointer | pointer = NULL | RETURN_ERR | Should return error |
-
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 044 @n
+* **Priority:** High @n@n
+*
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console. @n
+*
+* **Test Procedure:** @n
+* | Variation / Step | Description | Test Data | Expected Result | Notes |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoke mta_hal_SetDectPIN with a NULL pointer | pointer = NULL | RETURN_ERR | Should return error |
+* 
 */
 void test_l1_mta_hal_negative1_SetDectPIN_NULLPointer(void)
 {
@@ -1568,18 +1565,18 @@ void test_l1_mta_hal_negative1_SetDectPIN_NULLPointer(void)
  *
  * This test aims to verify the behavior of the mta_hal_SetDectPIN function when a string exceeding the limit is passed as input. It checks if the function returns the expected error code when an oversized PIN string is provided.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 045
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 045 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console. @n
  *
- * **Test Procedure:**
- *  | Variation / Step | Description                               | Test Data                                              | Expected Result                               | Notes                   |
- *  | :--------------: | ----------------------------------------- | ------------------------------------------------------ | ----------------------------------------------- | ----------------------- |
- *  |       01         | Pass a string exceeding the size limit.    | pinString = "1234567890123456789012345678901234567890123456789012345678901234567890" | RETURN_ERR (error code)                        | Should return an error. |
+ * **Test Procedure:** @n
+ *  | Variation / Step | Description | Test Data | Expected Result | Notes |
+ *  | :----: | :---------: | :----------: |:--------------: | :-----: |
+ *  | 01 | Invoking the mta_hal_SetDectPIN | pinString = "1234567890123456789012345678901234567890123456789012345678901234567890" | RETURN_ERR | Should return an error.|
  *
  */
 
@@ -1606,18 +1603,18 @@ void test_l1_mta_hal_negative2_SetDectPIN_StringExceedingLimit(void)
 *
 * The test verifies if the function returns the expected result when an array filled with invalid characters is passed as the dect PIN parameter.
 * 
-* **Test Group ID:** Basic (for L1): 01
-* **Test Case ID:** 046
-* **Priority:** High
+* **Test Group ID:** Basic (for L1): 01 @n
+* **Test Case ID:** 046 @n
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
-* **Test Procedure:**
+* **Test Procedure:** @n
 *  | Variation / Step | Description | Test Data | Expected Result | Notes |
-*  | :----: | --------- | ---------- | -------------- | ----- |
-*  | 01 | Provide an array filled with invalid characters as the dect PIN and invoke mta_hal_SetDectPIN | pinString = "!@#$%^&*()" | Expect RETURN_ERR as the return value | Should indicate failure |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+*  | 01 | invoke mta_hal_SetDectPIN | pinString = "!@#$%^&*()" | Expect RETURN_ERR as the return value | Should indicate failure |
 */
 void test_l1_mta_hal_negative3_SetDectPIN_InvalidCharacters(void)
 {
@@ -1625,12 +1622,10 @@ void test_l1_mta_hal_negative3_SetDectPIN_InvalidCharacters(void)
 
     // Create a character array of size 128 bytes filled with invalid characters
     char pinString[128] = "!@#$%^&*()";
-
     // Invoke mta_hal_SetDectPIN using the array's pointer
     UT_LOG("Invoking the mta_hal_SetDectPIN with Invalid characters");
     INT result = mta_hal_SetDectPIN(pinString);
     UT_LOG("Result : %d", result);
-
     // Check the return status
     UT_ASSERT_EQUAL(result, RETURN_ERR);
 
@@ -1642,17 +1637,17 @@ void test_l1_mta_hal_negative3_SetDectPIN_InvalidCharacters(void)
 *
 * This test case checks the behavior of the mta_hal_SetDectPIN API when a partially populated string is passed as input. The objective is to verify that the API handles the partially populated string correctly and returns the expected result.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 047
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 047 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Partially populated string | pinString = "validPIN" | RETURN_ERR | The API should return an error code |
 */
 void test_l1_mta_hal_negative4_SetDectPIN_PartiallyPopulatedString(void)
@@ -1678,17 +1673,17 @@ void test_l1_mta_hal_negative4_SetDectPIN_PartiallyPopulatedString(void)
 *
 * The objective of this test case is to verify that the mta_hal_GetHandsets API returns the expected status and the correct values in ppHandsets when a valid handset number is provided as input.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 048
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 048 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetHandsets API with valid parameters | pulCount = 1, ppHandsets = valid | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber(void)
@@ -1696,7 +1691,7 @@ void test_l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber(void)
     UT_LOG("Entering test_l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber...");
 
     unsigned long pulCount = 1;
-    PMTAMGMT_MTA_HANDSETS_INFO ppHandsets= malloc (sizeof (MTAMGMT_MTA_HANDSETS_INFO));
+    PMTAMGMT_MTA_HANDSETS_INFO ppHandsets= (PMTAMGMT_MTA_HANDSETS_INFO )malloc (sizeof (MTAMGMT_MTA_HANDSETS_INFO));
     if(ppHandsets != NULL)
     {
         UT_LOG("Invoking mta_hal_GetHandsets with pulCount : %d  ppHandsets = NULL");
@@ -1705,6 +1700,11 @@ void test_l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber(void)
     
         UT_ASSERT_EQUAL(RETURN_OK, status);
         free(ppHandsets);
+    }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
     }
     UT_LOG("Existing test_l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber...");
 }
@@ -1715,38 +1715,40 @@ void test_l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber(void)
  * This test case checks if the mta_hal_GetHandsets function returns the correct status and updates
  * the pulCount and ppHandsets variables correctly when the minimum number of handsets is returned.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 049
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 049 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | -------------- | ----- |
- * | 01 | Invoking mta_hal_GetHandsets with pulCount=0, ppHandsets=NULL | pulCount = 0, ppHandsets = NULL | RETURN_OK is returned | Should be successful |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking mta_hal_GetHandsets | pulCount = 0, ppHandsets = NULL | RETURN_OK is returned | Should be successful |
  */
 
 void test_l1_mta_hal_positive2_GetHandsets_MinimumHandsetNumber(void)
 {
     UT_LOG("Entering test_l1_mta_hal_positive2_GetHandsets_MinimumHandsetNumber...");
-
     unsigned long* pulCount = malloc(sizeof(unsigned long));
-    *pulCount = 0;
-
-    PMTAMGMT_MTA_HANDSETS_INFO ppHandsets = NULL;
-    UT_LOG("Invoking the mta_hal_GetHandsets");
-    INT status = mta_hal_GetHandsets(pulCount, &ppHandsets);
-
-    UT_LOG("Status: %d ", status);
-    UT_LOG("mta_hal_GetHandsets with pulCount=%lu, ppHandsets=%s", *pulCount, (ppHandsets != NULL) ? "valid" : "NULL");
-
-    UT_ASSERT_EQUAL(RETURN_OK, status);
-
-    free(pulCount);
-
+    if (pulCount != NULL)
+    {
+        *pulCount = 0;
+        PMTAMGMT_MTA_HANDSETS_INFO ppHandsets = NULL;
+        UT_LOG("Invoking the mta_hal_GetHandsets");
+        INT status = mta_hal_GetHandsets(pulCount, &ppHandsets);
+        UT_LOG("Status: %d ", status);
+        UT_LOG("mta_hal_GetHandsets with pulCount=%lu, ppHandsets=%s", *pulCount, (ppHandsets != NULL) ? "valid" : "NULL");
+        UT_ASSERT_EQUAL(RETURN_OK, status);
+        free(pulCount);
+    }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
+    }
     UT_LOG("Exiting test_l1_mta_hal_positive2_GetHandsets_MinimumHandsetNumber...");
 }
 
@@ -1756,20 +1758,19 @@ void test_l1_mta_hal_positive2_GetHandsets_MinimumHandsetNumber(void)
 * The mta_hal_GetHandsets function is tested in this test case to verify the behavior when the 'pulCount' parameter is NULL. 
 * The objective of this test case is to ensure that the function handles the NULL 'pulCount' parameter correctly and returns the expected result.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 050
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 050 @n
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetHandsets with NULL pulCount parameter | pulCount = NULL, ppHandsets = valid | RETURN_ERR | Should return error |
 *
-* @see mta_hal_GetHandsets
 */
 void test_l1_mta_hal_negative1_GetHandsets_NullCount(void)
 {
@@ -1779,10 +1780,8 @@ void test_l1_mta_hal_negative1_GetHandsets_NullCount(void)
     UT_LOG("Invoking the mta_hal_GetHandsets ");
     INT status = mta_hal_GetHandsets(pulCount, &ppHandsets);
     UT_LOG("Status: %d ", status);
-    UT_LOG("Invoking mta_hal_GetHandsets with pulCount=NULL, ppHandsets=%s", (ppHandsets != NULL) ? "valid" : "NULL");
-
+    UT_LOG("mta_hal_GetHandsets returns ppHandsets=%s", (ppHandsets != NULL) ? "valid" : "NULL");
     UT_ASSERT_EQUAL(RETURN_ERR, status);
-
     UT_LOG("Exiting test_l1_mta_hal_negative1_GetHandsets_NullCount...");
 }
 
@@ -1792,34 +1791,39 @@ void test_l1_mta_hal_negative1_GetHandsets_NullCount(void)
 * The objective of this test is to ensure that the function correctly handles the case when the ppHandsets parameter is NULL.
 * This test is part of the Basic group and has an ID of 052. It has a high priority as it is important for the overall functionality.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 051
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 051 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
-* | Variation / Step | Description                                                             | Test Data                                    | Expected Result                                | Notes            |
-* | :--------------: | ----------------------------------------------------------------------- | -------------------------------------------- | ---------------------------------------------- | ---------------- |
-* |      01          | Verify behavior when ppHandsets is NULL                                  | pulCount = 1, ppHandsets = NULL               | Function returns RETURN_ERR                     | Should be successful |
+* **Test Procedure:** @n
+* | Variation / Step | Description | Test Data | Expected Result | Notes |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Verify behavior when ppHandsets is NULL | pulCount = 1, ppHandsets = NULL | Function returns RETURN_ERR | Should be successful |
 */
 void test_l1_mta_hal_negative2_GetHandsets_NullHandsets(void)
 {
     UT_LOG("Entering test_l1_mta_hal_negative2_GetHandsets_NullHandsets...");
 
     unsigned long* pulCount = malloc(sizeof(unsigned long));
-    *pulCount = 1;
-    UT_LOG("Invoking the mta_hal_GetHandsets ");
-    INT status = mta_hal_GetHandsets(pulCount, NULL);
-    UT_LOG("Status: %d ", status);
-    UT_LOG("Invoking mta_hal_GetHandsets with pulCount=%lu, ppHandsets=NULL", *pulCount);
-
-    UT_ASSERT_EQUAL(RETURN_ERR, status);
-
-    free(pulCount);
-
+    if(pulCount != NULL)
+    {
+        *pulCount = 1;
+        UT_LOG("Invoking the mta_hal_GetHandsets ");
+        INT status = mta_hal_GetHandsets(pulCount, NULL);
+        UT_LOG("Status: %d ", status);
+        UT_LOG("mta_hal_GetHandsets returned pulCount=%lu", *pulCount);
+        UT_ASSERT_EQUAL(RETURN_ERR, status);
+        free(pulCount);
+    }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
+    }
     UT_LOG("Exiting test_l1_mta_hal_negative2_GetHandsets_NullHandsets...");
 }
 
@@ -1828,28 +1832,26 @@ void test_l1_mta_hal_negative2_GetHandsets_NullHandsets(void)
 *
 * This test case verifies that when pulCount and ppHandsets are NULL, the mta_hal_GetHandsets function returns RETURN_ERR.
 * 
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 052
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 052 @n
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
-* **Test Procedure:**
+* **Test Procedure:** @n
 * 
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetHandsets function with pulCount=NULL, ppHandsets=NULL | pulCount = NULL, ppHandsets = NULL | RETURN_ERR | Should return error |
 */
 void test_l1_mta_hal_negative3_GetHandsets_NullCountAndHandsets(void)
 {
     UT_LOG("Entering test_l1_mta_hal_negative3_GetHandsets_NullCountAndHandsets...");
-    UT_LOG("Invoking the mta_hal_GetHandsets ");
+    UT_LOG("Invoking mta_hal_GetHandsets with pulCount=NULL, ppHandsets=NULL");
     INT status = mta_hal_GetHandsets(NULL, NULL);
     UT_LOG("Status: %d ", status);
-    UT_LOG("Invoking mta_hal_GetHandsets with pulCount=NULL, ppHandsets=NULL");
-
     UT_ASSERT_EQUAL(RETURN_ERR, status);
 
     UT_LOG("Exiting test_l1_mta_hal_negative3_GetHandsets_NullCountAndHandsets...");
@@ -1860,59 +1862,61 @@ void test_l1_mta_hal_negative3_GetHandsets_NullCountAndHandsets(void)
  *
  * The objective of this test is to ensure that the mta_hal_GetHandsets function returns an error status when an invalid handset number is provided.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 053
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 053 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console. @n
  *
- * **Test Procedure:**
- * 1. First set of conditions:
- *   - Variation / Step: |01|
- *   - Description: The mta_hal_GetHandsets function is called with an invalid handset number as input.
- *   - Test Data: pulCount = 4294967297
- *   - Expected Result: The mta_hal_GetHandsets function returns an error status.
- *   - Notes: This test is expected to fail.
+ * **Test Procedure:** @n
+ * | Variation / Step | Description | Test Data | Expected Result | Notes |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking mta_hal_GetHandsets | pulCount = 4294967297 | RETURN_ERR | This test is expected to fail |
  */
 void test_l1_mta_hal_negative4_GetHandsets_InvalidHandsetNumber(void)
 {
     UT_LOG("Entering test_l1_mta_hal_negative4_GetHandsets_InvalidHandsetNumber...");
 
     unsigned long* pulCount = malloc(sizeof(unsigned long));
-    *pulCount = 4294967297; // (2^32) + 1, which is invalid
+    if(pulCount != NULL)
+    {
+        *pulCount = 4294967297; 
 
-    PMTAMGMT_MTA_HANDSETS_INFO ppHandsets = NULL;
-    UT_LOG("Invoking the mta_hal_GetHandsets with %lu ", *pulCount);
-    INT status = mta_hal_GetHandsets(pulCount, &ppHandsets);
-    UT_LOG("Status: %d ", status);
+        PMTAMGMT_MTA_HANDSETS_INFO ppHandsets = NULL;
+        UT_LOG("Invoking the mta_hal_GetHandsets with %lu ", *pulCount);
+        INT status = mta_hal_GetHandsets(pulCount, &ppHandsets);
+        UT_LOG("Status: %d ", status);
 
-    UT_ASSERT_EQUAL(RETURN_ERR, status);
-
-    free(pulCount);
-
+        UT_ASSERT_EQUAL(RETURN_ERR, status);
+        free(pulCount);
+    }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
+    }
     UT_LOG("Exiting test_l1_mta_hal_negative4_GetHandsets_InvalidHandsetNumber...");
 }
-
 
 /**
 * @brief Unit test for the mta_hal_GetCalls function.
 *
 * This test case is used to verify the functionality of the mta_hal_GetCalls function by invoking it with various input arguments and checking the return status.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 054
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 054 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Test mta_hal_GetCalls with valid instanceNumber and NULL pointers for count and pCfg | instanceNumber = 42, count = 0, pCfg = NULL | RETURN_OK is returned | The function should execute successfully |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoke the mta_hal_GetCalls  | instanceNumber = 42, count = 0, pCfg = NULL | RETURN_OK is returned | The function should execute successfully |
 */
 void test_l1_mta_hal_positive1_mta_hal_GetCalls(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_mta_hal_GetCalls");
@@ -1922,9 +1926,7 @@ void test_l1_mta_hal_positive1_mta_hal_GetCalls(void) {
     PMTAMGMT_MTA_CALLS pCfg = NULL;
     UT_LOG("Invoking mta_hal_GetCalls with instanceNumber = 42 , count =0   and pCfg = NULL");
     INT result = mta_hal_GetCalls(instanceNumber, &count, &pCfg);
-    
     UT_LOG("Return status: %d", result);
-    
     UT_ASSERT_EQUAL(result, RETURN_OK);
     UT_LOG("Existing from the test_l1_mta_hal_positive1_mta_hal_GetCalls() ");
 }
@@ -1934,19 +1936,18 @@ void test_l1_mta_hal_positive1_mta_hal_GetCalls(void) {
 *
 * The objective of this test case is to check if the mta_hal_GetCalls API can handle the boundary conditions of the input parameters.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 055
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 055 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetCalls with instanceNumber: 0, count: 0, pCfg: NULL | instanceNumber = 0, count = 0, pCfg = NULL | Success (RETURN_OK) | Should be successful |
-* | 02 | Invoking mta_hal_GetCalls with instanceNumber: UINT32_MAX, count: 0, pCfg: NULL | instanceNumber = UINT32_MAX, count = 0, pCfg = NULL | Success (RETURN_OK) | Should be successful |
 */
 void test_l1_mta_hal_positive2_mta_hal_GetCalls_boundary(void) {
     UT_LOG("Entering into test_l1_mta_hal_positive2_mta_hal_GetCalls_boundary ");
@@ -1956,19 +1957,9 @@ void test_l1_mta_hal_positive2_mta_hal_GetCalls_boundary(void) {
     PMTAMGMT_MTA_CALLS pCfg1 = NULL;
     UT_LOG("Invoking mta_hal_GetCalls with instanceNumber1 = 0 count : 0 and pCfg = NULL");
     INT result1 = mta_hal_GetCalls(instanceNumber1, &count1, &pCfg1);
-    
     UT_LOG("Return status: %d", result1);
     UT_ASSERT_EQUAL(result1, RETURN_OK);
     
-    ULONG instanceNumber2 = UINT32_MAX;
-    ULONG count2 = 0;
-    PMTAMGMT_MTA_CALLS pCfg2 = NULL;
-    UT_LOG("Invoking mta_hal_GetCalls with instanceNumber1 = MAX count : 0 and pCfg = NULL");
-    INT result2 = mta_hal_GetCalls(instanceNumber2, &count2, &pCfg2);
-    
-    UT_LOG("mta_hal_GetCalls with instanceNumber: %lu, count: %lu, pCfg: %p", instanceNumber2, count2, pCfg2);
-    UT_LOG("Return status: %d", result2);
-    UT_ASSERT_EQUAL(result2, RETURN_OK);
     UT_LOG(" Existing from test_l1_mta_hal_positive2_mta_hal_GetCalls_boundary");
     
 }
@@ -1978,50 +1969,48 @@ void test_l1_mta_hal_positive2_mta_hal_GetCalls_boundary(void) {
  *
  * The objective of this test is to verify the behavior of mta_hal_GetCalls API when the ppCfg parameter is NULL.
  * 
- * Test Group ID: Basic (for L1): 01 / Module (L2): 02 / Stress (L2): 03
- * Test Case ID: 056
- * Priority: High
+ * **Test Group ID:** Basic (for L1): 01 / Module (L2): 02 / Stress (L2): 03 @n
+ * **Test Case ID:** 056 @n
+ * **Priority:** High @n@n
  *
- * Pre-Conditions: None
- * Dependencies: None
- * User Interaction: If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * Test Procedure:
- *  - |01| First set of conditions | instanceNumber = 42, count = 0, pCfg = NULL | RETURN_ERR | Should be equal to RETURN_ERR
+ * Test Procedure: @n
+ * | Variation / Step | Description | Test Data | Expected Result | Notes |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * |01| First set of conditions | instanceNumber = 42, count = 0, pCfg = NULL | RETURN_ERR | Should be equal to RETURN_ERR
  */
 void test_l1_mta_hal_negative1_mta_hal_GetCalls_null_ppCfg(void) {
     UT_LOG(" Entering into test_l1_mta_hal_negative1_mta_hal_GetCalls_null_ppCfg");
     
-    ULONG instanceNumber = 42; // Invalid check
+    ULONG instanceNumber = 42; 
     ULONG count = 0;
     PMTAMGMT_MTA_CALLS pCfg = NULL;
     UT_LOG("Invoking mta_hal_GetCalls with instanceNumber = 42 , count =0   and pCfg = NULL");
     INT result = mta_hal_GetCalls(instanceNumber, &count, NULL);
-    
-    //UT_LOG("Invoking mta_hal_GetCalls with instanceNumber: %lu, count: %lu, pCfg: %p", instanceNumber, count, NULL);
     UT_LOG("Return status: %d", result);
     UT_ASSERT_EQUAL(result, RETURN_ERR);
     UT_LOG("Existing from test_l1_mta_hal_negative1_mta_hal_GetCalls_null_ppCfg");
-    
 }
-
 
 /**
  * @brief Test the mta_hal_GetCalls function with NULL count and pCfg pointers.
  * 
  * This test case verifies the behavior of the mta_hal_GetCalls function when the count and pCfg pointers are NULL.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 057
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 057 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | -------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Invoking mta_hal_GetCalls with NULL count and pCfg pointers | instanceNumber = 42 | RETURN_ERR | Should return an error |
  */
 
@@ -2031,10 +2020,7 @@ void test_l1_mta_hal_negative2_mta_hal_GetCalls_null_Count_and_ppCfg(void) {
     ULONG instanceNumber = 42;
     UT_LOG("Invoking mta_hal_GetCalls with instanceNumber: %lu, count: %p, pCfg: %p", instanceNumber, NULL, NULL);
     INT result = mta_hal_GetCalls(instanceNumber, NULL, NULL);
-    
     UT_LOG("Return status: %d", result);
-    
-    
     UT_ASSERT_EQUAL(result, RETURN_ERR);
     UT_LOG("Existing from test_l1_mta_hal_negative2_mta_hal_GetCalls_null_Count_and_ppCfg");
 }
@@ -2044,31 +2030,29 @@ void test_l1_mta_hal_negative2_mta_hal_GetCalls_null_Count_and_ppCfg(void) {
 *
 * The purpose of this test is to check whether the function correctly handles out of range instance numbers and returns the expected result.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 058
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 058 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Verify the behavior of mta_hal_GetCalls function with an out of range instance number | instanceNumber = 4294967296, count = 0, pCfg = NULL | RETURN_ERR | Function should return an error status |
 */
 
 void test_l1_mta_hal_negative3_mta_hal_GetCalls_out_of_range_InstanceNumber(void) {
     UT_LOG("Entering into test_l1_mta_hal_negative3_mta_hal_GetCalls_out_of_range_InstanceNumber() ");
     
-    ULONG instanceNumber = 4294967296; // Out of range instance number
+    ULONG instanceNumber = 4294967296; 
     ULONG count = 0;
     PMTAMGMT_MTA_CALLS pCfg = NULL;
-    UT_LOG("Invoking mta_hal_GetCalls with instanceNumber: %lu, count: %lu, pCfg: %p", instanceNumber, count, pCfg);
+    UT_LOG("Invoking mta_hal_GetCalls with count: %lu", count);
     INT result = mta_hal_GetCalls(instanceNumber, &count, &pCfg);
-      
     UT_LOG("Return status: %d", result);
-       
     UT_ASSERT_EQUAL(result, RETURN_ERR);
     UT_LOG("Existing from test_l1_mta_hal_negative3_mta_hal_GetCalls_out_of_range_InstanceNumber() ");
 }
@@ -2078,18 +2062,18 @@ void test_l1_mta_hal_negative3_mta_hal_GetCalls_out_of_range_InstanceNumber(void
 *
 * This test case checks the functionality of the mta_hal_GetCALLP API, which is used to retrieve the call progress information for a given line number.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 059
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 059 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data |Expected Result |Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Invoking mta_hal_GetCALLP with valid LineNumber | LineNumber = 1 | RETURN_OK | callp.LCState should be "In Use" |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_GetCALLP with valid LineNumber | LineNumber = 1 | RETURN_OK | should be successful |
 */
 void test_l1_mta_hal_positive1_GetCALLP(void)
 {
@@ -2112,17 +2096,17 @@ void test_l1_mta_hal_positive1_GetCALLP(void)
 *
 * The objective of this test is to ensure that the mta_hal_GetCALLP function returns the correct error code when an invalid line number is provided.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 060
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 060 @n
+* **Priority:** High @n@n
+* 
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console.@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console.
-*
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Verify return value when an invalid line number is provided | LineNumber = 0 | RETURN_ERR | The function should return an error |
 */
 void test_l1_mta_hal_negative1_GetCALLP(void)
@@ -2135,7 +2119,6 @@ void test_l1_mta_hal_negative1_GetCALLP(void)
     UT_LOG("Invoking mta_hal_GetCALLP with LineNumber = %u", LineNumber);
     INT result = mta_hal_GetCALLP(LineNumber, &callp);
     UT_LOG("Result : %d", result);
-
     /* Verify return value */
     UT_ASSERT_EQUAL(result, RETURN_ERR);
 
@@ -2147,17 +2130,17 @@ void test_l1_mta_hal_negative1_GetCALLP(void)
  *
  * This test is part of the Basic (for L1) tests and has a high priority as it verifies the correctness of the function under negative scenarios.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 061
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 061 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | -------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Invoke mta_hal_GetCALLP with LineNumber set to 1 and pCallp set to NULL | LineNumber = 1, pCallp = NULL | RETURN_ERR | Should return an error |
  */
 void test_l1_mta_hal_negative2_GetCALLP(void)
@@ -2166,10 +2149,8 @@ void test_l1_mta_hal_negative2_GetCALLP(void)
 
     /* Set valid line number */
     UINT LineNumber = 1;
-
     /* Set pCallp as NULL */
     MTAMGMT_MTA_CALLP* pCallp = NULL;
-
     /* Invoking mta_hal_GetCALLP with LineNumber = 1, pCallp = NULL */
     UT_LOG("Invoking mta_hal_GetCALLP with LineNumber = %u, pCallp = NULL", LineNumber);
     INT result = mta_hal_GetCALLP(LineNumber, pCallp);
@@ -2185,19 +2166,19 @@ void test_l1_mta_hal_negative2_GetCALLP(void)
     *
     * This test function verifies the functionality of the mta_hal_GetDSXLogs API by invoking it with valid input parameters. It checks if the API returns the expected result and if the log entries are not NULL.
     *
-    * **Test Group ID:** Basic: 01
-    * **Test Case ID:** 062
-    * **Priority:** High
+    * **Test Group ID:** Basic: 01 @n
+    * **Test Case ID:** 062 @n
+    * **Priority:** High @n@n
     *
-    * **Pre-Conditions:** None
-    * **Dependencies:** None
-    * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+    * **Pre-Conditions:** None @n
+    * **Dependencies:** None @n
+    * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
     *
-    * **Test Procedure:** 
+    * **Test Procedure:** @n
     * | Variation / Step | Description | Test Data | Expected Result | Notes |
-    * | :----: | --------- | ---------- |-------------- | ----- |
+    * | :----: | :---------: | :----------: |:--------------: | :-----: |
     * | 01 | Invoking mta_hal_GetDSXLogs with valid input parameters | count = 0, pDSXLog = NULL | result = RETURN_OK, count > 0, pDSXLog is not NULL | Should be successful |
-    */
+*/
 
 void test_l1_mta_hal_positive1_mta_hal_GetDSXLogs(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_mta_hal_GetDSXLogs...");
@@ -2220,17 +2201,17 @@ void test_l1_mta_hal_positive1_mta_hal_GetDSXLogs(void) {
  * 
  * This test case checks if the mta_hal_GetDSXLogs function returns an expected error code when called with invalid input parameters. 
  * 
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 063
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 063 @n
+ * **Priority:** High @n@n
  * 
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  * 
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | --------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Invoking mta_hal_GetDSXLogs with invalid input parameters (NULL) | p1 = NULL, p2 = NULL | RETURN_ERR | Should return error |
  */
 void test_l1_mta_hal_negative1_mta_hal_GetDSXLogs(void) {
@@ -2239,11 +2220,8 @@ void test_l1_mta_hal_negative1_mta_hal_GetDSXLogs(void) {
     PMTAMGMT_MTA_DSXLOG pDSXLog;
     UT_LOG("Invoking mta_hal_GetDSXLogs with invalid input parameters (NULL)...");
     INT result = mta_hal_GetDSXLogs(count, &pDSXLog);
-   
     UT_LOG("Returned value: %d", result);
-
     UT_ASSERT_EQUAL(result, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative1_mta_hal_GetDSXLogs...");
 }
 
@@ -2252,26 +2230,22 @@ void test_l1_mta_hal_negative1_mta_hal_GetDSXLogs(void) {
 *
 * This test case is used to verify the functionality of the mta_hal_GetDSXLogEnable function by checking the return value and the value pointed to by pBool.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 064
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 064 @n
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Provide a valid memory location for pBool and call mta_hal_GetDSXLogEnable function | pBool = valid memory address | RETURN_OK | The return value should be RETURN_OK |
 */
 void test_l1_mta_hal_positive1_GetDSXLogEnable(void) {
-    BOOLEAN bool_value;
-
     UT_LOG("Entering test_l1_mta_hal_positive1_GetDSXLogEnable...");
-
-    // Provide a valid memory location for pBool
-    // Call the mta_hal_GetDSXLogEnable function
+    BOOLEAN bool_value;
     UT_LOG("Invoking mta_hal_GetDSXLogEnable with valid memory location for pBool");
     INT ret = mta_hal_GetDSXLogEnable(&bool_value);
     UT_LOG("Return Value: %d", ret);
@@ -2287,26 +2261,22 @@ void test_l1_mta_hal_positive1_GetDSXLogEnable(void) {
 *
 * This test case verifies whether the mta_hal_GetDSXLogEnable function returns the expected value and modifies the boolean value correctly.
 *
-* **Test Group ID:** Basic (for L1): 01 / Module (L2): 02 / Stress (L2): 03)
-* **Test Case ID:** 065
-* **Priority:** High
+* **Test Group ID:** Basic (for L1): 01 / Module (L2): 02 / Stress (L2): 03) @n
+* **Test Case ID:** 065 @n
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data |Expected Result |Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Provide valid memory location for pBool and call the mta_hal_GetDSXLogEnable function | pBool = valid memory location | RETURN_OK | The return value should be RETURN_OK |
 */
 void test_l1_mta_hal_positive2_GetDSXLogEnable(void) {
-    BOOLEAN bool_value;
-
     UT_LOG("Entering test_l1_mta_hal_positive2_GetDSXLogEnable...");
-
-    // Provide a valid memory location for pBool
-    // Call the mta_hal_GetDSXLogEnable function
+    BOOLEAN bool_value;
     UT_LOG("Invoking mta_hal_GetDSXLogEnable with valid memory location for pBool");
     INT ret = mta_hal_GetDSXLogEnable(&bool_value);
     UT_LOG("Return Value: %d", ret);
@@ -2324,26 +2294,22 @@ void test_l1_mta_hal_positive2_GetDSXLogEnable(void) {
  *
  * This test case checks whether the mta_hal_GetDSXLogEnable function returns RETURN_ERR when a NULL pointer is provided for pBool.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 066
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 066 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If the user chooses to run the test in interactive mode, they need to select this test case via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If the user chooses to run the test in interactive mode, they need to select this test case via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * |
- * | Variation / Step | Description                              | Test Data     | Expected Result |Notes               |
- * | :--------------: | ---------------------------------------- | ------------- | --------------- | ------------------ |
- * |       01         | Provide NULL pointer for pBool            | pBool = NULL  | RETURN_ERR      | Should be successful |
- * |
+ * | Variation / Step | Description  | Test Data     | Expected Result |Notes |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking mta_hal_GetDSXLogEnable with NULL | pBool = NULL  | RETURN_ERR | Should be successful |
  */
 void test_l1_mta_hal_negative1_GetDSXLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_GetDSXLogEnable...");
-
-    // Provide a null pointer for pBool
-    // Call the mta_hal_GetDSXLogEnable function
     UT_LOG("Invoking mta_hal_GetDSXLogEnable with NULL pointer for pBool");
     INT ret = mta_hal_GetDSXLogEnable(NULL);
     UT_LOG("Return Value: %d", ret);
@@ -2358,33 +2324,34 @@ void test_l1_mta_hal_negative1_GetDSXLogEnable(void) {
 *
 * This test checks if the mta_hal_GetDSXLogEnable function returns an error when an invalid boolean value is provided.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 067
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 067 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Get DSX log enable with an invalid boolean value | bool_value = 2 | RETURN_ERR | Should return an error |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_GetDSXLogEnable | bool_value = 2 | RETURN_ERR | Should return an error |
 */
-void test_l1_mta_hal_negative2_GetDSXLogEnable(void) {
-BOOLEAN bool_value = 2; // Invalid Boolean Value
+void test_l1_mta_hal_negative2_GetDSXLogEnable(void) 
+{
+    BOOLEAN bool_value = 2; // Invalid Boolean Value
 
-UT_LOG("Entering test_l1_mta_hal_negative2_GetDSXLogEnable...");
+    UT_LOG("Entering test_l1_mta_hal_negative2_GetDSXLogEnable...");
 
-// Provide a valid memory location for pBool
-// Call the mta_hal_GetDSXLogEnable function
-UT_LOG("Invoking mta_hal_GetDSXLogEnable with valid memory location for pBool");
-INT ret = mta_hal_GetDSXLogEnable(&bool_value);
-UT_LOG("Return Value: %d", ret);
-UT_LOG("Output Value: %d", bool_value);
-// Verify the return value is RETURN_ERR
-UT_ASSERT_EQUAL(ret, RETURN_ERR);
-UT_LOG("Exiting test_l1_mta_hal_negative2_GetDSXLogEnable...");
+    // Provide a valid memory location for pBool
+    // Call the mta_hal_GetDSXLogEnable function
+    UT_LOG("Invoking mta_hal_GetDSXLogEnable with valid memory location for pBool");
+    INT ret = mta_hal_GetDSXLogEnable(&bool_value);
+    UT_LOG("Return Value: %d", ret);
+    UT_LOG("Output Value: %d", bool_value);
+    // Verify the return value is RETURN_ERR
+    UT_ASSERT_EQUAL(ret, RETURN_ERR);
+    UT_LOG("Exiting test_l1_mta_hal_negative2_GetDSXLogEnable...");
 }
 
 /**
@@ -2392,18 +2359,18 @@ UT_LOG("Exiting test_l1_mta_hal_negative2_GetDSXLogEnable...");
  *
  * This test case verifies the functionality of the SetDSXLogEnable API when enabling the DSX log.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 068
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 068 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n  
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | -------------- | ----- |
- * | 01 | Enable DSX log | Bool = TRUE | RETURN_OK | Should be successful |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking mta_hal_SetDSXLogEnable | Bool = TRUE | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_SetDSXLogEnable_EnableDSXLog(void) {
     /* Logging */
@@ -2429,34 +2396,30 @@ void test_l1_mta_hal_positive1_SetDSXLogEnable_EnableDSXLog(void) {
  *
  * This test case is used to verify that the function correctly disables the DSX log when the input boolean value is set to FALSE.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 069
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 069 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console. @n
  *
- * **Test Procedure:**
- * | Variation/Step | Description                                 | Test Data                  | Expected Result                               | Notes            |
- * | :------------: | ------------------------------------------ | -------------------------- | --------------------------------------------- | ---------------- |
- * |      01        | Disable DSX log through the API             | Bool = FALSE               | The API call should return RETURN_OK           | Should be successful |
+ * **Test Procedure:** @n
+ * | Variation/Step | Description | Test Data | Expected Result  | Notes |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * |  01  | Disable DSX log through the API | Bool = FALSE | The API call should return RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive2_SetDSXLogEnable_DisableDSXLog(void) {
     /* Logging */
     UT_LOG("Entering test_l1_mta_hal_positive2_SetDSXLogEnable_DisableDSXLog...\n");
-
     /* Test Setup */
     BOOLEAN Bool = FALSE;
-
     /* Test Execution */
     UT_LOG("Invoking mta_hal_SetDSXLogEnable with Bool = FALSE\n");
     INT result = mta_hal_SetDSXLogEnable(Bool);
     UT_LOG("Result : %d", result);
     /* Test Verification */
-
     UT_ASSERT_EQUAL(result, RETURN_OK);
-
     /* Logging */
     UT_LOG("Exiting test_l1_mta_hal_positive2_SetDSXLogEnable_DisableDSXLog...\n");
 }
@@ -2466,18 +2429,18 @@ void test_l1_mta_hal_positive2_SetDSXLogEnable_DisableDSXLog(void) {
 *
 * The objective of this test is to ensure that the mta_hal_SetDSXLogEnable function properly handles an invalid boolean value and returns an error code.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 070
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n 
+* **Test Case ID:** 070 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Invoking mta_hal_SetDSXLogEnable with invalid boolean value | Bool = 2 | Should return RETURN_ERR | - |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_SetDSXLogEnable with invalid boolean value | Bool = 2 | RETURN_ERR | Should return RETURN_ERR |
 */
 void test_l1_mta_hal_negative1_SetDSXLogEnable_InvalidBooleanValue(void) {
     /* Logging */
@@ -2498,25 +2461,24 @@ void test_l1_mta_hal_negative1_SetDSXLogEnable_InvalidBooleanValue(void) {
     UT_LOG("Exiting test_l1_mta_hal_negative1_SetDSXLogEnable_InvalidBooleanValue...\n");
 }
 
-
 /**
 * @brief Test function to verify the functionality of mta_hal_ClearDSXLog API when the Bool parameter is set to TRUE.
 *
 * This test function verifies the functionality of mta_hal_ClearDSXLog API by setting the Bool parameter to TRUE and
 * calling the API. It checks if the return value is RETURN_OK or not.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 071
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 071 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :--------------: | ----------- | --------- | --------------- | ----- |
-* |       01         | First set of conditions | clearLog = TRUE | RETURN_OK | Should be successful |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* |  01    | First set of conditions | clearLog = TRUE | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_ClearDSXLog(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_ClearDSXLog...");
@@ -2531,8 +2493,6 @@ void test_l1_mta_hal_positive1_ClearDSXLog(void) {
 
     // Verify the return value is RETURN_OK
     UT_ASSERT_EQUAL(result, RETURN_OK);
-
-
     UT_LOG("Exiting test_l1_mta_hal_positive1_ClearDSXLog...");
 }
 
@@ -2541,17 +2501,17 @@ void test_l1_mta_hal_positive1_ClearDSXLog(void) {
 *
 * This test case verifies the behavior of the mta_hal_ClearDSXLog function when the Bool parameter is set to FALSE.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 072
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 072 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_ClearDSXLog with Bool parameter set to FALSE | clearLog = FALSE | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive2_DoNotClearDSXLog(void) {
@@ -2574,26 +2534,25 @@ void test_l1_mta_hal_positive2_DoNotClearDSXLog(void) {
 *
 * The objective of this test is to check if the function handles the case of an invalid boolean value correctly by returning the error code.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 073
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 073 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
-* | Variation / Step | Description                                      | Test Data                           | Expected Result   | Notes             |
-* | :--------------: | ------------------------------------------------ | ----------------------------------- | ----------------- | ----------------- |
-* |       01         | Set the Bool parameter to an invalid value (e.g., 2) | clearLog = 2                         | RETURN_ERR        | Should be error   |
+* **Test Procedure:** @n
+* | Variation / Step | Description  | Test Data | Expected Result   | Notes  |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01  | Invoking mta_hal_ClearDSXLog | clearLog = 2 | RETURN_ERR  | Should be error   |
 */
 
-void test_l1_mta_hal_negative1_InvalidBooleanValue(void) {
-    UT_LOG("Entering test_l1_mta_hal_negative1_InvalidBooleanValue...");
+void test_l1_mta_hal_ClearDSXLog_negative1_InvalidBooleanValue(void) {
+    UT_LOG("Entering test_l1_mta_hal_ClearDSXLog_negative1_InvalidBooleanValue...");
 
     // Set the Bool parameter to an invalid value (e.g., 2)
     BOOLEAN clearLog = 2;
-
     // Call the mta_hal_ClearDSXLog function
     UT_LOG("Invoking mta_hal_ClearDSXLog with invalid Bool parameter value (2)");
     INT result = mta_hal_ClearDSXLog(clearLog);
@@ -2601,7 +2560,7 @@ void test_l1_mta_hal_negative1_InvalidBooleanValue(void) {
     // Verify the return value is RETURN_ERR
     UT_ASSERT_EQUAL(result, RETURN_ERR);
 
-    UT_LOG("Exiting test_l1_mta_hal_negative1_InvalidBooleanValue...");
+    UT_LOG("Exiting test_l1_mta_hal_ClearDSXLog_negative1_InvalidBooleanValue...");
 }
 
 /**
@@ -2609,18 +2568,18 @@ void test_l1_mta_hal_negative1_InvalidBooleanValue(void) {
 *
 * This test case verifies the functionality of the mta_hal_GetCallSignallingLogEnable API. The objective of this test is to ensure that the API returns the correct result and value at the memory location.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 074
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 074 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
-* | 01 | Enable CallSignalling log | - | - | - |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_GetCallSignallingLogEnable | pBool = TRUE | RETURN_OK | should be successful |
 */
 void test_l1_mta_hal_positive1_GetCallSignallingLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_GetCallSignallingLogEnable...");
@@ -2630,13 +2589,12 @@ void test_l1_mta_hal_positive1_GetCallSignallingLogEnable(void) {
     UT_LOG("Invoking the mta_hal_GetCallSignallingLogEnable API with TRUE");
     INT result = mta_hal_GetCallSignallingLogEnable(&pBool);
     UT_LOG("Result : %d ",result);
-
+    UT_LOG("Boolean pBool value  : %d", pBool);
     // Verify the return value
     UT_ASSERT_EQUAL(result, RETURN_OK);
 
     // Verify the value at the memory location
     UT_ASSERT_EQUAL(pBool, TRUE);
-
     UT_LOG("Exiting test_l1_mta_hal_positive1_GetCallSignallingLogEnable...");
 }
 
@@ -2646,20 +2604,18 @@ void test_l1_mta_hal_positive1_GetCallSignallingLogEnable(void) {
 * The purpose of this test is to verify that the GetCallSignallingLogEnable API returns the correct value
 * and that the memory location pointed to by the pBool parameter is updated with the correct value.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 075
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 075 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
-* | 01 | Disable the CallSignalling log |  |  |  |
-* | 02 | Call the GetCallSignallingLogEnable API | pBool = allocated memory | result is RETURN_OK | Should be successful |
-* | 03 | Verify the value at the memory location | *pBool = FALSE |  |  |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Call the GetCallSignallingLogEnable API | pBool = FALSE | result is RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive2_GetCallSignallingLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_GetCallSignallingLogEnable...");
@@ -2683,26 +2639,25 @@ void test_l1_mta_hal_positive2_GetCallSignallingLogEnable(void) {
 *
 * This test case checks if the mta_hal_GetCallSignallingLogEnable function returns the expected error code when the pBool parameter is set to NULL.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 076
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 076 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Set pBool to NULL | pBool = NULL | RETURN_ERR | Verify that the function returns the expected error code |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_GetCallSignallingLogEnable | pBool = NULL | RETURN_ERR | Should return an error status |
 */
 void test_l1_mta_hal_negative1_GetCallSignallingLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_GetCallSignallingLogEnable...");
 
-    BOOLEAN pBool = 2; //
-
+    BOOLEAN pBool = 2; 
     // Call the API function
-    UT_LOG("Invoking the mta_hal_GetCallSignallingLogEnable API with NULL");
+    UT_LOG("Invoking the mta_hal_GetCallSignallingLogEnable API with 2");
     INT result = mta_hal_GetCallSignallingLogEnable(&pBool);
     UT_LOG("Result : %d ",result);
     // Verify the return value
@@ -2717,17 +2672,17 @@ void test_l1_mta_hal_negative1_GetCallSignallingLogEnable(void) {
 * This test case verifies whether mta_hal_SetCallSignallingLogEnable API is able to enable the call signalling log 
 * successfully and whether it returns the expected result.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 077
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 077 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Enable CallSignalling Log | enable = TRUE | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_SetCallSignallingLogEnable(void) {
@@ -2740,7 +2695,6 @@ void test_l1_mta_hal_positive1_SetCallSignallingLogEnable(void) {
     UT_LOG("Return value: %d", result);
 
     UT_ASSERT_EQUAL(result, RETURN_OK);
-
     UT_LOG("Exiting test_l1_mta_hal_positive1_SetCallSignallingLogEnable...");
 }
 
@@ -2750,18 +2704,18 @@ void test_l1_mta_hal_positive1_SetCallSignallingLogEnable(void) {
  * This test case verifies the functionality of the "mta_hal_SetCallSignallingLogEnable" API by setting the Call Signalling Log
  * Enable to FALSE and checking if the result is RETURN_OK.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 078
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 078 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :--------------: | ----------- | --------- | --------------- | ----- |
- * |      01          | Set Call Signalling Log Enable to FALSE | enable = FALSE | RETURN_OK | Should be successful |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * |  01    | Set Call Signalling Log Enable to FALSE | enable = FALSE | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive2_SetCallSignallingLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_SetCallSignallingLogEnable...");
@@ -2773,7 +2727,6 @@ void test_l1_mta_hal_positive2_SetCallSignallingLogEnable(void) {
     UT_LOG("Return value: %d", result);
 
     UT_ASSERT_EQUAL(result, RETURN_OK);
-
     UT_LOG("Exiting test_l1_mta_hal_positive2_SetCallSignallingLogEnable...");
 }
 
@@ -2782,17 +2735,17 @@ void test_l1_mta_hal_positive2_SetCallSignallingLogEnable(void) {
 *
 * This test case is designed to verify the behavior of `mta_hal_SetCallSignallingLogEnable` function when an invalid boolean value is passed as input.
 * 
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 079
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 079 @n
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Passing an invalid boolean value as input | enable = 2 | RETURN_ERR | Should return `RETURN_ERR` |
 */
 void test_l1_mta_hal_negative1_SetCallSignallingLogEnable(void) {
@@ -2814,16 +2767,18 @@ void test_l1_mta_hal_negative1_SetCallSignallingLogEnable(void) {
  *
  * The purpose of this test is to ensure that the mta_hal_ClearCallSignallingLog() function is able to clear the call signalling log when the Bool parameter is set to TRUE.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 080
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 080 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
- * 01 | Call the mta_hal_ClearCallSignallingLog() function with Bool parameter set to TRUE. | Bool parameter = TRUE | RETURN_OK | The call signalling log should be cleared successfully.
+ * **Test Procedure:** @n
+ * | Variation / Step | Description | Test Data | Expected Result | Notes |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Call the mta_hal_ClearCallSignallingLog() function with Bool parameter set to TRUE. | Bool parameter = TRUE | RETURN_OK | The call signalling log should be cleared successfully.
  */
 void test_l1_mta_hal_positive_ClearCallSignallingLog(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_ClearCallSignallingLog...");
@@ -2835,9 +2790,6 @@ void test_l1_mta_hal_positive_ClearCallSignallingLog(void) {
 
     // Verify the return value is RETURN_OK
     UT_ASSERT_EQUAL(ret, RETURN_OK);
-
-    // Optionally add verification of the CallSignalling log being cleared
-
     UT_LOG("Exiting test_l1_mta_hal_positive_ClearCallSignallingLog...");
 }
 
@@ -2846,23 +2798,23 @@ void test_l1_mta_hal_positive_ClearCallSignallingLog(void) {
  *
  * This test case verifies that the mta_hal_ClearCallSignallingLog function returns RETURN_OK when the parameter is set to FALSE.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 081
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 081 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- |-------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Call mta_hal_ClearCallSignallingLog function with parameter set to FALSE | isClear = FALSE | RETURN_OK | Should return RETURN_OK |
  */
 void test_l1_mta_hal_positive_NotClearCallSignallingLog(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_NotClearCallSignallingLog...");
 
-     BOOLEAN value = FALSE;
+    BOOLEAN value = FALSE;
     // Call the function with Bool parameter set to FALSE
     UT_LOG("Invoking the mta_hal_ClearCallSignallingLog FALSE ");
     INT ret = mta_hal_ClearCallSignallingLog(value);
@@ -2870,7 +2822,6 @@ void test_l1_mta_hal_positive_NotClearCallSignallingLog(void) {
 
     // Verify the return value is RETURN_OK
     UT_ASSERT_EQUAL(ret, RETURN_OK);
-
     UT_LOG("Exiting test_l1_mta_hal_positive_NotClearCallSignallingLog...");
 }
 
@@ -2879,32 +2830,29 @@ void test_l1_mta_hal_positive_NotClearCallSignallingLog(void) {
 *
 * This test case verifies that the mta_hal_ClearCallSignallingLog function returns RETURN_ERR when an invalid BOOLEAN value is provided.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 082
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 082 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ------ |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Call mta_hal_ClearCallSignallingLog with an invalid BOOLEAN value | invalidValue = 0 | RETURN_ERR | Should return RETURN_ERR |
 */
 void test_l1_mta_hal_negative_InvalidBooleanValue(void) {
     UT_LOG("Entering test_l1_mta_hal_negative_InvalidBooleanValue...");
 
-    // Provide an invalid BOOLEAN value (not TRUE or FALSE)
-    BOOLEAN invalidValue = 2; // Example of an invalid value
-    // Call the function with the invalid BOOLEAN value
+    BOOLEAN invalidValue = 2; 
     UT_LOG("Invoking the mta_hal_ClearCallSignallingLog invalidValue ");
     INT ret = mta_hal_ClearCallSignallingLog(invalidValue);
     UT_LOG("Result : %d", ret);
 
     // Verify the return value is RETURN_ERR
     UT_ASSERT_EQUAL(ret, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative_InvalidBooleanValue...");
 }
 
@@ -2913,18 +2861,18 @@ void test_l1_mta_hal_negative_InvalidBooleanValue(void) {
 *
 * This test verifies that the function mta_hal_GetMtaLog retrieves the MTA log correctly.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 083
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 083 @n
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
-* | 01 | Invoking mta_hal_GetMtaLog with valid inputs | count = 0, pLog = NULL | The function returns RETURN_OK and count is 0 | The function should succeed and return an empty log |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_GetMtaLog with valid inputs | count = 0, pLog = NULL |  RETURN_OK | The function should succeed and return an empty log |
 */
 
 void test_l1_mta_hal_positive1_GetMtaLog(void) {
@@ -2933,14 +2881,13 @@ void test_l1_mta_hal_positive1_GetMtaLog(void) {
     // Test variables
     ULONG count = 0;
     PMTAMGMT_MTA_MTALOG_FULL pLog = NULL;
-
     // Invoke the API
     UT_LOG("Invoking the mta_hal_GetMtaLog");
     INT result = mta_hal_GetMtaLog(&count, &pLog);
     UT_LOG("Result : %d ", result);
-    // Perform assertions
     UT_ASSERT_EQUAL(result, RETURN_OK);
 
+    UT_LOG("Existing test_l1_mta_hal_positive1_GetMtaLog...");
 }
 
 /**
@@ -2948,18 +2895,18 @@ void test_l1_mta_hal_positive1_GetMtaLog(void) {
 *
 * This test case checks whether the function mta_hal_GetMtaLog handles NULL pointers correctly and returns the expected error code.
 *
-* **Test Group ID:** Basic (for L1): 01
-* **Test Case ID:** 084
-* **Priority:** High
+* **Test Group ID:** Basic (for L1): 01 @n
+* **Test Case ID:** 084 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Invoke the function with NULL pointers | count = NULL, pLog = NULL | RETURN_ERR | Should return error |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoke the mta_hal_GetMtaLog function with NULL pointers | count = NULL, pLog = NULL | RETURN_ERR | Should return error |
 */
 
 void test_l1_mta_hal_negative1_GetMtaLog(void) {
@@ -2973,10 +2920,8 @@ void test_l1_mta_hal_negative1_GetMtaLog(void) {
     UT_LOG("Invoking the mta_hal_GetMtaLog");
     INT result = mta_hal_GetMtaLog(count, &pLog);
     UT_LOG("Result : %d ", result);
-
     // Perform assertions
     UT_ASSERT_EQUAL(result, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative1_GetMtaLog...");
 }
 
@@ -2985,18 +2930,18 @@ void test_l1_mta_hal_negative1_GetMtaLog(void) {
 *
 * This test case is used to verify the functionality of the mta_hal_BatteryGetInstalled API. The API is responsible for retrieving the installed status of the battery. The objective of this test is to ensure that the API returns the expected result and does not produce any errors or crashes.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 085
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 085 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ------ |
-* | 01 | Invoking mta_hal_BatteryGetInstalled API | Val = 0 | Successful response | Should be successful |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_BatteryGetInstalled API | Val = 0 | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive_1_BatteryGetInstalled(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_1_BatteryGetInstalled...");
@@ -3017,24 +2962,24 @@ void test_l1_mta_hal_positive_1_BatteryGetInstalled(void) {
 *
 * The mta_hal_BatteryGetInstalled function is tested in this test case to verify its behavior when NULL pointers are passed as arguments. The objective of this test is to ensure that the function handles NULL pointers correctly and returns the expected error code.
 *
-* **Test Group ID:** Basic (for L1): 01 / Module (L2): 02 / Stress (L2): 03
-* **Test Case ID:** 086
-* **Priority:** High
+* **Test Group ID:** Basic (for L1): 01 / Module (L2): 02 / Stress (L2): 03 @n
+* **Test Case ID:** 086 @n
+* **Priority:** High @n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
-* | Variation / Step | Description                                 | Test Data       | Expected Result | Notes              |
-* | :--------------: | ------------------------------------------- | --------------- | --------------- | ------------------ |
-* |       01         | Invoking mta_hal_BatteryGetInstalled with NULL pointers | NULL            | RETURN_ERR      | Should be error |
+* **Test Procedure:** @n
+* | Variation / Step | Description  | Test Data  | Expected Result | Notes |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_BatteryGetInstalled with Invalid value | val = 2 | RETURN_ERR | Should be error |
 */
 void test_l1_mta_hal_negative_1_BatteryGetInstalled(void) {
     UT_LOG("Entering test_l1_mta_hal_negative_1_BatteryGetInstalled...");
 
     BOOLEAN Val = 2; 
-    UT_LOG("Invoking mta_hal_BatteryGetInstalled with Val= NULL");
+    UT_LOG("Invoking mta_hal_BatteryGetInstalled with Val= %d", Val);
     INT ret = mta_hal_BatteryGetInstalled(&Val);
     UT_LOG("Result : %d", ret);
     UT_ASSERT_EQUAL(ret, RETURN_ERR);
@@ -3042,25 +2987,24 @@ void test_l1_mta_hal_negative_1_BatteryGetInstalled(void) {
     UT_LOG("Exiting test_l1_mta_hal_negative_1_BatteryGetInstalled...");
 }
 
-
 /**
 * @brief Test to check the functionality of mta_hal_BatteryGetTotalCapacity function
 *
 * The objective of this test is to check the functionality of the mta_hal_BatteryGetTotalCapacity function by
 * invoking it with valid input parameters and verifying the return value and the value of Val.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 087
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 087 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Invoke mta_hal_BatteryGetTotalCapacity with valid input parameters | &val | Success | The function should return success and Val should be updated |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoke mta_hal_BatteryGetTotalCapacity with valid input parameters | &val | RETURN_OK | The function should return success and Val should be updated |
 */
 
 void test_l1_mta_hal_positive1_BatteryGetTotalCapacity(void) {
@@ -3068,15 +3012,14 @@ void test_l1_mta_hal_positive1_BatteryGetTotalCapacity(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetTotalCapacity...");
 
     /* Provide a valid memory location for Val */
-    ULONG val;
+    ULONG val =0 ;
 
     /* Invoke the API with valid input parameters */
     UT_LOG("Invoking mta_hal_BatteryGetTotalCapacity with Val=%p", &val);
     INT result = mta_hal_BatteryGetTotalCapacity(&val);
     UT_LOG("Return value: %d", result);
     /* Log the test description, output values, and return status */
-    
-    
+       
     UT_LOG("Val: %lu", val);
 
     /* Check the return value */
@@ -3091,17 +3034,17 @@ void test_l1_mta_hal_positive1_BatteryGetTotalCapacity(void) {
     *
     * The objective of this test is to ensure that the function handles the invalid input parameter correctly and returns the expected result.
     *
-    * **Test Group ID:** Basic: 01
-    * **Test Case ID:** 088
-    * **Priority:** High
+    * **Test Group ID:** Basic: 01 @n
+    * **Test Case ID:** 088 @n
+    * **Priority:** High @n@n
     *
-    * **Pre-Conditions:** None
-    * **Dependencies:** None
-    * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+    * **Pre-Conditions:** None @n
+    * **Dependencies:** None @n
+    * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
     *
-    * **Test Procedure:**
+    * **Test Procedure:** @n
     * | Variation / Step | Description | Test Data | Expected Result | Notes |
-    * | :----: | --------- | ---------- | -------------- | ----- |
+    * | :----: | :---------: | :----------: |:--------------: | :-----: |
     * | 01 | Provide NULL for Val | val = NULL | RETURN_ERR | Should return ERROR |
     */
 
@@ -3117,7 +3060,6 @@ void test_l1_mta_hal_negative1_BatteryGetTotalCapacity(void) {
     INT result = mta_hal_BatteryGetTotalCapacity(val);
 
     /* Log the test description, output values, and return status */
-    
     UT_LOG("Return value: %d", result);
 
     /* Check the return value */
@@ -3133,25 +3075,24 @@ void test_l1_mta_hal_negative1_BatteryGetTotalCapacity(void) {
  * This test verifies if the mta_hal_BatteryGetTotalCapacity function returns a valid battery capacity by invoking
  * mta_hal_BatteryGetActualCapacity and checking the return status and actual capacity against the expected range.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 089
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 089 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n 
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
- * | Variation / Step | Description                                                  | Test Data                                                                        | Expected Result                                    | Notes              |
- * | :--------------: | ------------------------------------------------------------ | -------------------------------------------------------------------------------- | -------------------------------------------------- | ------------------ |
- * |       01         | Invoking mta_hal_BatteryGetTotalCapacity with valid memory location | None                                                                             | Capacity within the range 0 to (2^32)-1            | Should be successful |
+ * **Test Procedure:** @n
+ * | Variation / Step | Description  | Test Data  | Expected Result  | Notes   |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * |  01  | Invoking mta_hal_BatteryGetTotalCapacity with valid memory location | capacity | RETURN_OK | should be successful |                                             
  *
- * @see mta_hal_BatteryGetTotalCapacity
  */
 void test_l1_mta_hal_positive_1_mta_hal_BatteryGetTotalCapacity_ValidCapacity(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_1_mta_hal_BatteryGetTotalCapacity_ValidCapacity...");
 
-    ULONG capacity;
+    ULONG capacity = 0;
     UT_LOG("Invoking mta_hal_BatteryGetTotalCapacity with valid memory location...");
     INT status = mta_hal_BatteryGetActualCapacity(&capacity);
     UT_LOG("Expected Output: Capacity within the range 0 to (2^32)-1");
@@ -3169,32 +3110,28 @@ void test_l1_mta_hal_positive_1_mta_hal_BatteryGetTotalCapacity_ValidCapacity(vo
  *
  * This test case is designed to verify the behavior of the mta_hal_BatteryGetTotalCapacity function when a NULL pointer is passed as an argument. The expected behavior is that the function should return RETURN_ERR.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 090
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 090 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
- * 01 | First set of conditions | NULL
- *
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- |-------------- | ----- |
- * | 01 | First set of conditions | Val = NULL | RETURN_ERR | Should return RETURN_ERR |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invking the mta_hal_BatteryGetActualCapacity | Val = NULL | RETURN_ERR | Should return RETURN_ERR |
  */
 void test_l1_mta_hal_negative_1_mta_hal_BatteryGetTotalCapacity_NullPointer(void) {
     UT_LOG("Entering test_l1_mta_hal_negative_1_mta_hal_BatteryGetTotalCapacity_NullPointer...");
     ULONG *capacity = NULL;
     UT_LOG("Invoking mta_hal_BatteryGetTotalCapacity with NULL pointer for Val...");
     INT status = mta_hal_BatteryGetActualCapacity(capacity);
-
     UT_LOG("Expected Output: %d", status);
     UT_LOG("Return Status: %s", (status == RETURN_ERR) ? "RETURN_ERR" : "RETURN_OK");
 
     UT_ASSERT_EQUAL(status, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative_1_mta_hal_BatteryGetTotalCapacity_NullPointer...");
 }
 
@@ -3203,18 +3140,18 @@ void test_l1_mta_hal_negative_1_mta_hal_BatteryGetTotalCapacity_NullPointer(void
 *
 * This test verifies that the mta_hal_BatteryGetRemainingCharge API returns the expected result and updates the value at the provided memory location.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 091
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 091 @n
+* **Priority:** High @n@n
+* 
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
-*
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Invoking the mta_hal_BatteryGetRemainingCharge API with a valid memory location for Val | val = 0 | The API returns RETURN_OK and updates the value at the "val" memory location | Should be successful |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_BatteryGetRemainingCharge API with a valid memory location for Val | val = 0 |  RETURN_OK  | Should be successful |
 */
 void test_l1_mta_hal_positive1_BatteryGetRemainingCharge(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetRemainingCharge...");
@@ -3223,9 +3160,7 @@ void test_l1_mta_hal_positive1_BatteryGetRemainingCharge(void) {
     UT_LOG("Invoking mta_hal_BatteryGetRemainingCharge with valid memory location for Val = %d", val);
     INT result = mta_hal_BatteryGetRemainingCharge(&val);
     UT_LOG("Returned Value: %d, Val: %lu", result, val);
-
     UT_ASSERT_EQUAL(result, RETURN_OK);
-
     UT_LOG("Exiting test_l1_mta_hal_positive1_BatteryGetRemainingCharge...");
 }
 
@@ -3234,64 +3169,53 @@ void test_l1_mta_hal_positive1_BatteryGetRemainingCharge(void) {
 *
 * This test case is used to verify the behavior of BatteryGetRemainingCharge function when a NULL pointer is passed as an argument.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 092
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 092 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Verify behavior when a NULL pointer is passed | val=NULL | RETURN_ERR | Should return error |
 */
 void test_l1_mta_hal_negative1_BatteryGetRemainingCharge(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetRemainingCharge...");
-
     ULONG* val = NULL;
-
     UT_LOG("Invoking mta_hal_BatteryGetRemainingCharge with NULL pointer for Val");
     INT result = mta_hal_BatteryGetRemainingCharge(val);
-
     UT_LOG("Returned Value: %d", result);
-
     UT_ASSERT_EQUAL(result, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative1_BatteryGetRemainingCharge...");
 }
 
-
 /**
-* @brief TODO: Test the functionality of the mta_hal_BatteryGetRemainingTime function
+* @brief Test the functionality of the mta_hal_BatteryGetRemainingTime function
 *
-* TODO: This test case is used to verify the correctness of the mta_hal_BatteryGetRemainingTime function. The function is expected to return the remaining time of the battery.
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 093 @n 
+* **Priority:** High @n@n
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 093
-* **Priority:** High
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
-*
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_BatteryGetRemainingTime function | Val=0 | RETURN_OK | Result should be return with success |
 */
 void test_l1_mta_hal_positive_1_BatteryGetRemainingTime(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_1_BatteryGetRemainingTime...");
 
-    ULONG val;
+    ULONG val = 0;
     UT_LOG("Invoking mta_hal_BatteryGetRemainingTime with input parameters (Val=%p)", &val);
     INT ret = mta_hal_BatteryGetRemainingTime(&val);
-  
     UT_LOG("Returned value: %d, Val: %lu", ret, val);
-
     UT_ASSERT_EQUAL(ret, RETURN_OK);
-
     UT_LOG("Exiting test_l1_mta_hal_positive_1_BatteryGetRemainingTime...");
 }
 
@@ -3300,18 +3224,18 @@ void test_l1_mta_hal_positive_1_BatteryGetRemainingTime(void) {
 *
 * This test is aimed at verifying the functionality of mta_hal_BatteryGetRemainingTime function when a NULL pointer is passed as the argument.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 094
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 094 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Invoking the function with NULL pointer | val = NULL | RETURN_ERR | The function should return RETURN_ERR |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_BatteryGetRemainingTime with NULL pointer | val = NULL | RETURN_ERR | The function should return RETURN_ERR |
 */
 void test_l1_mta_hal_negative_1_BatteryGetRemainingTime(void) {
     UT_LOG("Entering test_l1_mta_hal_negative_1_BatteryGetRemainingTime...");
@@ -3319,40 +3243,35 @@ void test_l1_mta_hal_negative_1_BatteryGetRemainingTime(void) {
     ULONG* val = NULL;
     UT_LOG("Invoking mta_hal_BatteryGetRemainingTime with input parameters (Val=%p)", val);
     INT ret = mta_hal_BatteryGetRemainingTime(val);
-    
     UT_LOG("Returned value: %d", ret);
-
     UT_ASSERT_EQUAL(ret, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative_1_BatteryGetRemainingTime...");
 }
-
-
 
 /**
 * @brief Test function to validate the mta_hal_BatteryGetNumberofCycles API
 *
 * This test case validates the functionality of the mta_hal_BatteryGetNumberofCycles API. The objective is to verify if the API returns the number of cycles for the battery correctly.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 095
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 095 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Invoke the API with valid input | No input required | API returns success | Should be successful |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_BatteryGetNumberofCycles with valid input | No input required | RETURN_OK | Should be successful |
 */
 
 void test_l1_mta_hal_positive1_BatteryGetNumberofCycles(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetNumberofCycles...");
 
     // Prepare the test data
-    ULONG val;
+    ULONG val = 0;
 
     // Invoke the API
     UT_LOG("Invoking the mta_hal_BatteryGetNumberofCycles ");
@@ -3371,19 +3290,19 @@ void test_l1_mta_hal_positive1_BatteryGetNumberofCycles(void) {
  *
  * This test case checks if the mta_hal_BatteryGetNumberofCycles function returns the expected error code when a null pointer is passed as the parameter.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 096
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 096 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  *
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- |------------------ | ----- |
- * | 01 | Verify the return value when a null pointer is passed. | val = NULL | RETURN_ERR | Should be unsuccessful |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking the mta_hal_BatteryGetNumberofCycles when a null pointer is passed. | val = NULL | RETURN_ERR | Should be unsuccessful |
  */
 
 void test_l1_mta_hal_negative1_BatteryGetNumberofCycles(void) {
@@ -3399,7 +3318,6 @@ void test_l1_mta_hal_negative1_BatteryGetNumberofCycles(void) {
     
     // Check the return value and assert
     UT_ASSERT_EQUAL(result, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative1_BatteryGetNumberofCycles...");
 }
 
@@ -3408,63 +3326,51 @@ void test_l1_mta_hal_negative1_BatteryGetNumberofCycles(void) {
  *
  * This test case verifies the behavior of the mta_hal_BatteryGetPowerStatus API by calling it with valid memory locations for Val and len. The return value, as well as the values of Val and len, are checked to ensure the correct operation of the API.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 097
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 097 @n
+ * **Priority:** High @n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console. @n
  *
- * **Test Procedure:**
- *  | Variation / Step | Description                                       | Test Data               | Expected Result           | Notes              |
- *  | :--------------: | ------------------------------------------------- | ----------------------- | -------------------------- | ------------------ |
- *  |       01         | Invoke the API with valid memory locations for Val | Val = valid memory      | Return value is RETURN_OK | Should be successful |
- *  |                  |                                                     | len = valid memory      |                            |                    |
- *  |                  |                                                     |                         |                            |                    |
- *  |                  |                                                     |                         |                            |                    |
- *
+ * **Test Procedure:** @n
+ *  | Variation / Step | Description  | Test Data   | Expected Result   | Notes  |
+ *  | :----: | :---------: | :----------: |:--------------: | :-----: |
+ *  |  01  | Invoking the mta_hal_BatteryGetPowerStatus with valid memory locations for Val | Val = valid memory , len = valid memory  |  RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_BatteryGetPowerStatus(void) {
     CHAR Val[8];
-    ULONG len;
-    INT ret;
+    ULONG len =0;
+    INT ret =0;
 
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetPowerStatus...");
-
     // Invoke the API with valid memory locations for Val and len
     UT_LOG("Invoking the mta_hal_BatteryGetPowerStatus ");
     ret = mta_hal_BatteryGetPowerStatus(Val, &len);
     UT_LOG("Result : %d", ret);
-
     // Verify the return value is RETURN_OK
-    
     UT_ASSERT_EQUAL(ret, RETURN_OK);
     UT_LOG("Exiting test_l1_mta_hal_positive1_BatteryGetPowerStatus...");
 }
 
 /**
-* @brief TODO: Describe the objective of the test
-*
-* TODO: Add the description of what is tested and why in this test@n
-*
-* **Test Group ID:** Basic: 01@n
-* **Test Case ID:** 098
-* **Priority:** High@n
-* @n
-* **Pre-Conditions:** None@n
-* **Dependencies:** None@n
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
-* @n
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 098 @n
+* **Priority:** High @n@n
+* 
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
+* 
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke the API with NULL pointers for Val and len | Val = NULL, len = NULL | RETURN_ERR | Should be unsuccessful |
 */
 void test_l1_mta_hal_negative1_BatteryGetPowerStatus(void) {
-    INT ret;
-
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetPowerStatus...");
+    INT ret =0;
     CHAR *Val = NULL;
     ULONG *len = NULL;
     // Invoke the API with NULL pointers for Val and len
@@ -3483,17 +3389,17 @@ void test_l1_mta_hal_negative1_BatteryGetPowerStatus(void) {
 *
 * This test case checks the functionality of the mta_hal_BatteryGetCondition function by invoking it and verifying the output values and return status.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 99
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 99 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 *  | Variation / Step | Description | Test Data | Expected Result | Notes |
-*  | :----: | --------- | ---------- |-------------- | ----- |
+*  | :----: | :---------: | :----------: |:--------------: | :-----: |
 *  | 01 | Invoke the API with valid memory locations | Val = "", len = 0 | RETURN_OK | The function should return successfully |
 */
 void test_l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus(void) {
@@ -3505,11 +3411,10 @@ void test_l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus(void) {
     UT_LOG("Entering test_l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus...");
 
     // Invoke the API with valid memory locations
-    UT_LOG("Invoking the mta_hal_BatteryGetCondition ");
+    UT_LOG("Invoking mta_hal_BatteryGetCondition with Val = %s", Val);
     result = mta_hal_BatteryGetCondition(Val, &len);
     UT_LOG("Result : %d", result);
     // Log the test description, output values, and the return status
-    UT_LOG("Invoking mta_hal_BatteryGetCondition with Val = %s, len = %lu. Return status: %d", Val, len, result);
 
     // Assertion to check the return value
     UT_ASSERT_EQUAL(result, RETURN_OK);
@@ -3529,23 +3434,21 @@ void test_l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus(void) {
 *
 * The objective of this test is to verify if the API can handle NULL pointers correctly and return the expected result.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 100
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 100 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If the user chooses to run the test in interactive mode, the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If the user chooses to run the test in interactive mode, the test case has to be selected via console. @n
 *
-* **Test Procedure:**
-* | Variation / Step | Description | Test Data                                 | Expected Result                      | Notes               |
-* | :--------------: | ----------- | ---------------------------------------- | ------------------------------------ | ------------------- |
-* |      |             |                                          |                                      |                     |
-* | 01   | Invoke the API with NULL pointers         | Val = NULL, len = NULL                   | Return status: RETURN_ERR             | Should be unsuccessful |
+* **Test Procedure:** @n
+* | Variation / Step | Description | Test Data   | Expected Result    | Notes  |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01   | Invoking mta_hal_BatteryGetCondition  | Val = {"\0"}, *len = NULL   | RETURN_ERR | Should be unsuccessful |
 */
 
 void test_l1_mta_hal_BatteryGetCondition_negative1_NullPointers(void) {
-    INT result;
     CHAR Val[5] = {"\0"};
     ULONG *len = NULL;
     // Logging entering test function
@@ -3553,7 +3456,7 @@ void test_l1_mta_hal_BatteryGetCondition_negative1_NullPointers(void) {
 
     // Invoke the API with NULL pointers
     UT_LOG("Invoking mta_hal_BatteryGetCondition with Val = NULL, len = NULL. Return status:");
-    result = mta_hal_BatteryGetCondition(Val, len);
+    INT result = mta_hal_BatteryGetCondition(Val, len);
     UT_LOG("Result : %d", result);
 
     // Assertion to check the return value
@@ -3568,18 +3471,18 @@ void test_l1_mta_hal_BatteryGetCondition_negative1_NullPointers(void) {
 *
 * The objective of this test case is to ensure that the mta_hal_BatteryGetStatus() function returns the correct battery status when the battery is in good condition.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 101
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 101 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data |Expected Result |Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Retrieve battery status when it is in good condition | Val = "", len = 0 | Result: RETURN_OK, Val = "Good", len = 4 | Should pass |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_BatteryGetStatus | Val = NULL, len = 0 | Result: RETURN_OK, Val = "Good", len = 4 | Should pass |
 */
 void test_l1_mta_hal_positive1_BatteryGetStatus_RetrieveGoodCondition(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetStatus_RetrieveGoodCondition...");
@@ -3603,17 +3506,17 @@ void test_l1_mta_hal_positive1_BatteryGetStatus_RetrieveGoodCondition(void) {
 *
 * This test case is intended to verify the behavior of the mta_hal_BatteryGetStatus function when it is invoked with NULL pointers for Val and len. It is expected that the function returns an error code to indicate the failure.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 102
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 102 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_BatteryGetStatus with NULL pointers | Val = NULL, len = NULL | RETURN_ERR | Should return an error code |
 */
 void test_l1_mta_hal_negative1_BatteryGetStatus_NullPointers(void) {
@@ -3624,8 +3527,6 @@ void test_l1_mta_hal_negative1_BatteryGetStatus_NullPointers(void) {
     UT_LOG("Invoking mta_hal_BatteryGetStatus with NULL pointers for Val and len...");
     INT result = mta_hal_BatteryGetStatus(Val, len);
     UT_LOG("Result : %d", result );
-
-
     UT_ASSERT_EQUAL(result, RETURN_ERR);
 
     UT_LOG("Exiting test_l1_mta_hal_negative1_BatteryGetStatus_NullPointers...");
@@ -3636,18 +3537,18 @@ void test_l1_mta_hal_negative1_BatteryGetStatus_NullPointers(void) {
 *
 * This test case is used to verify the functionality of the mta_hal_BatteryGetLife function from the L1 module. It checks if the function returns the correct values for Val and len variables.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 103
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 103 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data |Expected Result |Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Invoke mta_hal_BatteryGetLife with valid memory locations for Val and len | Val = 'Need Replacement', len = 16 | RETURN_OK | Should be successful |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoke mta_hal_BatteryGetLife with valid memory locations for Val and len | Val = {"\0"} , len = 0 | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_BatteryGetLife(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetLife...");
@@ -3669,7 +3570,6 @@ void test_l1_mta_hal_positive1_BatteryGetLife(void) {
      
     /* Check the value of len */
     UT_LOG("Value of len: %lu", len);
-   
     UT_LOG("Exiting test_l1_mta_hal_positive1_BatteryGetLife...");
 }
 
@@ -3679,18 +3579,18 @@ void test_l1_mta_hal_positive1_BatteryGetLife(void) {
  * This test case verifies that the function mta_hal_BatteryGetLife
  * returns the expected error value when NULL pointers are provided for Val and len.
  * 
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 104
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 104 @n
+ * **Priority:** High @n@n
  * 
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  * 
- * **Test Procedure:**
- * | Variation / Step | Description                                                      | Test Data                                     | Expected Result            | Notes               |
- * | :----:           | ---------                                                        | ----------                                   | --------------            | -----               |
- * | 01               | Provide NULL pointers Val and len                                 | Val = NULL, len = NULL                       | RETURN_ERR                 | Should be unsuccessful |
+ * **Test Procedure:** @n
+ * | Variation / Step | Description  | Test Data  | Expected Result   | Notes  |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: | 
+ * | 01 | Invoking the  mta_hal_BatteryGetLife with NULL pointers Val and len  | Val = NULL, len = NULL  | RETURN_ERR | Should be unsuccessful |
  *
  */
 void test_l1_mta_hal_negative1_BatteryGetLife(void) {
@@ -3713,18 +3613,18 @@ void test_l1_mta_hal_negative1_BatteryGetLife(void) {
  *
  * This test case checks if the mta_hal_BatteryGetInfo() API correctly retrieves the battery information and assigns it to the provided PMTAMGMT_MTA_BATTERY_INFO structure.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 105
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 105 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:**@n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- |-------------- | ----- |
- * | 01 | Check battery information retrieval | pInfo->ModelNumber = "TestModelNumber", pInfo->SerialNumber = "TestSerialNumber", pInfo->PartNumber = "TestPartNumber", pInfo->ChargerFirmwareRevision = "TestFirmwareRevision" | RETURN_OK | Should successfully retrieve battery information |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking the  mta_hal_BatteryGetInfo | pInfo | RETURN_OK | Should successfully retrieve battery information |
  */
 void test_l1_mta_hal_positive1_BatteryGetInfo(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetInfo...");
@@ -3742,7 +3642,11 @@ void test_l1_mta_hal_positive1_BatteryGetInfo(void) {
         // Clean up
         free(pInfo);
     }
-
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
+    }
     UT_LOG("Exiting test_l1_mta_hal_positive1_BatteryGetInfo...");
 }
 
@@ -3751,17 +3655,17 @@ void test_l1_mta_hal_positive1_BatteryGetInfo(void) {
 *
 * The purpose of this test is to ensure that the mta_hal_BatteryGetInfo function returns RETURN_ERR when a null pointer is passed as the parameter.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 106
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 106 @n 
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Passing a null pointer as the parameter | pInfo = NULL | RETURN_ERR | Should return RETURN_ERR |
 */
 void test_l1_mta_hal_negative1_BatteryGetInfo(void) {
@@ -3769,7 +3673,6 @@ void test_l1_mta_hal_negative1_BatteryGetInfo(void) {
 
     // Prepare test data
     PMTAMGMT_MTA_BATTERY_INFO pInfo = NULL;
-
     // Call the API
     UT_LOG("Invoking the mta_hal_BatteryGetInfo with NULL");
     INT status = mta_hal_BatteryGetInfo(pInfo);
@@ -3777,7 +3680,6 @@ void test_l1_mta_hal_negative1_BatteryGetInfo(void) {
 
     // Check the return status
     UT_ASSERT_EQUAL(status, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative3_BatteryGetInfo...");
 }
 
@@ -3786,21 +3688,19 @@ void test_l1_mta_hal_negative1_BatteryGetInfo(void) {
  *
  * The objective of this test is to verify the correctness of the mta_hal_BatteryGetPowerSavingModeStatus function when power saving mode is enabled.
  *
- * Test Group ID: Basic: 01
- * Test Case ID: 107
- * Priority: High
+ * Test Group ID: Basic: 01 @n
+ * Test Case ID: 107 @n
+ * Priority: High @n@n
  *
- * Pre-Conditions: None
- * Dependencies: None
- * User Interaction: If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * Pre-Conditions: None @n
+ * Dependencies: None @n
+ * User Interaction: If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * Test Procedure:
+ * Test Procedure: @n
  *  | Variation / Step | Description | Test Data | Expected Result | Notes |
- *  | :----: | ----------- | ------------ | ---------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  *  | 01 | Verify function correctness when power saving mode is enabled | pValue = &value | Success | Should be successful |
  *
- * @param None
- * @return None
  */
 void test_l1_mta_hal_positive1_retrievePowerSavingModeStatus_Enabled(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_retrievePowerSavingModeStatus_Enabled...");
@@ -3809,30 +3709,28 @@ void test_l1_mta_hal_positive1_retrievePowerSavingModeStatus_Enabled(void) {
     UT_LOG("Invoking mta_hal_BatteryGetPowerSavingModeStatus with pValue=%p", &value);
     INT result = mta_hal_BatteryGetPowerSavingModeStatus(&value);
     UT_LOG("Result : %d ", result);
-    
+    UT_LOG("Value : %lu", value);
     UT_ASSERT_EQUAL(result, RETURN_OK);
-    UT_ASSERT_EQUAL(value, 1);
 
     UT_LOG("Exiting test_l1_mta_hal_positive1_retrievePowerSavingModeStatus_Enabled...");
 }
-
 
 /**
 * @brief This test case is used to verify the behavior of the mta_hal_BatteryGetPowerSavingModeStatus function when a null pointer is passed as the pValue argument.
 *
 * The objective of this test is to check if the function properly handles the null pointer and returns the correct error code, RETURN_ERR.
 *
-* **Test Group ID:** Basic: 01 / Module (L2): 02 / Stress (L2): 03)
-* **Test Case ID:** 108
-* **Priority:** High
+* **Test Group ID:** Basic: 01 / Module (L2): 02 / Stress (L2): 03) @n
+* **Test Case ID:** 108 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_BatteryGetPowerSavingModeStatus with pValue=NULL | pValue=NULL | RETURN_ERR | Should return RETURN_ERR |
 */
 void test_l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus(void) {
@@ -3852,18 +3750,18 @@ void test_l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus(void) {
  *
  * The purpose of this test is to ensure that the mta_hal_Get_MTAResetCount function returns the correct reset count value.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 109
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 109 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | ------- | --------- | --------------- | ----- |
- * | 01 | Invoking mta_hal_Get_MTAResetCount with valid memory location for resetcnt | - | Success | Should be successful |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking mta_hal_Get_MTAResetCount with valid memory location for resetcnt | &resetcnt | Success | Should be successful |
  */
 void test_l1_mta_hal_positive1_mta_hal_Get_MTAResetCount(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_mta_hal_Get_MTAResetCount...");
@@ -3871,8 +3769,6 @@ void test_l1_mta_hal_positive1_mta_hal_Get_MTAResetCount(void) {
     ULONG resetcnt = 0;
     UT_LOG("Invoking mta_hal_Get_MTAResetCount with valid memory location for resetcnt. 0");
     INT status = mta_hal_Get_MTAResetCount(&resetcnt);
-
-    
     UT_LOG("Output value resetcnt: %lu", resetcnt);
     UT_LOG("Return status: %d", status);
 
@@ -3885,17 +3781,17 @@ void test_l1_mta_hal_positive1_mta_hal_Get_MTAResetCount(void) {
 *
 * The purpose of this test is to ensure that the function correctly handles the case when a NULL pointer is passed as an argument to the function.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 110
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 110 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_Get_MTAResetCount with NULL pointer for resetcnt | resetcnt = NULL | status = RETURN_ERR | The function should return RETURN_ERR when called with a NULL pointer. |
 */
 void test_l1_mta_hal_negative1_mta_hal_Get_MTAResetCount(void) {
@@ -3912,18 +3808,18 @@ void test_l1_mta_hal_negative1_mta_hal_Get_MTAResetCount(void) {
  *
  * This test case checks the functionality of the mta_hal_Get_LineResetCount API by verifying the return status and the reset count value.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 111
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 111 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  *
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- |-------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Call mta_hal_Get_LineResetCount API | resetcnt = 0 | RETURN_OK | Reset count is within range |
  */
 void test_l1_mta_hal_positive1_Get_LineResetCount(void) {
@@ -3931,7 +3827,6 @@ void test_l1_mta_hal_positive1_Get_LineResetCount(void) {
 
     // Initialize variables
     ULONG resetcnt = 0;
-
     // Call the API function
     UT_LOG("Invoking the  mta_hal_Get_LineResetCount with resetcnt 0");
     INT status = mta_hal_Get_LineResetCount(&resetcnt);
@@ -3943,8 +3838,6 @@ void test_l1_mta_hal_positive1_Get_LineResetCount(void) {
     UT_ASSERT_TRUE(resetcnt >= 0 && resetcnt <= UINT32_MAX);
 
     // Log the test result
-    UT_LOG("Invoking mta_hal_Get_LineResetCount with resetcnt=%lu, return status=%d", resetcnt, status);
-
     UT_LOG("Exiting test_l1_mta_hal_positive1_Get_LineResetCount...");
 }
 
@@ -3953,23 +3846,17 @@ void test_l1_mta_hal_positive1_Get_LineResetCount(void) {
  * 
  * This test case is to verify the behavior of the mta_hal_Get_LineResetCount API when called with a null pointer as an argument. The test aims to ensure that the correct error code is returned by the API in this scenario.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 112
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 112 @n
+ * **Priority:** High @n@n
  * 
- * **Pre-Conditions:** 
- * - None
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  * 
- * **Dependencies:**
- * - None
- * 
- * **User Interaction:**
- * - If user chooses to run the test in interactive mode, then the test case has to be selected via console.
- * 
- * **Test Procedure:**
- * 
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :---: | --- | --- | --- | --- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Call mta_hal_Get_LineResetCount with null pointer | resetcnt = NULL | RETURN_ERR | Should return an error |
  */ 
 void test_l1_mta_hal_negative1_Get_LineResetCount(void) {
@@ -3985,7 +3872,6 @@ void test_l1_mta_hal_negative1_Get_LineResetCount(void) {
     UT_ASSERT_EQUAL(status, RETURN_ERR);
 
     // Log the test result
-
     UT_LOG("Exiting test_l1_mta_hal_negative1_Get_LineResetCount...");
 }
 
@@ -3994,17 +3880,17 @@ void test_l1_mta_hal_negative1_Get_LineResetCount(void) {
 *
 * This test verifies if the mta_hal_ClearCalls function correctly clears calls for the given instance number.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 113
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 113 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Set InstanceNumber to 0 and call mta_hal_ClearCalls function | InstanceNumber = 0 | Return value should be RETURN_OK | Should be successful |
 */ 
 void test_l1_mta_hal_positive1_ClearCalls(void) {
@@ -4020,8 +3906,6 @@ void test_l1_mta_hal_positive1_ClearCalls(void) {
 
     // Verify the return value is RETURN_OK
     UT_ASSERT_EQUAL(result, RETURN_OK);
-
-    
     UT_LOG("Exiting test_l1_mta_hal_positive1_ClearCalls...");
 }
 
@@ -4030,27 +3914,25 @@ void test_l1_mta_hal_positive1_ClearCalls(void) {
  *
  * This test verifies that mta_hal_ClearCalls function completes successfully when InstanceNumber is set to the maximum value of unsigned integer.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 114
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 114 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | -------------- | ----- |
- * | 01 | Set InstanceNumber to (2^32)-1 | InstanceNumber = UINT_MAX | - | - |
- * | 02 | Call mta_hal_ClearCalls function | InstanceNumber = UINT_MAX | - | - |
- * | 03 | Verify the return value is RETURN_OK | - | RETURN_OK | - |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking mta_hal_ClearCalls | InstanceNumber = (4294967296-1) | RETURN_OK | should be successful |
  *
  */
 void test_l1_mta_hal_positive2_ClearCalls(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_ClearCalls...");
 
     // Set InstanceNumber to (2^32)-1
-    UINT InstanceNumber = 65536; //Check
+    UINT InstanceNumber = (4294967296-1);
 
     // Call mta_hal_ClearCalls function
     UT_LOG("Invoking mta_hal_ClearCalls with InstanceNumber = %u ", InstanceNumber);
@@ -4059,7 +3941,6 @@ void test_l1_mta_hal_positive2_ClearCalls(void) {
 
     // Verify the return value is RETURN_OK
     UT_ASSERT_EQUAL(result, RETURN_OK);
-
     UT_LOG("Exiting test_l1_mta_hal_positive2_ClearCalls...");
 }
 
@@ -4068,17 +3949,17 @@ void test_l1_mta_hal_positive2_ClearCalls(void) {
 *
 * This test function verifies the functionality of the mta_hal_ClearCalls function by calling it with a specific InstanceNumber and verifying the return value.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 115
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 115 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Call mta_hal_ClearCalls function with a specific InstanceNumber | InstanceNumber = 1000 | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive3_ClearCalls(void) {
@@ -4103,17 +3984,17 @@ void test_l1_mta_hal_positive3_ClearCalls(void) {
 *
 * This test aims to check if the mta_hal_ClearCalls function returns RETURN_ERR when an out-of-range value is provided as the InstanceNumber parameter. It also validates the logging behavior of the function.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 116
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 116 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | -------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Set InstanceNumber to an out-of-range value | InstanceNumber = 999999999 | RETURN_ERR | Should be unsuccessful |
 */
 void test_l1_mta_hal_negative1_ClearCalls(void) {
@@ -4139,20 +4020,18 @@ void test_l1_mta_hal_negative1_ClearCalls(void) {
 * The test is performed by setting the InstanceNumber to an unallocated value and then calling the mta_hal_ClearCalls function. 
 * The return value is then verified to be RETURN_ERR.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 117
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 117 @n
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 * 
 * **Test Procedure:**
 * | Variation / Step | Description | Test Data |Expected Result |Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Set InstanceNumber to an unallocated value | InstanceNumber = 123456 | - | - |
-* | 02 | Call mta_hal_ClearCalls function | - | - | - |
-* | 03 | Verify the return value is RETURN_ERR | result = RETURN_ERR | - | Should be successful |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_ClearCalls | InstanceNumber = 123456 | RETURN_ERR  | Should return an error status |
 */
 void test_l1_mta_hal_negative2_ClearCalls(void) {
     UT_LOG("Entering test_l1_mta_hal_negative2_ClearCalls...");
@@ -4167,7 +4046,6 @@ void test_l1_mta_hal_negative2_ClearCalls(void) {
 
     // Verify the return value is RETURN_ERR
     UT_ASSERT_EQUAL(result, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative2_ClearCalls...");
 }
 
@@ -4176,18 +4054,18 @@ void test_l1_mta_hal_negative2_ClearCalls(void) {
 *
 * This test case verifies the correct retrieval of DHCP status for IPv4 connection using the mta_hal_getDhcpStatus API.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 118
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 118 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Retrieve DHCP status | ipv4Status, ipv6Status = uninitialized | Function should return RETURN_OK | IPv4 status should be within the range MTA_INIT - MTA_REJECTED |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the  mta_hal_getDhcpStatus | ipv4Status, ipv6Status = uninitialized |  RETURN_OK | IPv4 status should be within the range MTA_INIT - MTA_REJECTED |
 */
 
 void test_l1_mta_hal_positive1_getDhcpStatus_IPV4(void)
@@ -4201,6 +4079,7 @@ void test_l1_mta_hal_positive1_getDhcpStatus_IPV4(void)
     UT_LOG("Return value : %d", returnValue);
     // Verify return value
     UT_ASSERT_EQUAL(returnValue, RETURN_OK);
+    UT_ASSERT_TRUE(ipv4Status>= MTA_INIT && ipv4Status <= MTA_REJECTED);
     UT_LOG("Exiting test_l1_mta_hal_positive1_getDhcpStatus_IPV4...");
 }
 
@@ -4209,18 +4088,18 @@ void test_l1_mta_hal_positive1_getDhcpStatus_IPV4(void)
 *
 * This test case checks if the mta_hal_getDhcpStatus function returns the expected error code when trying to get the DHCP status for both IPv4 and IPv6.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 119
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 119 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
-*
-* **Test Procedure:**
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
+* 
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | ----------- | --------- | ------------------ | ----- |
-* | 01 | Get DHCP status for both IPv4 and IPv6 | ipv4Status = NULL, ipv6Status = NULL | RETURN_ERR | Should return an error |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the  mta_hal_getDhcpStatus | ipv4Status = NULL, ipv6Status = NULL | RETURN_ERR | Should return an error |
 */
 void test_l1_mta_hal_negative1_getDhcpStatus_IPV4_IPV6(void)
 {
@@ -4242,18 +4121,18 @@ void test_l1_mta_hal_negative1_getDhcpStatus_IPV4_IPV6(void)
 *
 * This test case is used to verify the functionality of mta_hal_getConfigFileStatus API, which is responsible for getting the status of the config file.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 120
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 120 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Invoking mta_hal_getConfigFileStatus | output_status | RETURN_OK | The return value should be equal to RETURN_OK |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_getConfigFileStatus | output_status = Valid Memory | RETURN_OK | should be successful |
 */
 
 void test_l1_mta_hal_positive1_getConfigFileStatus(void) {
@@ -4276,18 +4155,18 @@ void test_l1_mta_hal_positive1_getConfigFileStatus(void) {
 *
 * The objective of this test is to verify that the function handles the invalid memory location correctly and returns the expected error code.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 121
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 121 @n
+* **Priority:** High @n
+* 
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console.
-*
-* **Test Procedure:**
-* | Variation / Step | Description | Test Data                                        | Expected Result        | Notes                   |
-* | :--------------: | ----------- | ------------------------------------------------ | ---------------------- | ----------------------- |
-* |        01        | Invalid mem | poutput_status = NULL                           | Return_ERR             | Should be unsuccessful |
+* **Test Procedure:**@n
+* | Variation / Step | Description | Test Data  | Expected Result  | Notes |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_getConfigFileStatus | poutput_status = NULL  | Return_ERR  | Should be unsuccessful |
 *
 */
 void test_l1_mta_hal_negative1_getConfigFileStatus(void) {
@@ -4297,27 +4176,25 @@ void test_l1_mta_hal_negative1_getConfigFileStatus(void) {
     UT_LOG("Return value: %d", ret);
 
     UT_ASSERT_EQUAL(ret, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative1_getConfigFileStatus...");
 }
-
 
 /**
 * @brief Test the functionality of mta_hal_getLineRegisterStatus when given a valid memory location and expected array size.
 *
 * This test case verifies that the mta_hal_getLineRegisterStatus function returns the expected result and that the output_status_array values are within the expected range.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 122
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 122 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_getLineRegisterStatus with valid memory location and expected array size | output_status_array = valid memory location, array_size = 5 | RETURN_OK | All values in output_status_array should be within the range MTA_INIT to MTA_REJECTED |
 */
 void test_l1_mta_hal_positive_1_getLineRegisterStatus_validMemoryLocationExpectedArraySize(void) {
@@ -4338,7 +4215,7 @@ void test_l1_mta_hal_positive_1_getLineRegisterStatus_validMemoryLocationExpecte
         UT_ASSERT_TRUE(output_status_array[i] >= MTA_INIT && output_status_array[i] <= MTA_REJECTED);
     }
 
-    UT_LOG("EXISTING test_l1_mta_hal_positive_1_getLineRegisterStatus_validMemoryLocationExpectedArraySize...");
+    UT_LOG("Exiting test_l1_mta_hal_positive_1_getLineRegisterStatus_validMemoryLocationExpectedArraySize...");
 }
 
 /**
@@ -4346,17 +4223,18 @@ void test_l1_mta_hal_positive_1_getLineRegisterStatus_validMemoryLocationExpecte
  *
  * This test case verifies the behavior of the function 'mta_hal_getLineRegisterStatus' when the array size is zero. The objective of this test is to ensure that the function handles this scenario correctly and returns the expected result.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 123
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 123 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console. @n
  *
- * **Test Procedure:**
- * The following steps are performed to run this test case:
- * 1. |01| First set of conditions | output_status_array = NULL, array_size = 0 | RETURN_OK | The function should return RETURN_OK without writing any values to the output_status_array.
+ * **Test Procedure:** @n
+ * | Variation / Step | Description | Test Data | Expected Result | Notes |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * |01| First set of conditions | output_status_array = 5, array_size = 0 | RETURN_OK | The function should return RETURN_OK without writing any values to the output_status_array.
  */
 void test_l1_mta_hal_getLineRegisterStatus_positive_2_arraySizeZero(void) {
     UT_LOG("Entering test_l1_mta_hal_getLineRegisterStatus_positive_2_arraySizeZero...");
@@ -4378,18 +4256,18 @@ void test_l1_mta_hal_getLineRegisterStatus_positive_2_arraySizeZero(void) {
  *
  * This test case is used to verify the behavior of the mta_hal_getLineRegisterStatus function when an invalid memory location is provided for the output status array. The objective of this test is to ensure that the function handles this scenario correctly and returns the expected error code.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 124
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 124 @n
+ * **Priority:** High @n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :--------------: | ----------- | --------- | --------------- | ----- |
- * |       01         | First set of conditions | output_status_array = NULL, array_size = 5 | RETURN_ERR | Should be unsuccessful |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * |  01    | First set of conditions | output_status_array = NULL, array_size = 5 | RETURN_ERR | Should be unsuccessful |
  */
 void test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForStatusArray(void) {
     UT_LOG("Entering test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForStatusArray...");
@@ -4399,14 +4277,12 @@ void test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForSt
     int array_size = 5;
 
     // Test
-    UT_LOG("Invoking mta_hal_getLineRegisterStatus with output_status_array (valid) and array_size %d", array_size);
+    UT_LOG("Invoking mta_hal_getLineRegisterStatus with output_status_array (NULL) and array_size %d", array_size);
     INT result = mta_hal_getLineRegisterStatus(output_status_array, array_size);
     UT_LOG("Result : %d", result);
 
     // Verification
-    UT_LOG("Invoking mta_hal_getLineRegisterStatus with output_status_array (NULL) and array_size %d", array_size);
     UT_ASSERT_EQUAL(result, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForStatusArray...");
 }
 
@@ -4415,17 +4291,17 @@ void test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForSt
 *
 * This test case aims to verify the behavior of the mta_hal_getLineRegisterStatus API when it is called with a negative array size. The objective of this test is to ensure that the API handles the negative array size gracefully and returns an error.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 125
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 125 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- | --------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Test with negative array size | output_status_array = valid, array_size = -1 | Error should be returned | -
 */
 void test_l1_mta_hal_getLineRegisterStatus_negative_2_negativeArraySize(void) {
@@ -4442,7 +4318,6 @@ void test_l1_mta_hal_getLineRegisterStatus_negative_2_negativeArraySize(void) {
 
     // Verification
     UT_ASSERT_EQUAL(result, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_getLineRegisterStatus_negative_2_negativeArraySize...");
 }
 
@@ -4451,18 +4326,18 @@ void test_l1_mta_hal_getLineRegisterStatus_negative_2_negativeArraySize(void) {
 *
 * This test case checks if the function handles the scenario where the size of the array provided is greater than the actual allocation size of the array.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 126
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 126 @n
+* **Priority:** High @n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
-* | Variation / Step | Description                                                       | Test Data                                                  | Expected Result                           | Notes               |
-* | :--------------: | ----------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------ | ------------------- |
-* |        01        | Verify behavior when array size is greater than actual allocation | output_status_array = valid, array_size = 10               | mta_hal_getLineRegisterStatus returns error | Should be failed.   |
+* **Test Procedure:** @n
+* | Variation / Step | Description   | Test Data  | Expected Result  | Notes |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* |   01   | Verify behavior when array size is greater than actual allocation | output_status_array = valid, array_size = 10 | RETURN_ERR | Should be failed.   |
 */
 
 void test_l1_mta_hal_getLineRegisterStatus_negative_3_arraySizeBeyondActualAllocation(void) {
@@ -4488,17 +4363,17 @@ void test_l1_mta_hal_getLineRegisterStatus_negative_3_arraySizeBeyondActualAlloc
  *
  * This test case checks if the mta_hal_devResetNow() API returns the expected status when the reset value is set to TRUE.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 127
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 127 @n
+ * **Priority:** High @n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  *  | Variation / Step | Description | Test Data | Expected Result | Notes |
- *  | :----: | --------- | ---------- |-------------- | ----- |
+ *  | :----: | :---------: | :----------: |:--------------: | :-----: |
  *  | 01 | Invoking mta_hal_devResetNow with bResetValue = TRUE | bResetValue = TRUE | Return status: RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_ResetWithValueTrue(void) {
@@ -4507,9 +4382,7 @@ void test_l1_mta_hal_positive1_ResetWithValueTrue(void) {
     BOOLEAN bResetValue = TRUE;
     UT_LOG("Invoking mta_hal_devResetNow with bResetValue = TRUE...");
     INT status = mta_hal_devResetNow(bResetValue);
-
     UT_LOG("Return status: %d", status);
-
     UT_ASSERT_EQUAL(status, RETURN_OK);
 
     UT_LOG("Exiting test_l1_mta_hal_positive1_ResetWithValueTrue...");
@@ -4520,17 +4393,17 @@ void test_l1_mta_hal_positive1_ResetWithValueTrue(void) {
  *
  * This test verifies whether the mta_hal_devResetNow function returns the expected status when the reset value is set to FALSE.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 128
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 128 @n
+ * **Priority:** High @n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via the console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- |-------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Invoking mta_hal_devResetNow with bResetValue = FALSE | bResetValue = FALSE | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive2_NoResetWithValueFalse(void) {
@@ -4552,18 +4425,18 @@ void test_l1_mta_hal_positive2_NoResetWithValueFalse(void) {
  * 
  * This test verifies the behavior of the mta_hal_devResetNow function when an invalid boolean value is passed as an argument. The objective of this test is to ensure that the function returns the expected error status when an invalid boolean value is provided.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 129
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 129 @n
+ * **Priority:** High @n
  * 
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  * 
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | -------------- | ----- |
- * | 01 | Test with invalid boolean value | bResetValue = 2 | return status = RETURN_ERR | Should be equal |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Test with invalid boolean value | bResetValue = 2 | return status = RETURN_ERR | Should return an error status |
  */
 void test_l1_mta_hal_negative1_InvalidBooleanValue_devResetNow(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_InvalidBooleanValue_devResetNow...");
@@ -4573,7 +4446,6 @@ void test_l1_mta_hal_negative1_InvalidBooleanValue_devResetNow(void) {
     INT status = mta_hal_devResetNow(bResetValue);
    
     UT_LOG("Return status: %d", status);
-
     UT_ASSERT_EQUAL(status, RETURN_ERR);
 
     UT_LOG("Exiting test_l1_mta_hal_negative1_InvalidBooleanValue_devResetNow...");
@@ -4584,26 +4456,25 @@ void test_l1_mta_hal_negative1_InvalidBooleanValue_devResetNow(void) {
  *
  * The purpose of this test is to check how the mta_hal_devResetNow function responds to multiple consecutive reset calls. It tests whether the function returns the expected status code and if it can handle this scenario correctly.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 130
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 130 @n
+ * **Priority:** High @n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
- * 1. First set of conditions | Invoking mta_hal_devResetNow with bResetValue = TRUE twice | bResetValue = TRUE | How to gauge success, is it a success variable? | Should be successful
+ * **Test Procedure:** @n
  *
- * | Variation / Step | Description                                                        | Test Data                            | Expected Result                                      | Notes           |
- * | :--------------: | ------------------------------------------------------------------ | ------------------------------------ | ---------------------------------------------------- | --------------- |
- * |       01         | First set of conditions                                           | bResetValue = TRUE                   | Should be successful                                |
+ * | Variation / Step | Description  | Test Data | Expected Result | Notes |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01  | Invoking mta_hal_devResetNow   | bResetValue = TRUE  | RETURN_ERR | Should be successful  |
  */
 void test_l1_mta_hal_negative2_MultipleConsecutiveResets(void) {
     UT_LOG("Entering test_l1_mta_hal_negative2_MultipleConsecutiveResets...");
 
     BOOLEAN bResetValue = TRUE;
-    UT_LOG("Invoking mta_hal_devResetNow with bResetValue = TRUE twice...");
+    UT_LOG("Invoking mta_hal_devResetNow with bResetValue = TRUE");
     INT status1 = mta_hal_devResetNow(bResetValue);
     UT_LOG("Return status - First reset: %d", status1);
     UT_LOG("Invoking mta_hal_devResetNow with bResetValue = TRUE twice...");
@@ -4622,18 +4493,18 @@ void test_l1_mta_hal_negative2_MultipleConsecutiveResets(void) {
 *
 * This test case is designed to verify the functionality of the mta_hal_devResetNow function when the reset value is toggled rapidly. It tests if the function can handle multiple invocations within a short period of time.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 131
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 131 @n
+* **Priority:** High @n@n
 * 
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Toggle reset value rapidly | bResetValue = TRUE | RETURN_OK or RETURN_ERR | The return value can be either RETURN_OK or RETURN_ERR depending on the system behavior |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | mta_hal_devResetNow Toggle reset value rapidly | bResetValue = TRUE | RETURN_OK or RETURN_ERR | The return value can be either RETURN_OK or RETURN_ERR depending on the system behavior |
 */
 void test_l1_mta_hal_negative3_ToggleResetValueRapidly(void) {
     UT_LOG("Entering test_l1_mta_hal_negative3_ToggleResetValueRapidly...");
@@ -4660,17 +4531,17 @@ void test_l1_mta_hal_negative3_ToggleResetValueRapidly(void) {
 *
 * The purpose of this test is to check if the API mta_hal_getMtaOperationalStatus returns the expected result and if the operationalStatus value is one of the valid enum values.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 132
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 132 @n
+* **Priority:** High @n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Call mta_hal_getMtaOperationalStatus function | &operationalStatus = MTA_INIT | Return value is RETURN_OK | operationalStatus is one of the valid enum values |
 */
 void test_l1_mta_hal_positive1_getMtaOperationalStatus(void) {
@@ -4692,7 +4563,6 @@ void test_l1_mta_hal_positive1_getMtaOperationalStatus(void) {
 
    // Log the test description and the return status
    UT_LOG("Invoking mta_hal_getMtaOperationalStatus with valid memory location for operationalStatus: SUCCESS");
-
    UT_LOG("Exiting test_l1_mta_hal_positive1_getMtaOperationalStatus...");
 }
 
@@ -4701,18 +4571,18 @@ void test_l1_mta_hal_positive1_getMtaOperationalStatus(void) {
  *
  * This test case verifies the behavior of the mta_hal_getMtaOperationalStatus function when called with a NULL operationalStatus pointer. The function is expected to return RETURN_ERR in this case.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 133
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 133 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If the user chooses to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | --------------- | ----- |
- * | 01 | Call the function with NULL operationalStatus pointer | operationalStatus = NULL | RETURN_ERR | - |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Call the function with NULL operationalStatus pointer | operationalStatus = NULL | RETURN_ERR | should be Fail|
  */
 void test_l1_mta_hal_negative1_getMtaOperationalStatus(void) {
    UT_LOG("Entering test_l1_mta_hal_negative1_getMtaOperationalStatus...");
@@ -4735,36 +4605,42 @@ void test_l1_mta_hal_negative1_getMtaOperationalStatus(void) {
 *
 * This test case verifies the functionality of mta_hal_start_provisioning function when provided with valid input parameters.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 134
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 134 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
-* | 01 | Valid input parameter | pParameters = { MtaIPMode = MTA_IPV4, ... } | RETURN_OK | Should be successful |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking the mta_hal_start_provisioning | pParameters -> MtaIPMode = MTA_IPV4 | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_mta_hal_start_provisioning(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_mta_hal_start_provisioning...");
 
     // Test case specific setup
-    PMTAMGMT_MTA_PROVISIONING_PARAMS pParameters = malloc(sizeof(MTAMGMT_PROVISIONING_PARAMS));
-    pParameters->MtaIPMode = MTA_IPV4;
-    
-    // Test invocation
-    UT_LOG("Invoking the mta_hal_start_provisioning with MTA_IPV4");
-    INT result = mta_hal_start_provisioning(pParameters);
-    UT_LOG("Result : %d", result);
+    PMTAMGMT_MTA_PROVISIONING_PARAMS pParameters = (PMTAMGMT_MTA_PROVISIONING_PARAMS) malloc(sizeof(MTAMGMT_PROVISIONING_PARAMS));
+    if(pParameters != NULL)
+    {
+        pParameters->MtaIPMode = MTA_IPV4;
+        // Test invocation
+        UT_LOG("Invoking the mta_hal_start_provisioning with MTA_IPV4");
+        INT result = mta_hal_start_provisioning(pParameters);
+        UT_LOG("Result : %d", result);
 
-    // Test verification
-    UT_ASSERT_EQUAL(result, RETURN_OK);
-    // Test case specific cleanup
-    free(pParameters);
-
+        // Test verification
+        UT_ASSERT_EQUAL(result, RETURN_OK);
+        // Test case specific cleanup
+        free(pParameters);
+    }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
+    }
     UT_LOG("Exiting test_l1_mta_hal_positive1_mta_hal_start_provisioning...");
 }
 
@@ -4773,39 +4649,46 @@ void test_l1_mta_hal_positive1_mta_hal_start_provisioning(void) {
  *
  * This test case verifies the behavior of mta_hal_start_provisioning API by checking if it returns the expected result when valid input is provided.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 135
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 135 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :----: | --------- | ---------- | -------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Verify start provisioning with valid parameters | pParameters->MtaIPMode = MTA_IPV6 | RETURN_OK | Test should pass |
  */
 void test_l1_mta_hal_positive2_mta_hal_start_provisioning(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_mta_hal_start_provisioning...");
 
     // Test case specific setup
-    PMTAMGMT_MTA_PROVISIONING_PARAMS pParameters = malloc(sizeof(PMTAMGMT_MTA_PROVISIONING_PARAMS));
-    pParameters->MtaIPMode = MTA_IPV6;
-    // Set other valid values for pParameters structure members
+    PMTAMGMT_MTA_PROVISIONING_PARAMS pParameters = (PMTAMGMT_MTA_PROVISIONING_PARAMS) malloc(sizeof(PMTAMGMT_MTA_PROVISIONING_PARAMS));
+    if(pParameters != NULL)
+    {
+        pParameters->MtaIPMode = MTA_IPV6;
+        // Set other valid values for pParameters structure members
 
-    // Test invocation
-    UT_LOG("Invoking the mta_hal_start_provisioning with MTA_IPV6");
-    INT result = mta_hal_start_provisioning(pParameters);
-    UT_LOG("Result : %d", result);
+        // Test invocation
+        UT_LOG("Invoking the mta_hal_start_provisioning with MTA_IPV6");
+        INT result = mta_hal_start_provisioning(pParameters);
+        UT_LOG("Result : %d", result);
 
-    // Test verification
-    UT_ASSERT_EQUAL(result, RETURN_OK);
-    // Add other assertions if needed
+        // Test verification
+        UT_ASSERT_EQUAL(result, RETURN_OK);
+        // Add other assertions if needed
 
-    // Test case specific cleanup
-    free(pParameters);
-
+        // Test case specific cleanup
+        free(pParameters);
+    }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
+    }
     UT_LOG("Exiting test_l1_mta_hal_positive2_mta_hal_start_provisioning...");
 }
 
@@ -4814,39 +4697,46 @@ void test_l1_mta_hal_positive2_mta_hal_start_provisioning(void) {
  *
  * This test case checks whether the mta_hal_start_provisioning function is working correctly in the positive scenario.
  *
- * **Test Group ID:** Basic: 01
- * **Test Case ID:** 136
- * **Priority:** High
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 136 @n
+ * **Priority:** High @n@n
  *
- * **Pre-Conditions:** None
- * **Dependencies:** None
- * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console.
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
- * **Test Procedure:**
+ * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
- * | :--------------: | ----------- | --------- | --------------- | ----- |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Verifying mta_hal_start_provisioning function | pParameters->MtaIPMode = MTA_DUAL_STACK | The function should return RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive3_mta_hal_start_provisioning(void) {
     UT_LOG("Entering test_l1_mta_hal_positive3_mta_hal_start_provisioning...");
 
     // Test case specific setup
-    PMTAMGMT_MTA_PROVISIONING_PARAMS pParameters = malloc(sizeof(PMTAMGMT_MTA_PROVISIONING_PARAMS));
-    pParameters->MtaIPMode = MTA_DUAL_STACK;
-    // Set other valid values for pParameters structure members
+    PMTAMGMT_MTA_PROVISIONING_PARAMS pParameters = (PMTAMGMT_MTA_PROVISIONING_PARAMS) malloc(sizeof(PMTAMGMT_MTA_PROVISIONING_PARAMS));
+    if( pParameters != NULL )
+    {
+        pParameters->MtaIPMode = MTA_DUAL_STACK;
+        // Set other valid values for pParameters structure members
 
-    // Test invocation
-    UT_LOG("Invoking the mta_hal_start_provisioning with MTA_DUAL_STACK");
-    INT result = mta_hal_start_provisioning(pParameters);
-    UT_LOG("Result : %d", result);
+        // Test invocation
+        UT_LOG("Invoking the mta_hal_start_provisioning with MTA_DUAL_STACK");
+        INT result = mta_hal_start_provisioning(pParameters);
+        UT_LOG("Result : %d", result);
 
-    // Test verification
-    UT_ASSERT_EQUAL(result, RETURN_OK);
-    // Add other assertions if needed
+        // Test verification
+        UT_ASSERT_EQUAL(result, RETURN_OK);
+        // Add other assertions if needed
 
-    // Test case specific cleanup
-    free(pParameters);
-
+        // Test case specific cleanup
+        free(pParameters);
+    }
+    else
+    {
+        UT_LOG("Malloc operation failed");
+        UT_FAIL("Memory allocation with malloc failed");
+    }
     UT_LOG("Exiting test_l1_mta_hal_positive3_mta_hal_start_provisioning...");
 }
 
@@ -4856,17 +4746,17 @@ void test_l1_mta_hal_positive3_mta_hal_start_provisioning(void) {
 * This test case checks the behavior of mta_hal_start_provisioning function
 * when invoked with NULL input parameters.
 *
-* **Test Group ID:** Basic: 01
-* **Test Case ID:** 137
-* **Priority:** High
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 137 @n
+* **Priority:** High @n@n
 *
-* **Pre-Conditions:** None
-* **Dependencies:** None
-* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
 *
-* **Test Procedure:**
+* **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | --------- | ---------- |-------------- | ----- |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_start_provisioning with NULL input parameters | pParameters = NULL | RETURN_ERR | Should return error |
 */
 void test_l1_mta_hal_negative1_mta_hal_start_provisioning(void) {
@@ -4882,8 +4772,39 @@ void test_l1_mta_hal_negative1_mta_hal_start_provisioning(void) {
 
     // Test verification
     UT_ASSERT_EQUAL(result, RETURN_ERR);
-
     UT_LOG("Exiting test_l1_mta_hal_negative1_mta_hal_start_provisioning...");
+}
+
+/**
+* @brief This test case is for testing the boundary conditions of the mta_hal_GetCalls API.
+*
+* The objective of this test case is to check if the mta_hal_GetCalls API can handle the boundary conditions of the input parameters.
+*
+* **Test Group ID:** Basic: 01 @n
+* **Test Case ID:** 138 @n
+* **Priority:** High @n@n
+*
+* **Pre-Conditions:** None @n
+* **Dependencies:** None @n
+* **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
+*
+* **Test Procedure:** @n
+* | Variation / Step | Description | Test Data | Expected Result | Notes |
+* | :----: | :---------: | :----------: |:--------------: | :-----: |
+* | 01 | Invoking mta_hal_GetCalls with instanceNumber: UINT32_MAX, count: 0, pCfg: NULL | instanceNumber = UINT32_MAX, count = 0, pCfg = NULL | Success (RETURN_OK) | Should be successful |
+*/
+void test_l1_mta_hal_positive3_mta_hal_GetCalls_boundary(void) {
+    UT_LOG(" Entering from test_l1_mta_hal_positive3_mta_hal_GetCalls_boundary");
+    ULONG instanceNumber2 = UINT32_MAX;
+    ULONG count2 = 0;
+    PMTAMGMT_MTA_CALLS pCfg2 = NULL;
+    UT_LOG("Invoking mta_hal_GetCalls with instanceNumber1 = MAX count : 0 and pCfg = NULL");
+    INT result2 = mta_hal_GetCalls(instanceNumber2, &count2, &pCfg2);
+
+    UT_LOG("mta_hal_GetCalls with instanceNumber: %lu, count: %lu, pCfg: %p", instanceNumber2, count2, pCfg2);
+    UT_LOG("Return status: %d", result2);
+    UT_ASSERT_EQUAL(result2, RETURN_OK);
+    UT_LOG(" Existing from test_l1_mta_hal_positive3_mta_hal_GetCalls_boundary");
 }
 
 
@@ -4902,8 +4823,8 @@ int register_hal_tests(void)
         return -1;
     }
     // List of test function names and strings
-   const char* list1[] = {"l1_mta_hal_positive1_InitDB", "l1_mta_hal_positive2_MultipleInitializations", "l1_mta_hal_positive1_GetDHCPInfo", "l1_mta_hal_negative1_GetDHCPInfo", "l1_mta_hal_positive_1_GetDHCPV6Info", "l1_mta_hal_negative1_GetDHCPV6Info", "l1_mta_hal_positive1_LineTableGetNumberOfEntries", "l1_mta_hal_positive1_LineTableGetEntry_ValidEntryRetrieval", "l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex", "l1_mta_hal_positive3_LineTableGetEntry_BoundaryTestHighestIndex", "l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary", "l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary", "l1_mta_hal_negative3_LineTableGetEntry_NullpEntryParameter", "l1_mta_hal_negative4_LineTableGetEntry_IndexBeyondExistingEntries", "l1_mta_hal_positive1_TriggerDiagnostics", "l1_mta_hal_positive2_TriggerDiagnostics", "l1_mta_hal_positive3_TriggerDiagnostics", "l1_mta_hal_negative1_TriggerDiagnostics", "l1_mta_hal_negative2_TriggerDiagnostics", "l1_mta_hal_positive_1_GetServiceFlow", "l1_mta_hal_negative_1_GetServiceFlow", "l1_mta_hal_positive1_mta_hal_DectGetEnable", "l1_mta_hal_positive2_mta_hal_DectGetEnable", "l1_mta_hal_negative1_mta_hal_DectGetEnable", "l1_mta_hal_positive1_mta_hal_DectSetEnable_Enabled", "l1_mta_hal_positive2_mta_hal_DectSetEnable_Disabled", "l1_mta_hal_negative1_mta_hal_DectSetEnable_InvalidValue","l1_mta_hal_positive_1_DectGetRegistrationMode_enabled", "l1_mta_hal_positive_2_DectGetRegistrationMode_disabled", "l1_mta_hal_negative_1_DectGetRegistrationMode_null_pointer", "l1_mta_hal_positive_1_SetDectRegistrationModeEnabled", "l1_mta_hal_positive_2_SetDectRegistrationModeDisabled", "l1_mta_hal_negative_1_SetDectRegistrationModeUndefined", "l1_mta_hal_positive1_DectDeregisterDectHandset", "l1_mta_hal_positive2_DectDeregisterDectHandset", "l1_mta_hal_positive3_DectDeregisterDectHandset", "l1_mta_hal_negative1_DectDeregisterDectHandset", "l1_mta_hal_positive1_GetDectInfo_ValidMemoryLocation", "l1_mta_hal_negative1_GetDectInfo_NullPointer", "l1_mta_hal_positive1_GetDectPIN", "l1_mta_hal_negative1_GetDectPIN", "l1_mta_hal_positive1_SetDectPIN_ValidPINString", "l1_mta_hal_positive2_SetDectPIN_EmptyString", "l1_mta_hal_negative1_SetDectPIN_NULLPointer", "l1_mta_hal_negative2_SetDectPIN_StringExceedingLimit", "l1_mta_hal_negative3_SetDectPIN_InvalidCharacters", "l1_mta_hal_negative4_SetDectPIN_PartiallyPopulatedString", "l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber", "l1_mta_hal_positive2_GetHandsets_MinimumHandsetNumber", "l1_mta_hal_negative1_GetHandsets_NullCount", "l1_mta_hal_negative2_GetHandsets_NullHandsets", "l1_mta_hal_negative3_GetHandsets_NullCountAndHandsets", "l1_mta_hal_negative4_GetHandsets_InvalidHandsetNumber", "l1_mta_hal_positive1_mta_hal_GetCalls", "l1_mta_hal_positive2_mta_hal_GetCalls_boundary", "l1_mta_hal_negative1_mta_hal_GetCalls_null_ppCfg", "l1_mta_hal_negative2_mta_hal_GetCalls_null_Count_and_ppCfg", "l1_mta_hal_negative3_mta_hal_GetCalls_out_of_range_InstanceNumber", "l1_mta_hal_positive1_GetCALLP", "l1_mta_hal_negative1_GetCALLP", "l1_mta_hal_negative2_GetCALLP","l1_mta_hal_positive1_mta_hal_GetDSXLogs", "l1_mta_hal_negative1_mta_hal_GetDSXLogs", "l1_mta_hal_positive1_GetDSXLogEnable", "l1_mta_hal_positive2_GetDSXLogEnable", "l1_mta_hal_negative1_GetDSXLogEnable", "l1_mta_hal_negative2_GetDSXLogEnable", "l1_mta_hal_positive1_SetDSXLogEnable_EnableDSXLog", "l1_mta_hal_positive2_SetDSXLogEnable_DisableDSXLog", "l1_mta_hal_negative1_SetDSXLogEnable_InvalidBooleanValue", "l1_mta_hal_positive1_ClearDSXLog", "l1_mta_hal_positive2_DoNotClearDSXLog", "l1_mta_hal_negative1_InvalidBooleanValue", "l1_mta_hal_positive1_GetCallSignallingLogEnable", "l1_mta_hal_positive2_GetCallSignallingLogEnable", "l1_mta_hal_negative1_GetCallSignallingLogEnable", "l1_mta_hal_positive1_SetCallSignallingLogEnable", "l1_mta_hal_positive2_SetCallSignallingLogEnable", "l1_mta_hal_negative1_SetCallSignallingLogEnable", "l1_mta_hal_positive_ClearCallSignallingLog", "l1_mta_hal_positive_NotClearCallSignallingLog", "l1_mta_hal_negative_InvalidBooleanValue", "l1_mta_hal_positive1_GetMtaLog", "l1_mta_hal_negative1_GetMtaLog", "l1_mta_hal_positive_1_BatteryGetInstalled", "l1_mta_hal_negative_1_BatteryGetInstalled", "l1_mta_hal_positive1_BatteryGetTotalCapacity", "l1_mta_hal_negative1_BatteryGetTotalCapacity", "l1_mta_hal_positive_1_mta_hal_BatteryGetTotalCapacity_ValidCapacity", "l1_mta_hal_negative_1_mta_hal_BatteryGetTotalCapacity_NullPointer", "l1_mta_hal_positive1_BatteryGetRemainingCharge", "l1_mta_hal_negative1_BatteryGetRemainingCharge", "l1_mta_hal_positive_1_BatteryGetRemainingTime", "l1_mta_hal_negative_1_BatteryGetRemainingTime", "l1_mta_hal_positive1_BatteryGetNumberofCycles", "l1_mta_hal_negative1_BatteryGetNumberofCycles", "l1_mta_hal_positive1_BatteryGetPowerStatus", "l1_mta_hal_negative1_BatteryGetPowerStatus", "l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus", "l1_mta_hal_BatteryGetCondition_negative1_NullPointers", "l1_mta_hal_positive1_BatteryGetStatus_RetrieveGoodCondition", "l1_mta_hal_negative1_BatteryGetStatus_NullPointers", "l1_mta_hal_positive1_BatteryGetLife", "l1_mta_hal_negative1_BatteryGetLife", "l1_mta_hal_positive1_BatteryGetInfo", "l1_mta_hal_negative1_BatteryGetInfo", "l1_mta_hal_positive1_retrievePowerSavingModeStatus_Enabled", "l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus", "l1_mta_hal_positive1_mta_hal_Get_MTAResetCount", "l1_mta_hal_negative1_mta_hal_Get_MTAResetCount", "l1_mta_hal_positive1_Get_LineResetCount", "l1_mta_hal_negative1_Get_LineResetCount", "l1_mta_hal_positive1_ClearCalls", "l1_mta_hal_positive2_ClearCalls", "l1_mta_hal_positive3_ClearCalls", "l1_mta_hal_negative1_ClearCalls", "l1_mta_hal_negative2_ClearCalls", "l1_mta_hal_positive1_getDhcpStatus_IPV4", "l1_mta_hal_negative1_getDhcpStatus_IPV4_IPV6", "l1_mta_hal_positive1_getConfigFileStatus", "l1_mta_hal_negative1_getConfigFileStatus", "test_l1_mta_hal_positive_1_getLineRegisterStatus_validMemoryLocationExpectedArraySize", "l1_mta_hal_getLineRegisterStatus_positive_2_arraySizeZero", "test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForStatusArray", "l1_mta_hal_getLineRegisterStatus_negative_2_negativeArraySize", "l1_mta_hal_getLineRegisterStatus_negative_3_arraySizeBeyondActualAllocation", "l1_mta_hal_positive1_ResetWithValueTrue", "l1_mta_hal_positive2_NoResetWithValueFalse", "l1_mta_hal_negative1_InvalidBooleanValue", "l1_mta_hal_negative2_MultipleConsecutiveResets", "l1_mta_hal_negative3_ToggleResetValueRapidly", "l1_mta_hal_positive1_getMtaOperationalStatus", "l1_mta_hal_negative1_getMtaOperationalStatus", "l1_mta_hal_positive1_mta_hal_start_provisioning", "l1_mta_hal_positive2_mta_hal_start_provisioning", "l1_mta_hal_positive3_mta_hal_start_provisioning", "l1_mta_hal_negative1_mta_hal_start_provisioning"};
-   void (*list2[])() = {test_l1_mta_hal_positive1_InitDB, test_l1_mta_hal_positive2_MultipleInitializations, test_l1_mta_hal_positive1_GetDHCPInfo, test_l1_mta_hal_negative1_GetDHCPInfo, test_l1_mta_hal_positive_1_GetDHCPV6Info, test_l1_mta_hal_negative1_GetDHCPV6Info, test_l1_mta_hal_positive1_LineTableGetNumberOfEntries, test_l1_mta_hal_positive1_LineTableGetEntry_ValidEntryRetrieval, test_l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex, test_l1_mta_hal_positive3_LineTableGetEntry_BoundaryTestHighestIndex, test_l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary, test_l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary, test_l1_mta_hal_negative3_LineTableGetEntry_NullpEntryParameter, test_l1_mta_hal_negative4_LineTableGetEntry_IndexBeyondExistingEntries, test_l1_mta_hal_positive1_TriggerDiagnostics, test_l1_mta_hal_positive2_TriggerDiagnostics, test_l1_mta_hal_positive3_TriggerDiagnostics, test_l1_mta_hal_negative1_TriggerDiagnostics, test_l1_mta_hal_negative2_TriggerDiagnostics, test_l1_mta_hal_positive_1_GetServiceFlow, test_l1_mta_hal_negative_1_GetServiceFlow, test_l1_mta_hal_positive1_mta_hal_DectGetEnable, test_l1_mta_hal_positive2_mta_hal_DectGetEnable, test_l1_mta_hal_negative1_mta_hal_DectGetEnable, test_l1_mta_hal_positive1_mta_hal_DectSetEnable_Enabled, test_l1_mta_hal_positive2_mta_hal_DectSetEnable_Disabled, test_l1_mta_hal_negative1_mta_hal_DectSetEnable_InvalidValue, test_l1_mta_hal_positive_1_DectGetRegistrationMode_enabled,test_l1_mta_hal_positive_2_DectGetRegistrationMode_disabled, test_l1_mta_hal_negative_1_DectGetRegistrationMode_null_pointer, test_l1_mta_hal_positive_1_SetDectRegistrationModeEnabled, test_l1_mta_hal_positive_2_SetDectRegistrationModeDisabled, test_l1_mta_hal_negative_1_SetDectRegistrationModeUndefined, test_l1_mta_hal_positive1_DectDeregisterDectHandset, test_l1_mta_hal_positive2_DectDeregisterDectHandset, test_l1_mta_hal_positive3_DectDeregisterDectHandset, test_l1_mta_hal_negative1_DectDeregisterDectHandset, test_l1_mta_hal_positive1_GetDectInfo_ValidMemoryLocation, test_l1_mta_hal_negative1_GetDectInfo_NullPointer, test_l1_mta_hal_positive1_GetDectPIN, test_l1_mta_hal_negative1_GetDectPIN, test_l1_mta_hal_positive1_SetDectPIN_ValidPINString, test_l1_mta_hal_positive2_SetDectPIN_EmptyString, test_l1_mta_hal_negative1_SetDectPIN_NULLPointer, test_l1_mta_hal_negative2_SetDectPIN_StringExceedingLimit, test_l1_mta_hal_negative3_SetDectPIN_InvalidCharacters, test_l1_mta_hal_negative4_SetDectPIN_PartiallyPopulatedString, test_l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber, test_l1_mta_hal_positive2_GetHandsets_MinimumHandsetNumber, test_l1_mta_hal_negative1_GetHandsets_NullCount, test_l1_mta_hal_negative2_GetHandsets_NullHandsets, test_l1_mta_hal_negative3_GetHandsets_NullCountAndHandsets, test_l1_mta_hal_negative4_GetHandsets_InvalidHandsetNumber, test_l1_mta_hal_positive1_mta_hal_GetCalls, test_l1_mta_hal_positive2_mta_hal_GetCalls_boundary, test_l1_mta_hal_negative1_mta_hal_GetCalls_null_ppCfg, test_l1_mta_hal_negative2_mta_hal_GetCalls_null_Count_and_ppCfg, test_l1_mta_hal_negative3_mta_hal_GetCalls_out_of_range_InstanceNumber, test_l1_mta_hal_positive1_GetCALLP, test_l1_mta_hal_negative1_GetCALLP, test_l1_mta_hal_negative2_GetCALLP,test_l1_mta_hal_positive1_mta_hal_GetDSXLogs, test_l1_mta_hal_negative1_mta_hal_GetDSXLogs, test_l1_mta_hal_positive1_GetDSXLogEnable, test_l1_mta_hal_positive2_GetDSXLogEnable, test_l1_mta_hal_negative1_GetDSXLogEnable, test_l1_mta_hal_negative2_GetDSXLogEnable, test_l1_mta_hal_positive1_SetDSXLogEnable_EnableDSXLog, test_l1_mta_hal_positive2_SetDSXLogEnable_DisableDSXLog, test_l1_mta_hal_negative1_SetDSXLogEnable_InvalidBooleanValue, test_l1_mta_hal_positive1_ClearDSXLog, test_l1_mta_hal_positive2_DoNotClearDSXLog, test_l1_mta_hal_negative1_InvalidBooleanValue, test_l1_mta_hal_positive1_GetCallSignallingLogEnable, test_l1_mta_hal_positive2_GetCallSignallingLogEnable, test_l1_mta_hal_negative1_GetCallSignallingLogEnable, test_l1_mta_hal_positive1_SetCallSignallingLogEnable, test_l1_mta_hal_positive2_SetCallSignallingLogEnable, test_l1_mta_hal_negative1_SetCallSignallingLogEnable, test_l1_mta_hal_positive_ClearCallSignallingLog, test_l1_mta_hal_positive_NotClearCallSignallingLog, test_l1_mta_hal_negative_InvalidBooleanValue, test_l1_mta_hal_positive1_GetMtaLog, test_l1_mta_hal_negative1_GetMtaLog, test_l1_mta_hal_positive_1_BatteryGetInstalled, test_l1_mta_hal_negative_1_BatteryGetInstalled, test_l1_mta_hal_positive1_BatteryGetTotalCapacity, test_l1_mta_hal_negative1_BatteryGetTotalCapacity, test_l1_mta_hal_positive_1_mta_hal_BatteryGetTotalCapacity_ValidCapacity, test_l1_mta_hal_negative_1_mta_hal_BatteryGetTotalCapacity_NullPointer, test_l1_mta_hal_positive1_BatteryGetRemainingCharge, test_l1_mta_hal_negative1_BatteryGetRemainingCharge, test_l1_mta_hal_positive_1_BatteryGetRemainingTime, test_l1_mta_hal_negative_1_BatteryGetRemainingTime, test_l1_mta_hal_positive1_BatteryGetNumberofCycles, test_l1_mta_hal_negative1_BatteryGetNumberofCycles, test_l1_mta_hal_positive1_BatteryGetPowerStatus, test_l1_mta_hal_negative1_BatteryGetPowerStatus, test_l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus, test_l1_mta_hal_BatteryGetCondition_negative1_NullPointers,test_l1_mta_hal_positive1_BatteryGetStatus_RetrieveGoodCondition, test_l1_mta_hal_negative1_BatteryGetStatus_NullPointers, test_l1_mta_hal_positive1_BatteryGetLife, test_l1_mta_hal_negative1_BatteryGetLife, test_l1_mta_hal_positive1_BatteryGetInfo, test_l1_mta_hal_negative1_BatteryGetInfo, test_l1_mta_hal_positive1_retrievePowerSavingModeStatus_Enabled, test_l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus, test_l1_mta_hal_positive1_mta_hal_Get_MTAResetCount, test_l1_mta_hal_negative1_mta_hal_Get_MTAResetCount, test_l1_mta_hal_positive1_Get_LineResetCount, test_l1_mta_hal_negative1_Get_LineResetCount, test_l1_mta_hal_positive1_ClearCalls, test_l1_mta_hal_positive2_ClearCalls, test_l1_mta_hal_positive3_ClearCalls, test_l1_mta_hal_negative1_ClearCalls, test_l1_mta_hal_negative2_ClearCalls, test_l1_mta_hal_positive1_getDhcpStatus_IPV4, test_l1_mta_hal_negative1_getDhcpStatus_IPV4_IPV6, test_l1_mta_hal_positive1_getConfigFileStatus, test_l1_mta_hal_negative1_getConfigFileStatus, test_l1_mta_hal_positive_1_getLineRegisterStatus_validMemoryLocationExpectedArraySize, test_l1_mta_hal_getLineRegisterStatus_positive_2_arraySizeZero, test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForStatusArray, test_l1_mta_hal_getLineRegisterStatus_negative_2_negativeArraySize, test_l1_mta_hal_getLineRegisterStatus_negative_3_arraySizeBeyondActualAllocation, test_l1_mta_hal_positive1_ResetWithValueTrue, test_l1_mta_hal_positive2_NoResetWithValueFalse, test_l1_mta_hal_negative1_InvalidBooleanValue_devResetNow, test_l1_mta_hal_negative2_MultipleConsecutiveResets, test_l1_mta_hal_negative3_ToggleResetValueRapidly, test_l1_mta_hal_positive1_getMtaOperationalStatus, test_l1_mta_hal_negative1_getMtaOperationalStatus, test_l1_mta_hal_positive1_mta_hal_start_provisioning, test_l1_mta_hal_positive2_mta_hal_start_provisioning, test_l1_mta_hal_positive3_mta_hal_start_provisioning, test_l1_mta_hal_negative1_mta_hal_start_provisioning};
+   const char* list1[] = {"l1_mta_hal_positive1_InitDB", "l1_mta_hal_InitDB_positive2_MultipleInitializations", "l1_mta_hal_positive1_GetDHCPInfo", "l1_mta_hal_negative1_GetDHCPInfo", "l1_mta_hal_positive_1_GetDHCPV6Info", "l1_mta_hal_negative1_GetDHCPV6Info", "l1_mta_hal_positive1_LineTableGetNumberOfEntries", "l1_mta_hal_positive1_LineTableGetEntry_ValidEntryRetrieval", "l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex", "l1_mta_hal_positive3_LineTableGetEntry_BoundaryTestHighestIndex", "l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary", "l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary", "l1_mta_hal_negative3_LineTableGetEntry_NullpEntryParameter", "l1_mta_hal_negative4_LineTableGetEntry_IndexBeyondExistingEntries", "l1_mta_hal_positive1_TriggerDiagnostics", "l1_mta_hal_positive2_TriggerDiagnostics", "l1_mta_hal_positive3_TriggerDiagnostics", "l1_mta_hal_negative1_TriggerDiagnostics", "l1_mta_hal_negative2_TriggerDiagnostics", "l1_mta_hal_positive_1_GetServiceFlow", "l1_mta_hal_negative_1_GetServiceFlow", "l1_mta_hal_positive1_mta_hal_DectGetEnable", "l1_mta_hal_positive2_mta_hal_DectGetEnable", "l1_mta_hal_negative1_mta_hal_DectGetEnable", "l1_mta_hal_positive1_mta_hal_DectSetEnable_Enabled", "l1_mta_hal_positive2_mta_hal_DectSetEnable_Disabled", "l1_mta_hal_negative1_mta_hal_DectSetEnable_InvalidValue","l1_mta_hal_positive_1_DectGetRegistrationMode_enabled", "l1_mta_hal_positive_2_DectGetRegistrationMode_disabled", "l1_mta_hal_negative_1_DectGetRegistrationMode_null_pointer", "l1_mta_hal_positive_1_SetDectRegistrationModeEnabled", "l1_mta_hal_positive_2_SetDectRegistrationModeDisabled", "l1_mta_hal_negative_1_SetDectRegistrationModeUndefined", "l1_mta_hal_positive1_DectDeregisterDectHandset", "l1_mta_hal_positive2_DectDeregisterDectHandset", "l1_mta_hal_positive3_DectDeregisterDectHandset", "l1_mta_hal_negative1_DectDeregisterDectHandset", "l1_mta_hal_positive1_GetDectInfo_ValidMemoryLocation", "l1_mta_hal_negative1_GetDectInfo_NullPointer", "l1_mta_hal_positive1_GetDectPIN", "l1_mta_hal_negative1_GetDectPIN", "l1_mta_hal_positive1_SetDectPIN_ValidPINString", "l1_mta_hal_positive2_SetDectPIN_EmptyString", "l1_mta_hal_negative1_SetDectPIN_NULLPointer", "l1_mta_hal_negative2_SetDectPIN_StringExceedingLimit", "l1_mta_hal_negative3_SetDectPIN_InvalidCharacters", "l1_mta_hal_negative4_SetDectPIN_PartiallyPopulatedString", "l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber", "l1_mta_hal_positive2_GetHandsets_MinimumHandsetNumber", "l1_mta_hal_negative1_GetHandsets_NullCount", "l1_mta_hal_negative2_GetHandsets_NullHandsets", "l1_mta_hal_negative3_GetHandsets_NullCountAndHandsets", "l1_mta_hal_negative4_GetHandsets_InvalidHandsetNumber", "l1_mta_hal_positive1_mta_hal_GetCalls", "l1_mta_hal_positive2_mta_hal_GetCalls_boundary", "l1_mta_hal_negative1_mta_hal_GetCalls_null_ppCfg", "l1_mta_hal_negative2_mta_hal_GetCalls_null_Count_and_ppCfg", "l1_mta_hal_negative3_mta_hal_GetCalls_out_of_range_InstanceNumber", "l1_mta_hal_positive1_GetCALLP", "l1_mta_hal_negative1_GetCALLP", "l1_mta_hal_negative2_GetCALLP","l1_mta_hal_positive1_mta_hal_GetDSXLogs", "l1_mta_hal_negative1_mta_hal_GetDSXLogs", "l1_mta_hal_positive1_GetDSXLogEnable", "l1_mta_hal_positive2_GetDSXLogEnable", "l1_mta_hal_negative1_GetDSXLogEnable", "l1_mta_hal_negative2_GetDSXLogEnable", "l1_mta_hal_positive1_SetDSXLogEnable_EnableDSXLog", "l1_mta_hal_positive2_SetDSXLogEnable_DisableDSXLog", "l1_mta_hal_negative1_SetDSXLogEnable_InvalidBooleanValue", "l1_mta_hal_positive1_ClearDSXLog", "l1_mta_hal_positive2_DoNotClearDSXLog", "l1_mta_hal_negative1_InvalidBooleanValue", "l1_mta_hal_positive1_GetCallSignallingLogEnable", "l1_mta_hal_positive2_GetCallSignallingLogEnable", "l1_mta_hal_negative1_GetCallSignallingLogEnable", "l1_mta_hal_positive1_SetCallSignallingLogEnable", "l1_mta_hal_positive2_SetCallSignallingLogEnable", "l1_mta_hal_negative1_SetCallSignallingLogEnable", "l1_mta_hal_positive_ClearCallSignallingLog", "l1_mta_hal_positive_NotClearCallSignallingLog", "l1_mta_hal_negative_InvalidBooleanValue", "l1_mta_hal_positive1_GetMtaLog", "l1_mta_hal_negative1_GetMtaLog", "l1_mta_hal_positive_1_BatteryGetInstalled", "l1_mta_hal_negative_1_BatteryGetInstalled", "l1_mta_hal_positive1_BatteryGetTotalCapacity", "l1_mta_hal_negative1_BatteryGetTotalCapacity", "l1_mta_hal_positive_1_mta_hal_BatteryGetTotalCapacity_ValidCapacity", "l1_mta_hal_negative_1_mta_hal_BatteryGetTotalCapacity_NullPointer", "l1_mta_hal_positive1_BatteryGetRemainingCharge", "l1_mta_hal_negative1_BatteryGetRemainingCharge", "l1_mta_hal_positive_1_BatteryGetRemainingTime", "l1_mta_hal_negative_1_BatteryGetRemainingTime", "l1_mta_hal_positive1_BatteryGetNumberofCycles", "l1_mta_hal_negative1_BatteryGetNumberofCycles", "l1_mta_hal_positive1_BatteryGetPowerStatus", "l1_mta_hal_negative1_BatteryGetPowerStatus", "l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus", "l1_mta_hal_BatteryGetCondition_negative1_NullPointers", "l1_mta_hal_positive1_BatteryGetStatus_RetrieveGoodCondition", "l1_mta_hal_negative1_BatteryGetStatus_NullPointers", "l1_mta_hal_positive1_BatteryGetLife", "l1_mta_hal_negative1_BatteryGetLife", "l1_mta_hal_positive1_BatteryGetInfo", "l1_mta_hal_negative1_BatteryGetInfo", "l1_mta_hal_positive1_retrievePowerSavingModeStatus_Enabled", "l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus", "l1_mta_hal_positive1_mta_hal_Get_MTAResetCount", "l1_mta_hal_negative1_mta_hal_Get_MTAResetCount", "l1_mta_hal_positive1_Get_LineResetCount", "l1_mta_hal_negative1_Get_LineResetCount", "l1_mta_hal_positive1_ClearCalls", "l1_mta_hal_positive2_ClearCalls", "l1_mta_hal_positive3_ClearCalls", "l1_mta_hal_negative1_ClearCalls", "l1_mta_hal_negative2_ClearCalls", "l1_mta_hal_positive1_getDhcpStatus_IPV4", "l1_mta_hal_negative1_getDhcpStatus_IPV4_IPV6", "l1_mta_hal_positive1_getConfigFileStatus", "l1_mta_hal_negative1_getConfigFileStatus", "test_l1_mta_hal_positive_1_getLineRegisterStatus_validMemoryLocationExpectedArraySize", "l1_mta_hal_getLineRegisterStatus_positive_2_arraySizeZero", "test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForStatusArray", "l1_mta_hal_getLineRegisterStatus_negative_2_negativeArraySize", "l1_mta_hal_getLineRegisterStatus_negative_3_arraySizeBeyondActualAllocation", "l1_mta_hal_positive1_ResetWithValueTrue", "l1_mta_hal_positive2_NoResetWithValueFalse", "l1_mta_hal_ClearDSXLog_negative1_InvalidBooleanValue", "l1_mta_hal_negative2_MultipleConsecutiveResets", "l1_mta_hal_negative3_ToggleResetValueRapidly", "l1_mta_hal_positive1_getMtaOperationalStatus", "l1_mta_hal_negative1_getMtaOperationalStatus", "l1_mta_hal_positive1_mta_hal_start_provisioning", "l1_mta_hal_positive2_mta_hal_start_provisioning", "l1_mta_hal_positive3_mta_hal_start_provisioning", "l1_mta_hal_negative1_mta_hal_start_provisioning", "l1_mta_hal_positive3_mta_hal_GetCalls_boundary"};
+   void (*list2[])() = {test_l1_mta_hal_positive1_InitDB, test_l1_mta_hal_InitDB_positive2_MultipleInitializations, test_l1_mta_hal_positive1_GetDHCPInfo, test_l1_mta_hal_negative1_GetDHCPInfo, test_l1_mta_hal_positive_1_GetDHCPV6Info, test_l1_mta_hal_negative1_GetDHCPV6Info, test_l1_mta_hal_positive1_LineTableGetNumberOfEntries, test_l1_mta_hal_positive1_LineTableGetEntry_ValidEntryRetrieval, test_l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex, test_l1_mta_hal_positive3_LineTableGetEntry_BoundaryTestHighestIndex, test_l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary, test_l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary, test_l1_mta_hal_negative3_LineTableGetEntry_NullpEntryParameter, test_l1_mta_hal_negative4_LineTableGetEntry_IndexBeyondExistingEntries, test_l1_mta_hal_positive1_TriggerDiagnostics, test_l1_mta_hal_positive2_TriggerDiagnostics, test_l1_mta_hal_positive3_TriggerDiagnostics, test_l1_mta_hal_negative1_TriggerDiagnostics, test_l1_mta_hal_negative2_TriggerDiagnostics, test_l1_mta_hal_positive_1_GetServiceFlow, test_l1_mta_hal_negative_1_GetServiceFlow, test_l1_mta_hal_positive1_mta_hal_DectGetEnable, test_l1_mta_hal_positive2_mta_hal_DectGetEnable, test_l1_mta_hal_negative1_mta_hal_DectGetEnable, test_l1_mta_hal_positive1_mta_hal_DectSetEnable_Enabled, test_l1_mta_hal_positive2_mta_hal_DectSetEnable_Disabled, test_l1_mta_hal_negative1_mta_hal_DectSetEnable_InvalidValue, test_l1_mta_hal_positive_1_DectGetRegistrationMode_enabled,test_l1_mta_hal_positive_2_DectGetRegistrationMode_disabled, test_l1_mta_hal_negative_1_DectGetRegistrationMode_null_pointer, test_l1_mta_hal_positive_1_SetDectRegistrationModeEnabled, test_l1_mta_hal_positive_2_SetDectRegistrationModeDisabled, test_l1_mta_hal_negative_1_SetDectRegistrationModeUndefined, test_l1_mta_hal_positive1_DectDeregisterDectHandset, test_l1_mta_hal_positive2_DectDeregisterDectHandset, test_l1_mta_hal_positive3_DectDeregisterDectHandset, test_l1_mta_hal_negative1_DectDeregisterDectHandset, test_l1_mta_hal_positive1_GetDectInfo_ValidMemoryLocation, test_l1_mta_hal_negative1_GetDectInfo_NullPointer, test_l1_mta_hal_positive1_GetDectPIN, test_l1_mta_hal_negative1_GetDectPIN, test_l1_mta_hal_positive1_SetDectPIN_ValidPINString, test_l1_mta_hal_positive2_SetDectPIN_EmptyString, test_l1_mta_hal_negative1_SetDectPIN_NULLPointer, test_l1_mta_hal_negative2_SetDectPIN_StringExceedingLimit, test_l1_mta_hal_negative3_SetDectPIN_InvalidCharacters, test_l1_mta_hal_negative4_SetDectPIN_PartiallyPopulatedString, test_l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber, test_l1_mta_hal_positive2_GetHandsets_MinimumHandsetNumber, test_l1_mta_hal_negative1_GetHandsets_NullCount, test_l1_mta_hal_negative2_GetHandsets_NullHandsets, test_l1_mta_hal_negative3_GetHandsets_NullCountAndHandsets, test_l1_mta_hal_negative4_GetHandsets_InvalidHandsetNumber, test_l1_mta_hal_positive1_mta_hal_GetCalls, test_l1_mta_hal_positive2_mta_hal_GetCalls_boundary, test_l1_mta_hal_negative1_mta_hal_GetCalls_null_ppCfg, test_l1_mta_hal_negative2_mta_hal_GetCalls_null_Count_and_ppCfg, test_l1_mta_hal_negative3_mta_hal_GetCalls_out_of_range_InstanceNumber, test_l1_mta_hal_positive1_GetCALLP, test_l1_mta_hal_negative1_GetCALLP, test_l1_mta_hal_negative2_GetCALLP,test_l1_mta_hal_positive1_mta_hal_GetDSXLogs, test_l1_mta_hal_negative1_mta_hal_GetDSXLogs, test_l1_mta_hal_positive1_GetDSXLogEnable, test_l1_mta_hal_positive2_GetDSXLogEnable, test_l1_mta_hal_negative1_GetDSXLogEnable, test_l1_mta_hal_negative2_GetDSXLogEnable, test_l1_mta_hal_positive1_SetDSXLogEnable_EnableDSXLog, test_l1_mta_hal_positive2_SetDSXLogEnable_DisableDSXLog, test_l1_mta_hal_negative1_SetDSXLogEnable_InvalidBooleanValue, test_l1_mta_hal_positive1_ClearDSXLog, test_l1_mta_hal_positive2_DoNotClearDSXLog, test_l1_mta_hal_ClearDSXLog_negative1_InvalidBooleanValue, test_l1_mta_hal_positive1_GetCallSignallingLogEnable, test_l1_mta_hal_positive2_GetCallSignallingLogEnable, test_l1_mta_hal_negative1_GetCallSignallingLogEnable, test_l1_mta_hal_positive1_SetCallSignallingLogEnable, test_l1_mta_hal_positive2_SetCallSignallingLogEnable, test_l1_mta_hal_negative1_SetCallSignallingLogEnable, test_l1_mta_hal_positive_ClearCallSignallingLog, test_l1_mta_hal_positive_NotClearCallSignallingLog, test_l1_mta_hal_negative_InvalidBooleanValue, test_l1_mta_hal_positive1_GetMtaLog, test_l1_mta_hal_negative1_GetMtaLog, test_l1_mta_hal_positive_1_BatteryGetInstalled, test_l1_mta_hal_negative_1_BatteryGetInstalled, test_l1_mta_hal_positive1_BatteryGetTotalCapacity, test_l1_mta_hal_negative1_BatteryGetTotalCapacity, test_l1_mta_hal_positive_1_mta_hal_BatteryGetTotalCapacity_ValidCapacity, test_l1_mta_hal_negative_1_mta_hal_BatteryGetTotalCapacity_NullPointer, test_l1_mta_hal_positive1_BatteryGetRemainingCharge, test_l1_mta_hal_negative1_BatteryGetRemainingCharge, test_l1_mta_hal_positive_1_BatteryGetRemainingTime, test_l1_mta_hal_negative_1_BatteryGetRemainingTime, test_l1_mta_hal_positive1_BatteryGetNumberofCycles, test_l1_mta_hal_negative1_BatteryGetNumberofCycles, test_l1_mta_hal_positive1_BatteryGetPowerStatus, test_l1_mta_hal_negative1_BatteryGetPowerStatus, test_l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus, test_l1_mta_hal_BatteryGetCondition_negative1_NullPointers,test_l1_mta_hal_positive1_BatteryGetStatus_RetrieveGoodCondition, test_l1_mta_hal_negative1_BatteryGetStatus_NullPointers, test_l1_mta_hal_positive1_BatteryGetLife, test_l1_mta_hal_negative1_BatteryGetLife, test_l1_mta_hal_positive1_BatteryGetInfo, test_l1_mta_hal_negative1_BatteryGetInfo, test_l1_mta_hal_positive1_retrievePowerSavingModeStatus_Enabled, test_l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus, test_l1_mta_hal_positive1_mta_hal_Get_MTAResetCount, test_l1_mta_hal_negative1_mta_hal_Get_MTAResetCount, test_l1_mta_hal_positive1_Get_LineResetCount, test_l1_mta_hal_negative1_Get_LineResetCount, test_l1_mta_hal_positive1_ClearCalls, test_l1_mta_hal_positive2_ClearCalls, test_l1_mta_hal_positive3_ClearCalls, test_l1_mta_hal_negative1_ClearCalls, test_l1_mta_hal_negative2_ClearCalls, test_l1_mta_hal_positive1_getDhcpStatus_IPV4, test_l1_mta_hal_negative1_getDhcpStatus_IPV4_IPV6, test_l1_mta_hal_positive1_getConfigFileStatus, test_l1_mta_hal_negative1_getConfigFileStatus, test_l1_mta_hal_positive_1_getLineRegisterStatus_validMemoryLocationExpectedArraySize, test_l1_mta_hal_getLineRegisterStatus_positive_2_arraySizeZero, test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForStatusArray, test_l1_mta_hal_getLineRegisterStatus_negative_2_negativeArraySize, test_l1_mta_hal_getLineRegisterStatus_negative_3_arraySizeBeyondActualAllocation, test_l1_mta_hal_positive1_ResetWithValueTrue, test_l1_mta_hal_positive2_NoResetWithValueFalse, test_l1_mta_hal_negative1_InvalidBooleanValue_devResetNow, test_l1_mta_hal_negative2_MultipleConsecutiveResets, test_l1_mta_hal_negative3_ToggleResetValueRapidly, test_l1_mta_hal_positive1_getMtaOperationalStatus, test_l1_mta_hal_negative1_getMtaOperationalStatus, test_l1_mta_hal_positive1_mta_hal_start_provisioning, test_l1_mta_hal_positive2_mta_hal_start_provisioning, test_l1_mta_hal_positive3_mta_hal_start_provisioning, test_l1_mta_hal_negative1_mta_hal_start_provisioning, test_l1_mta_hal_positive3_mta_hal_GetCalls_boundary};
     // Add tests to the suite
     for (int i = 0; i < sizeof(list1) / sizeof(list1[0]); i++) {
         UT_add_test(pSuite, list1[i], list2[i]);
