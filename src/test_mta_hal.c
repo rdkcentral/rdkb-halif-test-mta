@@ -50,8 +50,8 @@
 *
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_InitDB | RETURN_OK  | Should be successful |
+* | :----: | :---------: | :----------: | :--------------: | :-----: |
+* | 01 | Invoking the mta_hal_InitDB | NONE | RETURN_OK  | Should be successful |
 */
 void test_l1_mta_hal_positive1_InitDB(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_InitDB...");
@@ -80,7 +80,7 @@ void test_l1_mta_hal_positive1_InitDB(void) {
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_InitDB twice | RETURN_OK | should be sucessfull |
+* | 01 | Invoking the mta_hal_InitDB twice | None |  RETURN_OK | should be sucessfull |
 */
 void test_l1_mta_hal_InitDB_positive2_MultipleInitializations(void) {
     UT_LOG("Entering test_l1_mta_hal_InitDB_positive2_MultipleInitializations...");
@@ -117,7 +117,7 @@ void test_l1_mta_hal_InitDB_positive2_MultipleInitializations(void) {
  * **Test Procedure:**@n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoke mta_hal_GetDHCPInfo with valid arguments | pInfo = value | RETURN_OK | Should be successful |
+ * | 01 | Invoke mta_hal_GetDHCPInfo with valid pointer | pInfo = valid Pointer | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_GetDHCPInfo(void)
 {
@@ -189,7 +189,7 @@ void test_l1_mta_hal_negative1_GetDHCPInfo(void)
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke the mta_hal_GetDHCPV6Info API | pInfo = valid memory | RETURN_OK | Should be successful |
+* | 01 | Invoke the mta_hal_GetDHCPV6Info API  with valid memory | pInfo = valid memory | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive_1_GetDHCPV6Info(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_1_GetDHCPV6Info...");
@@ -202,7 +202,8 @@ void test_l1_mta_hal_positive_1_GetDHCPV6Info(void) {
         UT_LOG("Invoking the mta_hal_GetDHCPV6Info ()");
         INT status = mta_hal_GetDHCPV6Info(pInfo);
 	UT_LOG("Return status : %d ",status);
-	// Validate the return status
+
+        // Validate the return status
         UT_ASSERT_EQUAL(status, RETURN_OK);
         free(pInfo);
     }
@@ -230,7 +231,7 @@ void test_l1_mta_hal_positive_1_GetDHCPV6Info(void) {
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke mta_hal_GetDHCPV6Info  | pInfo = NULL | RETURN_ERR | Should return an error code. |
+* | 01 | Invoke mta_hal_GetDHCPV6Info  with NULL | pInfo = NULL | RETURN_ERR | Should return an error code. |
 */
 void test_l1_mta_hal_negative1_GetDHCPV6Info(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_GetDHCPV6Info...");
@@ -257,7 +258,7 @@ void test_l1_mta_hal_negative1_GetDHCPV6Info(void) {
     * **Test Procedure:**@n
     * | Variation / Step | Description | Test Data | Expected Result | Notes |
     * | :----: | :---------: | :----------: |:--------------: | :-----: |
-    * | 01 | Invoke mta_hal_LineTableGetNumberOfEntries | RETURN_OK |  Should be successful |
+    * | 01 | Invoke mta_hal_LineTableGetNumberOfEntries | None | RETURN_OK |  Should be successful |
     */
 void test_l1_mta_hal_positive1_LineTableGetNumberOfEntries(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_LineTableGetNumberOfEntries...");
@@ -288,7 +289,7 @@ void test_l1_mta_hal_positive1_LineTableGetNumberOfEntries(void) {
  * **Test Procedure:**@n
  *  | Variation / Step | Description | Test Data | Expected Result | Notes |
  *  | :----: | :---------: | :----------: |:--------------: | :-----: |
- *  |       01         | Invoking the mta_hal_LineTableGetEntry | Retrieve a valid entry from the Line Table | index = 4294967295, entry = EntryType structure | RETURN_OK | Should be successful |
+ *  | 01 | Invoking the mta_hal_LineTableGetEntry with index as 4294967295 , entry = Valid pointer | index = 4294967295, entry = Valid pointer | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_LineTableGetEntry_ValidEntryRetrieval(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_LineTableGetEntry_ValidEntryRetrieval...");
@@ -330,7 +331,7 @@ void test_l1_mta_hal_positive1_LineTableGetEntry_ValidEntryRetrieval(void) {
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 |invoking the mta_hal_LineTableGetEntry | index = 0 | RETURN_OK | Should be successful |
+* | 01 | Invoking the mta_hal_LineTableGetEntry with index as 0 , entry = valid Pointer | index = 0, entry = Valid Pointer | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex...");
@@ -372,7 +373,7 @@ void test_l1_mta_hal_positive2_LineTableGetEntry_BoundaryTestLowestIndex(void) {
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_LineTableGetEntry | Provide the highest valid index | index = 4294967295-1 | Returns RETURN_OK | Should be successful |
+* | 01 | Invoking the mta_hal_LineTableGetEntry with the highest valid index, entry = Valid Pointer | index = 4294967295-1, entry = Valid Pointer | Returns RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive3_LineTableGetEntry_BoundaryTestHighestIndex(void) {
     UT_LOG("Entering test_l1_mta_hal_positive3_LineTableGetEntry_BoundaryTestHighestIndex...");
@@ -414,7 +415,7 @@ void test_l1_mta_hal_positive3_LineTableGetEntry_BoundaryTestHighestIndex(void) 
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_LineTableGetEntry |Provide an Index of -1 (underflow) | index = -1 | RETURN_ERR | Should return RETURN_ERR |
+* | 01 | Invoking the mta_hal_LineTableGetEntry with underflow index | index = -1, entry = Valid Pointer | RETURN_ERR | Should return RETURN_ERR |
 */
 void test_l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary...");
@@ -460,7 +461,7 @@ void test_l1_mta_hal_negative1_LineTableGetEntry_InvalidLowerIndexBoundary(void)
     * **Test Procedure:**@n
     * | Variation / Step | Description | Test Data | Expected Result | Notes |
     * | :----: | :---------: | :----------: |:--------------: | :-----: |
-    * | 01 | Invoking the mta_hal_LineTableGetEntry | index = 4294967296 | Api returns RETURN_ERR | Should be unsuccessful |
+    * | 01 | Invoking the mta_hal_LineTableGetEntry with over flow Value| index = 4294967296, entry = Valid Pointer | Api returns RETURN_ERR | Should be unsuccessful |
     */
 void test_l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary(void) {
     UT_LOG("Entering test_l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary...");
@@ -503,7 +504,7 @@ void test_l1_mta_hal_negative2_LineTableGetEntry_InvalidUpperIndexBoundary(void)
  * **Test Procedure:**@n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoking the mta_hal_LineTableGetEntry | index = 0, pEntry = NULL | Api returns RETURN_ERR | Should be unsuccessful |
+ * | 01 | Invoking the mta_hal_LineTableGetEntry with Invalid value index =0, pEntry = NULL | index = 0, pEntry = NULL | Api returns RETURN_ERR | Should be unsuccessful |
  */
 
 void test_l1_mta_hal_negative3_LineTableGetEntry_NullpEntryParameter(void) {
@@ -539,7 +540,7 @@ void test_l1_mta_hal_negative3_LineTableGetEntry_NullpEntryParameter(void) {
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_LineTableGetEntry  | index = 101 , entry | Expected return status is RETURN_ERR | Should return an error status |
+* | 01 | Invoking the mta_hal_LineTableGetEntry Invalid values | index = 101 , entry | Expected return status is RETURN_ERR | Should return an error status |
 */
 
 void test_l1_mta_hal_negative4_LineTableGetEntry_IndexBeyondExistingEntries(void) {
@@ -647,18 +648,17 @@ void test_l1_mta_hal_positive2_TriggerDiagnostics(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke mta_hal_TriggerDiagnostics | index = 4294967295 | RETURN_OK status is expected  | Should be successful |
+* | 01 | Invoke mta_hal_TriggerDiagnostics  with Highest Line Number | index = 4294967295 | RETURN_OK status is expected  | Should be successful |
 */
 
 void test_l1_mta_hal_positive3_TriggerDiagnostics(void)
 {
     UT_LOG("Entering test_l1_mta_hal_positive3_TriggerDiagnostics...");
-
     // Provide the highest line number
     ULONG index = (4294967295-1);
 
     // Invoke mta_hal_TriggerDiagnostics
-    UT_LOG("Invokingt the mta_hal_TriggerDiagnostics API with Index : %lu", index);
+    UT_LOG("Invoking the mta_hal_TriggerDiagnostics API with Index : %lu", index);
     INT status = mta_hal_TriggerDiagnostics(index);
     UT_LOG("Status: %lu ", status);
     // Check the return status
@@ -684,7 +684,7 @@ void test_l1_mta_hal_positive3_TriggerDiagnostics(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_TriggerDiagnostics | index = -1 | RETURN_ERR | Should be equal to RETURN_ERR |
+* | 01 | Invoking the mta_hal_TriggerDiagnostics with Invalid Lower Line Number | index = -1 | RETURN_ERR | Should be equal to RETURN_ERR |
 */
 void test_l1_mta_hal_negative1_TriggerDiagnostics(void)
 {
@@ -718,7 +718,7 @@ void test_l1_mta_hal_negative1_TriggerDiagnostics(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_TriggerDiagnostics | index = 4294967296 | status = RETURN_ERR | Should be RETURN_ERR |
+* | 01 | Invoking the mta_hal_TriggerDiagnostics with invalid upper line number | index = 4294967296 | status = RETURN_ERR | Should be RETURN_ERR |
 */
 void test_l1_mta_hal_negative2_TriggerDiagnostics(void)
 {
@@ -754,7 +754,7 @@ void test_l1_mta_hal_negative2_TriggerDiagnostics(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking mta_hal_GetServiceFlow  | Count = 0, ppCfg = NULL | RETURN_OK | The API call should be successful and return the expected status |
+* | 01 | Invoking mta_hal_GetServiceFlow with valid parameters | Count = 0, ppCfg = Valid pointer | RETURN_OK | The API call should be successful and return the expected status |
 */
 void test_l1_mta_hal_positive_1_GetServiceFlow(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_1_GetServiceFlow...");
@@ -866,7 +866,7 @@ void test_l1_mta_hal_positive1_mta_hal_DectGetEnable(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoke mta_hal_DectGetEnable function | enable = FALSE | RETURN_OK | The enable status should be FALSE |
+ * | 01 | Invoke mta_hal_DectGetEnable function witn enable as FALSE | enable = FALSE | RETURN_OK | The enable status should be FALSE |
  */
 void test_l1_mta_hal_positive2_mta_hal_DectGetEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_mta_hal_DectGetEnable...");
@@ -933,7 +933,7 @@ void test_l1_mta_hal_negative1_mta_hal_DectGetEnable(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoking the mta_hal_DectSetEnable | bBool = TRUE | RETURN_OK | Should be successful |
+ * | 01 | Invoke mta_hal_DectGetEnable function witn enable as TRUE | bBool = TRUE | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_mta_hal_DectSetEnable_Enabled(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_mta_hal_DectSetEnable_Enabled...");
@@ -964,7 +964,7 @@ void test_l1_mta_hal_positive1_mta_hal_DectSetEnable_Enabled(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoking the mta_hal_DectSetEnable | bBool = FALSE | RETURN_OK | Should return success |
+ * | 01 | Invoking the mta_hal_DectSetEnable with value as FALSE | bBool = FALSE | RETURN_OK | Should return success |
  */
 void test_l1_mta_hal_positive2_mta_hal_DectSetEnable_Disabled(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_mta_hal_DectSetEnable_Disabled...");
@@ -1027,7 +1027,7 @@ void test_l1_mta_hal_negative1_mta_hal_DectSetEnable_InvalidValue(void) {
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke mta_hal_DectGetRegistrationMode API with pBool as a valid pointer | *pBool = FALSE | SUCCESS | The registration mode should be successfully enabled |
+* | 01 | Invoke mta_hal_DectGetRegistrationMode API with pBool value TRUE | pBool = TRUE | SUCCESS | The registration mode should be successfully enabled |
 */
 void test_l1_mta_hal_positive_1_DectGetRegistrationMode_enabled(void) {
 
@@ -1058,7 +1058,7 @@ void test_l1_mta_hal_positive_1_DectGetRegistrationMode_enabled(void) {
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking mta_hal_DectGetRegistrationMode with pBool as valid pointer | pBool = FALSE | RETURN_OK | Should be successful |
+* | 01 | Invoking mta_hal_DectGetRegistrationMode with pBool Value with FALSE | pBool = FALSE | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive_2_DectGetRegistrationMode_disabled(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_2_DectGetRegistrationMode_disabled...");
@@ -1118,7 +1118,7 @@ void test_l1_mta_hal_negative_1_DectGetRegistrationMode_null_pointer(void) {
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_DectSetRegistrationMode | bBool = TRUE | The registration mode is set to enabled. | Should return RETURN_OK |
+* | 01 | Invoking the mta_hal_DectSetRegistrationMode with bBool Value TRUE | bBool = TRUE | The registration mode is set to enabled. | Should return RETURN_OK |
 */
 void test_l1_mta_hal_positive_1_SetDectRegistrationModeEnabled(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_1_SetDectRegistrationModeEnabled...");
@@ -1149,7 +1149,7 @@ void test_l1_mta_hal_positive_1_SetDectRegistrationModeEnabled(void) {
  *
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Verify the behavior of `mta_hal_DectSetRegistrationMode`  | bBool = FALSE | RETURN_OK is expected as the return value of `mta_hal_DectSetRegistrationMode` | Should be successful |
+ * | 01 | Verify the behavior of `mta_hal_DectSetRegistrationMode bBool value FALSE | bBool = FALSE | RETURN_OK is expected as the return value of `mta_hal_DectSetRegistrationMode | Should be successful |
  */
 
 void test_l1_mta_hal_positive_2_SetDectRegistrationModeDisabled(void) {
@@ -1209,7 +1209,7 @@ void test_l1_mta_hal_negative_1_SetDectRegistrationModeUndefined(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description  | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke mta_hal_DectDeregisterDectHandset() function  | uValue = 0 | RETURN_OK | Should be successful |
+* | 01 | Invoke mta_hal_DectDeregisterDectHandset() function  with value as 0  | uValue = 0 | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_DectDeregisterDectHandset(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_DectDeregisterDectHandset...");
@@ -1239,7 +1239,7 @@ void test_l1_mta_hal_positive1_DectDeregisterDectHandset(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Passing maximum value | uValue = 4294967295 | status = RETURN_OK | Should be successful |
+ * | 01 | Invoke mta_hal_DectDeregisterDectHandset() function with maximum value | uValue = 4294967295 | status = RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive2_DectDeregisterDectHandset(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_DectDeregisterDectHandset...");
@@ -1269,7 +1269,7 @@ void test_l1_mta_hal_positive2_DectDeregisterDectHandset(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking with random value | uValue = 1234567890 | Function returns RETURN_OK | Should be successful |
+* | 01 | Invoke mta_hal_DectDeregisterDectHandset() function with random value | uValue = 1234567890 | Function returns RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive3_DectDeregisterDectHandset(void) {
     UT_LOG("Entering test_l1_mta_hal_positive3_DectDeregisterDectHandset...");
@@ -1332,7 +1332,7 @@ void test_l1_mta_hal_negative1_DectDeregisterDectHandset(void) {
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke the mta_hal_GetDect API | pDectInfo = Valid memory | RETURN_OK | should be successful |
+* | 01 | Invoke the mta_hal_GetDect API with valid memory address | pDectInfo = Valid memory | RETURN_OK | should be successful |
 */
 void test_l1_mta_hal_positive1_GetDectInfo_ValidMemoryLocation(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_GetDectInfo_ValidMemoryLocation...");
@@ -1374,7 +1374,7 @@ void test_l1_mta_hal_positive1_GetDectInfo_ValidMemoryLocation(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke the API with a NULL pointer | pDectInfo = NULL | RETURN_ERR | Should return an error code |
+* | 01 | Invoke the mta_hal_GetDect API with a NULL pointer | pDectInfo = NULL | RETURN_ERR | Should return an error code |
 */
 void test_l1_mta_hal_negative1_GetDectInfo_NullPointer(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_GetDectInfo_NullPointer...");
@@ -1404,7 +1404,7 @@ void test_l1_mta_hal_negative1_GetDectInfo_NullPointer(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke mta_hal_GetDectPIN with valid memory location | pin = {allocated memory location} | RETURN_OK | The API should return successfully |
+* | 01 | Invoke mta_hal_GetDectPIN with valid memory location | pin = Valid Buffer | RETURN_OK | The API should return successfully |
 */
 
 void test_l1_mta_hal_positive1_GetDectPIN(void)
@@ -1507,7 +1507,7 @@ void test_l1_mta_hal_positive1_SetDectPIN_ValidPINString(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke the mta_hal_SetDectPIN | pinString = "" | RETURN_OK | Should be successful |
+* | 01 | Invoke the mta_hal_SetDectPIN with Empty String | pinString = "" | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive2_SetDectPIN_EmptyString(void)
 {
@@ -1576,7 +1576,7 @@ void test_l1_mta_hal_negative1_SetDectPIN_NULLPointer(void)
  * **Test Procedure:** @n
  *  | Variation / Step | Description | Test Data | Expected Result | Notes |
  *  | :----: | :---------: | :----------: |:--------------: | :-----: |
- *  | 01 | Invoking the mta_hal_SetDectPIN | pinString = "1234567890123456789012345678901234567890123456789012345678901234567890" | RETURN_ERR | Should return an error.|
+ *  | 01 | Invoking the mta_hal_SetDectPIN with a string exceeding the size limit | pinString = "1234567890123456789012345678901234567890123456789012345678901234567890" | RETURN_ERR | Should return an error|
  *
  */
 
@@ -1613,8 +1613,8 @@ void test_l1_mta_hal_negative2_SetDectPIN_StringExceedingLimit(void)
 * 
 * **Test Procedure:** @n
 *  | Variation / Step | Description | Test Data | Expected Result | Notes |
-* | :----: | :---------: | :----------: |:--------------: | :-----: |
-*  | 01 | invoke mta_hal_SetDectPIN | pinString = "!@#$%^&*()" | Expect RETURN_ERR as the return value | Should indicate failure |
+*  | :----: | :---------: | :----------: |:--------------: | :-----: |
+*  | 01 | Invoking the mta_hal_SetDectPIN with invalid characters | pinString = "!@#$%^&*()" |  RETURN_ERR | Should return an error.|
 */
 void test_l1_mta_hal_negative3_SetDectPIN_InvalidCharacters(void)
 {
@@ -1648,7 +1648,7 @@ void test_l1_mta_hal_negative3_SetDectPIN_InvalidCharacters(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Partially populated string | pinString = "validPIN" | RETURN_ERR | The API should return an error code |
+* | 01 | Invoking the mta_hal_SetDectPIN with Partially populated string | pinString = "validPIN" | RETURN_ERR | The API should return an error code |
 */
 void test_l1_mta_hal_negative4_SetDectPIN_PartiallyPopulatedString(void)
 {
@@ -1684,7 +1684,7 @@ void test_l1_mta_hal_negative4_SetDectPIN_PartiallyPopulatedString(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking mta_hal_GetHandsets API with valid parameters | pulCount = 1, ppHandsets = valid | RETURN_OK | Should be successful |
+* | 01 | Invoking mta_hal_GetHandsets API with valid parameters | pulCount = 1, ppHandsets = valid Memory | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber(void)
 {
@@ -1726,7 +1726,7 @@ void test_l1_mta_hal_positive1_GetHandsets_ValidHandsetNumber(void)
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoking mta_hal_GetHandsets | pulCount = 0, ppHandsets = NULL | RETURN_OK is returned | Should be successful |
+ * | 01 | Invoking mta_hal_GetHandsets with valid memory | pulCount = 0, ppHandsets = NULL | RETURN_OK is returned | Should be successful |
  */
 
 void test_l1_mta_hal_positive2_GetHandsets_MinimumHandsetNumber(void)
@@ -1769,14 +1769,14 @@ void test_l1_mta_hal_positive2_GetHandsets_MinimumHandsetNumber(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking mta_hal_GetHandsets with NULL pulCount parameter | pulCount = NULL, ppHandsets = valid | RETURN_ERR | Should return error |
+* | 01 | Invoking mta_hal_GetHandsets with NULL pulCount parameter | pulCount = NULL, ppHandsets = Valid | RETURN_ERR | Should return error |
 *
 */
 void test_l1_mta_hal_negative1_GetHandsets_NullCount(void)
 {
     UT_LOG("Entering test_l1_mta_hal_negative1_GetHandsets_NullCount...");
     ULONG *pulCount = NULL;
-    PMTAMGMT_MTA_HANDSETS_INFO ppHandsets = NULL;
+    PMTAMGMT_MTA_HANDSETS_INFO ppHandsets;
     UT_LOG("Invoking the mta_hal_GetHandsets ");
     INT status = mta_hal_GetHandsets(pulCount, &ppHandsets);
     UT_LOG("Status: %d ", status);
@@ -1802,7 +1802,7 @@ void test_l1_mta_hal_negative1_GetHandsets_NullCount(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Verify behavior when ppHandsets is NULL | pulCount = 1, ppHandsets = NULL | Function returns RETURN_ERR | Should be successful |
+* | 01 | Verify  mta_hal_GetHandsets API behavior when ppHandsets is NULL | pulCount = 1, ppHandsets = NULL | Function returns RETURN_ERR | Should be successful |
 */
 void test_l1_mta_hal_negative2_GetHandsets_NullHandsets(void)
 {
@@ -1873,7 +1873,7 @@ void test_l1_mta_hal_negative3_GetHandsets_NullCountAndHandsets(void)
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoking mta_hal_GetHandsets | pulCount = 4294967297 | RETURN_ERR | This test is expected to fail |
+ * | 01 | Invoking mta_hal_GetHandsets with invalid handset number | pulCount = 4294967297, ppHandsets = NULL | RETURN_ERR | This test is expected to fail |
  */
 void test_l1_mta_hal_negative4_GetHandsets_InvalidHandsetNumber(void)
 {
@@ -1916,7 +1916,7 @@ void test_l1_mta_hal_negative4_GetHandsets_InvalidHandsetNumber(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke the mta_hal_GetCalls  | instanceNumber = 42, count = 0, pCfg = NULL | RETURN_OK is returned | The function should execute successfully |
+* | 01 | Invoke the mta_hal_GetCalls with pCfg as NULL | instanceNumber = 42, count = 0, pCfg = NULL | RETURN_OK is returned | The function should execute successfully |
 */
 void test_l1_mta_hal_positive1_mta_hal_GetCalls(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_mta_hal_GetCalls");
@@ -1980,7 +1980,7 @@ void test_l1_mta_hal_positive2_mta_hal_GetCalls_boundary(void) {
  * Test Procedure: @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * |01| First set of conditions | instanceNumber = 42, count = 0, pCfg = NULL | RETURN_ERR | Should be equal to RETURN_ERR
+ * |01| Invoking mta_hal_GetCalls with pCfg as NULL | instanceNumber = 42, count = 0, pCfg = NULL | RETURN_ERR | Should be equal to RETURN_ERR
  */
 void test_l1_mta_hal_negative1_mta_hal_GetCalls_null_ppCfg(void) {
     UT_LOG(" Entering into test_l1_mta_hal_negative1_mta_hal_GetCalls_null_ppCfg");
@@ -1990,7 +1990,7 @@ void test_l1_mta_hal_negative1_mta_hal_GetCalls_null_ppCfg(void) {
     PMTAMGMT_MTA_CALLS pCfg = NULL;
     UT_LOG("Invoking mta_hal_GetCalls with instanceNumber = 42 , count =0   and pCfg = NULL");
     INT result = mta_hal_GetCalls(instanceNumber, &count, NULL);
-    UT_LOG("Return status: %d", result);
+    UT_LOG("Return status: %d Count : %lu", result, count);
     UT_ASSERT_EQUAL(result, RETURN_ERR);
     UT_LOG("Existing from test_l1_mta_hal_negative1_mta_hal_GetCalls_null_ppCfg");
 }
@@ -2107,7 +2107,7 @@ void test_l1_mta_hal_positive1_GetCALLP(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Verify return value when an invalid line number is provided | LineNumber = 0 | RETURN_ERR | The function should return an error |
+* | 01 | Verify mta_hal_GetCALLP API with an invalid line number | LineNumber = 0 | RETURN_ERR | The function should return an error |
 */
 void test_l1_mta_hal_negative1_GetCALLP(void)
 {
@@ -2162,22 +2162,21 @@ void test_l1_mta_hal_negative2_GetCALLP(void)
 }
 
 /**
-    * @brief This function tests the mta_hal_GetDSXLogs API.
-    *
-    * This test function verifies the functionality of the mta_hal_GetDSXLogs API by invoking it with valid input parameters. It checks if the API returns the expected result and if the log entries are not NULL.
-    *
-    * **Test Group ID:** Basic: 01 @n
-    * **Test Case ID:** 062 @n
-    * **Priority:** High @n@n
-    *
-    * **Pre-Conditions:** None @n
-    * **Dependencies:** None @n
-    * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
-    *
-    * **Test Procedure:** @n
-    * | Variation / Step | Description | Test Data | Expected Result | Notes |
-    * | :----: | :---------: | :----------: |:--------------: | :-----: |
-    * | 01 | Invoking mta_hal_GetDSXLogs with valid input parameters | count = 0, pDSXLog = NULL | result = RETURN_OK, count > 0, pDSXLog is not NULL | Should be successful |
+ * @brief This function tests the mta_hal_GetDSXLogs API.
+ * This test function verifies the functionality of the mta_hal_GetDSXLogs API by invoking it with valid input parameters. It checks if the API returns the expected result and if the log entries are not NULL.
+ *
+ * **Test Group ID:** Basic: 01 @n
+ * **Test Case ID:** 062 @n
+ * **Priority:** High @n@n
+ *
+ * **Pre-Conditions:** None @n
+ * **Dependencies:** None @n
+ * **User Interaction:** If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
+ *
+ * **Test Procedure:** @n
+ * | Variation / Step | Description | Test Data | Expected Result | Notes |
+ * | :----: | :---------: | :----------: |:--------------: | :-----: |
+ * | 01 | Invoking mta_hal_GetDSXLogs with valid input parameters | count = 0, pDSXLog = Valid Memory | result = RETURN_OK, count > 0, pDSXLog is not NULL | Should be successful |
 */
 
 void test_l1_mta_hal_positive1_mta_hal_GetDSXLogs(void) {
@@ -2212,12 +2211,12 @@ void test_l1_mta_hal_positive1_mta_hal_GetDSXLogs(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoking mta_hal_GetDSXLogs with invalid input parameters (NULL) | p1 = NULL, p2 = NULL | RETURN_ERR | Should return error |
+ * | 01 | Invoking mta_hal_GetDSXLogs with invalid input parameters (NULL) | count = NULL, pDSXLog = NULL | RETURN_ERR | Should return error |
  */
 void test_l1_mta_hal_negative1_mta_hal_GetDSXLogs(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_mta_hal_GetDSXLogs...");
     ULONG *count = NULL;
-    PMTAMGMT_MTA_DSXLOG pDSXLog;
+    PMTAMGMT_MTA_DSXLOG pDSXLog = NULL;
     UT_LOG("Invoking mta_hal_GetDSXLogs with invalid input parameters (NULL)...");
     INT result = mta_hal_GetDSXLogs(count, &pDSXLog);
     UT_LOG("Returned value: %d", result);
@@ -2335,7 +2334,7 @@ void test_l1_mta_hal_negative1_GetDSXLogEnable(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking mta_hal_GetDSXLogEnable | bool_value = 2 | RETURN_ERR | Should return an error |
+* | 01 | Invoking mta_hal_GetDSXLogEnable with Invalid value | bool_value = 2 | RETURN_ERR | Should return an error |
 */
 void test_l1_mta_hal_negative2_GetDSXLogEnable(void) 
 {
@@ -2370,7 +2369,7 @@ void test_l1_mta_hal_negative2_GetDSXLogEnable(void)
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoking mta_hal_SetDSXLogEnable | Bool = TRUE | RETURN_OK | Should be successful |
+ * | 01 | Invoking mta_hal_SetDSXLogEnable with Bool Value TRUE | Bool = TRUE | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_SetDSXLogEnable_EnableDSXLog(void) {
     /* Logging */
@@ -2407,7 +2406,7 @@ void test_l1_mta_hal_positive1_SetDSXLogEnable_EnableDSXLog(void) {
  * **Test Procedure:** @n
  * | Variation/Step | Description | Test Data | Expected Result  | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * |  01  | Disable DSX log through the API | Bool = FALSE | The API call should return RETURN_OK | Should be successful |
+ * |  01  | Invoking the mta_hal_SetDSXLogEnable API with Bool Value = FALSE | Bool = FALSE | The API call should return RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive2_SetDSXLogEnable_DisableDSXLog(void) {
     /* Logging */
@@ -2478,7 +2477,7 @@ void test_l1_mta_hal_negative1_SetDSXLogEnable_InvalidBooleanValue(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* |  01    | First set of conditions | clearLog = TRUE | RETURN_OK | Should be successful |
+* |  01    | Invoking the mta_hal_ClearDSXLog with TRUE clearLog | clearLog = TRUE | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_ClearDSXLog(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_ClearDSXLog...");
@@ -2545,7 +2544,7 @@ void test_l1_mta_hal_positive2_DoNotClearDSXLog(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description  | Test Data | Expected Result   | Notes  |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01  | Invoking mta_hal_ClearDSXLog | clearLog = 2 | RETURN_ERR  | Should be error   |
+* | 01  | Invoking mta_hal_ClearDSXLog  with Invalid value | clearLog = 2 | RETURN_ERR  | Should be error   |
 */
 
 void test_l1_mta_hal_ClearDSXLog_negative1_InvalidBooleanValue(void) {
@@ -2579,7 +2578,7 @@ void test_l1_mta_hal_ClearDSXLog_negative1_InvalidBooleanValue(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_GetCallSignallingLogEnable | pBool = TRUE | RETURN_OK | should be successful |
+* | 01 | Invoking the mta_hal_GetCallSignallingLogEnable with value as TRUE | pBool = TRUE | RETURN_OK | should be successful |
 */
 void test_l1_mta_hal_positive1_GetCallSignallingLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_GetCallSignallingLogEnable...");
@@ -2615,7 +2614,7 @@ void test_l1_mta_hal_positive1_GetCallSignallingLogEnable(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Call the GetCallSignallingLogEnable API | pBool = FALSE | result is RETURN_OK | Should be successful |
+* | 01 | Call the GetCallSignallingLogEnable API with value as FALSE | pBool = FALSE | result is RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive2_GetCallSignallingLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_GetCallSignallingLogEnable...");
@@ -2650,7 +2649,7 @@ void test_l1_mta_hal_positive2_GetCallSignallingLogEnable(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_GetCallSignallingLogEnable | pBool = NULL | RETURN_ERR | Should return an error status |
+* | 01 | Invoking the mta_hal_GetCallSignallingLogEnable with Invaid pBool Value | pBool = 2 | RETURN_ERR | Should return an error status |
 */
 void test_l1_mta_hal_negative1_GetCallSignallingLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_GetCallSignallingLogEnable...");
@@ -2683,7 +2682,7 @@ void test_l1_mta_hal_negative1_GetCallSignallingLogEnable(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Enable CallSignalling Log | enable = TRUE | RETURN_OK | Should be successful |
+* | 01 | Invoke the mta_hal_SetCallSignallingLogEnable API with enable value TRUE | enable = TRUE | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_SetCallSignallingLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_SetCallSignallingLogEnable...");
@@ -2715,7 +2714,7 @@ void test_l1_mta_hal_positive1_SetCallSignallingLogEnable(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * |  01    | Set Call Signalling Log Enable to FALSE | enable = FALSE | RETURN_OK | Should be successful |
+ * |  01    | Invoking the mta_hal_SetCallSignallingLogEnable API with FALSE | enable = FALSE | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive2_SetCallSignallingLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_SetCallSignallingLogEnable...");
@@ -2746,7 +2745,7 @@ void test_l1_mta_hal_positive2_SetCallSignallingLogEnable(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Passing an invalid boolean value as input | enable = 2 | RETURN_ERR | Should return `RETURN_ERR` |
+* | 01 | Invoking the mta_hal_SetCallSignallingLogEnable with invalid boolean value as input | enable = 2 | RETURN_ERR | Should return `RETURN_ERR` |
 */
 void test_l1_mta_hal_negative1_SetCallSignallingLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_SetCallSignallingLogEnable...");
@@ -2887,7 +2886,7 @@ void test_l1_mta_hal_positive1_GetMtaLog(void) {
     UT_LOG("Result : %d ", result);
     UT_ASSERT_EQUAL(result, RETURN_OK);
 
-    UT_LOG("Existing test_l1_mta_hal_positive1_GetMtaLog...");
+    UT_LOG("Exiting test_l1_mta_hal_positive1_GetMtaLog...");
 }
 
 /**
@@ -3004,7 +3003,7 @@ void test_l1_mta_hal_negative_1_BatteryGetInstalled(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke mta_hal_BatteryGetTotalCapacity with valid input parameters | &val | RETURN_OK | The function should return success and Val should be updated |
+* | 01 | Invoke mta_hal_BatteryGetTotalCapacity with valid input parameters | val = 0 | RETURN_OK | The function should return success and Val should be updated |
 */
 
 void test_l1_mta_hal_positive1_BatteryGetTotalCapacity(void) {
@@ -3045,7 +3044,7 @@ void test_l1_mta_hal_positive1_BatteryGetTotalCapacity(void) {
     * **Test Procedure:** @n
     * | Variation / Step | Description | Test Data | Expected Result | Notes |
     * | :----: | :---------: | :----------: |:--------------: | :-----: |
-    * | 01 | Provide NULL for Val | val = NULL | RETURN_ERR | Should return ERROR |
+    * | 01 | Invoking the mta_hal_BatteryGetTotalCapacity with NULL | val = NULL | RETURN_ERR | Should return ERROR |
     */
 
 void test_l1_mta_hal_negative1_BatteryGetTotalCapacity(void) {
@@ -3086,8 +3085,7 @@ void test_l1_mta_hal_negative1_BatteryGetTotalCapacity(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description  | Test Data  | Expected Result  | Notes   |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * |  01  | Invoking mta_hal_BatteryGetTotalCapacity with valid memory location | capacity | RETURN_OK | should be successful |                                             
- *
+ * |  01  | Invoking mta_hal_BatteryGetTotalCapacity with valid memory location | capacity = 0 | RETURN_OK | should be successful |                                          *
  */
 void test_l1_mta_hal_positive_1_mta_hal_BatteryGetTotalCapacity_ValidCapacity(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_1_mta_hal_BatteryGetTotalCapacity_ValidCapacity...");
@@ -3121,7 +3119,7 @@ void test_l1_mta_hal_positive_1_mta_hal_BatteryGetTotalCapacity_ValidCapacity(vo
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invking the mta_hal_BatteryGetActualCapacity | Val = NULL | RETURN_ERR | Should return RETURN_ERR |
+ * | 01 | Invoking mta_hal_BatteryGetActualCapacity with NULL pointer | Val = NULL | RETURN_ERR | Should return RETURN_ERR |
  */
 void test_l1_mta_hal_negative_1_mta_hal_BatteryGetTotalCapacity_NullPointer(void) {
     UT_LOG("Entering test_l1_mta_hal_negative_1_mta_hal_BatteryGetTotalCapacity_NullPointer...");
@@ -3180,7 +3178,7 @@ void test_l1_mta_hal_positive1_BatteryGetRemainingCharge(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Verify behavior when a NULL pointer is passed | val=NULL | RETURN_ERR | Should return error |
+* | 01 | Verify behavior of mta_hal_BatteryGetRemainingCharge API when a NULL pointer is passed | val=NULL | RETURN_ERR | Should return error |
 */
 void test_l1_mta_hal_negative1_BatteryGetRemainingCharge(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetRemainingCharge...");
@@ -3206,7 +3204,7 @@ void test_l1_mta_hal_negative1_BatteryGetRemainingCharge(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke mta_hal_BatteryGetRemainingTime function | Val=0 | RETURN_OK | Result should be return with success |
+* | 01 | Invoke mta_hal_BatteryGetRemainingTime function  with valid value | Val=0 | RETURN_OK | Result should be return with success |
 */
 void test_l1_mta_hal_positive_1_BatteryGetRemainingTime(void) {
     UT_LOG("Entering test_l1_mta_hal_positive_1_BatteryGetRemainingTime...");
@@ -3264,7 +3262,7 @@ void test_l1_mta_hal_negative_1_BatteryGetRemainingTime(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_BatteryGetNumberofCycles with valid input | No input required | RETURN_OK | Should be successful |
+* | 01 | Invoking the mta_hal_BatteryGetNumberofCycles with valid input | val = 0 | RETURN_OK | Should be successful |
 */
 
 void test_l1_mta_hal_positive1_BatteryGetNumberofCycles(void) {
@@ -3366,7 +3364,7 @@ void test_l1_mta_hal_positive1_BatteryGetPowerStatus(void) {
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoke the API with NULL pointers for Val and len | Val = NULL, len = NULL | RETURN_ERR | Should be unsuccessful |
+* | 01 | Invoke the mta_hal_BatteryGetPowerStatus API with NULL pointers for Val and len | Val = NULL, len = NULL | RETURN_ERR | Should be unsuccessful |
 */
 void test_l1_mta_hal_negative1_BatteryGetPowerStatus(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetPowerStatus...");
@@ -3400,18 +3398,18 @@ void test_l1_mta_hal_negative1_BatteryGetPowerStatus(void) {
 * **Test Procedure:** @n
 *  | Variation / Step | Description | Test Data | Expected Result | Notes |
 *  | :----: | :---------: | :----------: |:--------------: | :-----: |
-*  | 01 | Invoke the API with valid memory locations | Val = "", len = 0 | RETURN_OK | The function should return successfully |
+*  | 01 | Invoke the mta_hal_BatteryGetCondition API with valid memory locations | Val =Valid buffer, len = valid buffer | RETURN_OK | The function should return successfully |
 */
 void test_l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus(void) {
+    // Logging entering test function
+    UT_LOG("Entering test_l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus...");
+
     CHAR Val[5];
     ULONG len;
     INT result;
 
-    // Logging entering test function
-    UT_LOG("Entering test_l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus...");
-
     // Invoke the API with valid memory locations
-    UT_LOG("Invoking mta_hal_BatteryGetCondition with Val = %s", Val);
+    UT_LOG("Invoking mta_hal_BatteryGetCondition with Val = %s, len = %lu", Val, len);
     result = mta_hal_BatteryGetCondition(Val, &len);
     UT_LOG("Result : %d", result);
     // Log the test description, output values, and the return status
@@ -3445,7 +3443,7 @@ void test_l1_mta_hal_BatteryGetCondition_positive1_GetACPowerStatus(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data   | Expected Result    | Notes  |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01   | Invoking mta_hal_BatteryGetCondition  | Val = {"\0"}, *len = NULL   | RETURN_ERR | Should be unsuccessful |
+* | 01   | Invoking mta_hal_BatteryGetCondition with NULL values  | Val = {"\0"}, *len = NULL   | RETURN_ERR | Should be unsuccessful |
 */
 
 void test_l1_mta_hal_BatteryGetCondition_negative1_NullPointers(void) {
@@ -3482,15 +3480,15 @@ void test_l1_mta_hal_BatteryGetCondition_negative1_NullPointers(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data |Expected Result |Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking mta_hal_BatteryGetStatus | Val = NULL, len = 0 | Result: RETURN_OK, Val = "Good", len = 4 | Should pass |
+* | 01 | Invoking mta_hal_BatteryGetStatus with valid memory | Val = Valid Memory, len = Valid Memory | Result: RETURN_OK | Should pass |
 */
 void test_l1_mta_hal_positive1_BatteryGetStatus_RetrieveGoodCondition(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetStatus_RetrieveGoodCondition...");
 
-    CHAR *Val = NULL;
-    ULONG *len = 0;
+    CHAR Val[8];
+    ULONG len;
     UT_LOG("Invoking mta_hal_BatteryGetStatus with valid memory locations for Val and len...");
-    INT result = mta_hal_BatteryGetStatus(Val, len);
+    INT result = mta_hal_BatteryGetStatus(Val, &len);
     UT_LOG("Result : %d", result );
 
     UT_LOG("Value of Val is %s", Val);
@@ -3624,7 +3622,7 @@ void test_l1_mta_hal_negative1_BatteryGetLife(void) {
  * **Test Procedure:**@n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoking the  mta_hal_BatteryGetInfo | pInfo | RETURN_OK | Should successfully retrieve battery information |
+ * | 01 | Invoking the  mta_hal_BatteryGetInfo with valid pointer | pInfo= valid pointer | RETURN_OK | Should successfully retrieve battery information |
  */
 void test_l1_mta_hal_positive1_BatteryGetInfo(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetInfo...");
@@ -3666,7 +3664,7 @@ void test_l1_mta_hal_positive1_BatteryGetInfo(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Passing a null pointer as the parameter | pInfo = NULL | RETURN_ERR | Should return RETURN_ERR |
+* | 01 | Invoking the mta_hal_BatteryGetInfo API with NULL | pInfo = NULL | RETURN_ERR | Should return RETURN_ERR |
 */
 void test_l1_mta_hal_negative1_BatteryGetInfo(void) {
     UT_LOG("Entering test_l1_mta_hal_negative3_BatteryGetInfo...");
@@ -3697,9 +3695,9 @@ void test_l1_mta_hal_negative1_BatteryGetInfo(void) {
  * User Interaction: If user chose to run the test in interactive mode, then the test case has to be selected via console. @n
  *
  * Test Procedure: @n
- *  | Variation / Step | Description | Test Data | Expected Result | Notes |
+ * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- *  | 01 | Verify function correctness when power saving mode is enabled | pValue = &value | Success | Should be successful |
+ * | 01 | Invoking the mta_hal_BatteryGetPowerSavingModeStatus with valid buffer | pValue = Valid Value | Success | Should be successful |
  *
  */
 void test_l1_mta_hal_positive1_retrievePowerSavingModeStatus_Enabled(void) {
@@ -3731,7 +3729,7 @@ void test_l1_mta_hal_positive1_retrievePowerSavingModeStatus_Enabled(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking mta_hal_BatteryGetPowerSavingModeStatus with pValue=NULL | pValue=NULL | RETURN_ERR | Should return RETURN_ERR |
+* | 01 | Invoking mta_hal_BatteryGetPowerSavingModeStatus with NULL | pValue=NULL | RETURN_ERR | Should return RETURN_ERR |
 */
 void test_l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus...");
@@ -3761,7 +3759,7 @@ void test_l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoking mta_hal_Get_MTAResetCount with valid memory location for resetcnt | &resetcnt | Success | Should be successful |
+ * | 01 | Invoking mta_hal_Get_MTAResetCount with valid memory location for resetcnt | resetcnt = 0 | RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_mta_hal_Get_MTAResetCount(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_mta_hal_Get_MTAResetCount...");
@@ -3820,7 +3818,7 @@ void test_l1_mta_hal_negative1_mta_hal_Get_MTAResetCount(void) {
  *
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Call mta_hal_Get_LineResetCount API | resetcnt = 0 | RETURN_OK | Reset count is within range |
+ * | 01 | Call mta_hal_Get_LineResetCount API  with Valid Memory | resetcnt = 0 | RETURN_OK | Reset count is within range |
  */
 void test_l1_mta_hal_positive1_Get_LineResetCount(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_Get_LineResetCount...");
@@ -3925,7 +3923,7 @@ void test_l1_mta_hal_positive1_ClearCalls(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Invoking mta_hal_ClearCalls | InstanceNumber = (4294967296-1) | RETURN_OK | should be successful |
+ * | 01 | Invoking mta_hal_ClearCalls with Maximum InstanceNumber | InstanceNumber = (4294967296-1) | RETURN_OK | should be successful |
  *
  */
 void test_l1_mta_hal_positive2_ClearCalls(void) {
@@ -3995,7 +3993,7 @@ void test_l1_mta_hal_positive3_ClearCalls(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Set InstanceNumber to an out-of-range value | InstanceNumber = 999999999 | RETURN_ERR | Should be unsuccessful |
+* | 01 | Set InstanceNumber to an out-of-range value and call mta_hal_ClearCalls API | InstanceNumber = 999999999 | RETURN_ERR | Should be unsuccessful |
 */
 void test_l1_mta_hal_negative1_ClearCalls(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_ClearCalls...");
@@ -4031,7 +4029,7 @@ void test_l1_mta_hal_negative1_ClearCalls(void) {
 * **Test Procedure:**
 * | Variation / Step | Description | Test Data |Expected Result |Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking mta_hal_ClearCalls | InstanceNumber = 123456 | RETURN_ERR  | Should return an error status |
+* | 01 | Invoking mta_hal_ClearCalls with InstanceNumber as 123456 | InstanceNumber = 123456 | RETURN_ERR  | Should return an error status |
 */
 void test_l1_mta_hal_negative2_ClearCalls(void) {
     UT_LOG("Entering test_l1_mta_hal_negative2_ClearCalls...");
@@ -4065,7 +4063,7 @@ void test_l1_mta_hal_negative2_ClearCalls(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the  mta_hal_getDhcpStatus | ipv4Status, ipv6Status = uninitialized |  RETURN_OK | IPv4 status should be within the range MTA_INIT - MTA_REJECTED |
+* | 01 | Invoking the  mta_hal_getDhcpStatus with Valid data | ipv4Status, ipv6Status = uninitialized |  RETURN_OK | IPv4 status should be within the range MTA_INIT - MTA_REJECTED |
 */
 
 void test_l1_mta_hal_positive1_getDhcpStatus_IPV4(void)
@@ -4099,7 +4097,7 @@ void test_l1_mta_hal_positive1_getDhcpStatus_IPV4(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the  mta_hal_getDhcpStatus | ipv4Status = NULL, ipv6Status = NULL | RETURN_ERR | Should return an error |
+* | 01 | Invoking the  mta_hal_getDhcpStatus with NULL | ipv4Status = NULL, ipv6Status = NULL | RETURN_ERR | Should return an error |
 */
 void test_l1_mta_hal_negative1_getDhcpStatus_IPV4_IPV6(void)
 {
@@ -4132,7 +4130,7 @@ void test_l1_mta_hal_negative1_getDhcpStatus_IPV4_IPV6(void)
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking mta_hal_getConfigFileStatus | output_status = Valid Memory | RETURN_OK | should be successful |
+* | 01 | Invoking mta_hal_getConfigFileStatus with Valid data | output_status = Valid Memory | RETURN_OK | should be successful |
 */
 
 void test_l1_mta_hal_positive1_getConfigFileStatus(void) {
@@ -4166,7 +4164,7 @@ void test_l1_mta_hal_positive1_getConfigFileStatus(void) {
 * **Test Procedure:**@n
 * | Variation / Step | Description | Test Data  | Expected Result  | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking mta_hal_getConfigFileStatus | poutput_status = NULL  | Return_ERR  | Should be unsuccessful |
+* | 01 | Invoking mta_hal_getConfigFileStatus with NULL | poutput_status = NULL  | Return_ERR  | Should be unsuccessful |
 *
 */
 void test_l1_mta_hal_negative1_getConfigFileStatus(void) {
@@ -4234,7 +4232,7 @@ void test_l1_mta_hal_positive_1_getLineRegisterStatus_validMemoryLocationExpecte
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * |01| First set of conditions | output_status_array = 5, array_size = 0 | RETURN_OK | The function should return RETURN_OK without writing any values to the output_status_array.
+ * |01| Invoking the mta_hal_getLineRegisterStatus with Valid date | output_status_array = 5, array_size = 0 | RETURN_OK | The function should return RETURN_OK without writing any values to the output_status_array.
  */
 void test_l1_mta_hal_getLineRegisterStatus_positive_2_arraySizeZero(void) {
     UT_LOG("Entering test_l1_mta_hal_getLineRegisterStatus_positive_2_arraySizeZero...");
@@ -4267,7 +4265,7 @@ void test_l1_mta_hal_getLineRegisterStatus_positive_2_arraySizeZero(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * |  01    | First set of conditions | output_status_array = NULL, array_size = 5 | RETURN_ERR | Should be unsuccessful |
+ * |  01    | Invoke the mta_hal_getLineRegisterStatus with Invalid values | output_status_array = NULL, array_size = 5 | RETURN_ERR | Should be unsuccessful |
  */
 void test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForStatusArray(void) {
     UT_LOG("Entering test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForStatusArray...");
@@ -4302,7 +4300,7 @@ void test_l1_mta_hal_getLineRegisterStatus_negative_1_invalidMemoryLocationForSt
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Test with negative array size | output_status_array = valid, array_size = -1 | Error should be returned | -
+* | 01 | Invoke the mta_hal_getLineRegisterStatus with negative Array size | output_status_array = valid, array_size = -1 | Error should be returned | -
 */
 void test_l1_mta_hal_getLineRegisterStatus_negative_2_negativeArraySize(void) {
     UT_LOG("Entering test_l1_mta_hal_getLineRegisterStatus_negative_2_negativeArraySize...");
@@ -4337,7 +4335,7 @@ void test_l1_mta_hal_getLineRegisterStatus_negative_2_negativeArraySize(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description   | Test Data  | Expected Result  | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* |   01   | Verify behavior when array size is greater than actual allocation | output_status_array = valid, array_size = 10 | RETURN_ERR | Should be failed.   |
+* |   01   | Verify mta_hal_getLineRegisterStatus API behavior when array size is greater than actual allocation | output_status_array = valid, array_size = 10 | RETURN_ERR | Should be failed.   |
 */
 
 void test_l1_mta_hal_getLineRegisterStatus_negative_3_arraySizeBeyondActualAllocation(void) {
@@ -4468,7 +4466,7 @@ void test_l1_mta_hal_negative1_InvalidBooleanValue_devResetNow(void) {
  *
  * | Variation / Step | Description  | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01  | Invoking mta_hal_devResetNow   | bResetValue = TRUE  | RETURN_ERR | Should be successful  |
+ * | 01  | Invoking mta_hal_devResetNow with bResetValue = TRUE twice  | bResetValue = TRUE  | RETURN_ERR | Should be Unsuccessful  |
  */
 void test_l1_mta_hal_negative2_MultipleConsecutiveResets(void) {
     UT_LOG("Entering test_l1_mta_hal_negative2_MultipleConsecutiveResets...");
@@ -4477,7 +4475,7 @@ void test_l1_mta_hal_negative2_MultipleConsecutiveResets(void) {
     UT_LOG("Invoking mta_hal_devResetNow with bResetValue = TRUE");
     INT status1 = mta_hal_devResetNow(bResetValue);
     UT_LOG("Return status - First reset: %d", status1);
-    UT_LOG("Invoking mta_hal_devResetNow with bResetValue = TRUE twice...");
+    UT_LOG("Invoking mta_hal_devResetNow with bResetValue = TRUE again...");
     INT status2 = mta_hal_devResetNow(bResetValue);
     UT_LOG("Return status - Second reset: %d", status2);
 
@@ -4542,7 +4540,7 @@ void test_l1_mta_hal_negative3_ToggleResetValueRapidly(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Call mta_hal_getMtaOperationalStatus function | &operationalStatus = MTA_INIT | Return value is RETURN_OK | operationalStatus is one of the valid enum values |
+* | 01 | Call mta_hal_getMtaOperationalStatus function with Valid memory | operationalStatus = Valid memory | Return value is RETURN_OK | operationalStatus is one of the valid enum values |
 */
 void test_l1_mta_hal_positive1_getMtaOperationalStatus(void) {
    UT_LOG("Entering test_l1_mta_hal_positive1_getMtaOperationalStatus...");
@@ -4582,7 +4580,7 @@ void test_l1_mta_hal_positive1_getMtaOperationalStatus(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Call the function with NULL operationalStatus pointer | operationalStatus = NULL | RETURN_ERR | should be Fail|
+ * | 01 | Call the mta_hal_getMtaOperationalStatus API with NULL operationalStatus pointer | operationalStatus = NULL | RETURN_ERR | should be Fail|
  */
 void test_l1_mta_hal_negative1_getMtaOperationalStatus(void) {
    UT_LOG("Entering test_l1_mta_hal_negative1_getMtaOperationalStatus...");
@@ -4616,7 +4614,7 @@ void test_l1_mta_hal_negative1_getMtaOperationalStatus(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_start_provisioning | pParameters -> MtaIPMode = MTA_IPV4 | RETURN_OK | Should be successful |
+* | 01 | Invoking the mta_hal_start_provisioning with MtaIPMode as MTA_IPV4 | pParameters -> MtaIPMode = MTA_IPV4 | RETURN_OK | Should be successful |
 */
 void test_l1_mta_hal_positive1_mta_hal_start_provisioning(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_mta_hal_start_provisioning...");
@@ -4708,7 +4706,7 @@ void test_l1_mta_hal_positive2_mta_hal_start_provisioning(void) {
  * **Test Procedure:** @n
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
- * | 01 | Verifying mta_hal_start_provisioning function | pParameters->MtaIPMode = MTA_DUAL_STACK | The function should return RETURN_OK | Should be successful |
+ * | 01 | Verifying mta_hal_start_provisioning function with Valid parameter | pParameters->MtaIPMode = MTA_DUAL_STACK | The function should return RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive3_mta_hal_start_provisioning(void) {
     UT_LOG("Entering test_l1_mta_hal_positive3_mta_hal_start_provisioning...");
