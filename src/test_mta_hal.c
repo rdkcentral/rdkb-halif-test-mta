@@ -1,21 +1,23 @@
 /*
-* If not stated otherwise in this file or this component's LICENSE file the
-* following copyright and licenses apply:*
-* Copyright 2016 RDK Management
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
- 
+# *
+# * If not stated otherwise in this file or this component's LICENSE file the
+# * following copyright and licenses apply:
+# *
+# * Copyright 2023 RDK Management
+# *
+# * Licensed under the Apache License, Version 2.0 (the "License");
+# * you may not use this file except in compliance with the License.
+# * You may obtain a copy of the License at
+# *
+# * http://www.apache.org/licenses/LICENSE-2.0
+# *
+# * Unless required by applicable law or agreed to in writing, software
+# * distributed under the License is distributed on an "AS IS" BASIS,
+# * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# * See the License for the specific language governing permissions and
+# * limitations under the License.
+# */
+
 /**
 * @file test_mta_hal.c
 * @page mta_hal Level 1 Tests
@@ -1412,7 +1414,7 @@ void test_l1_mta_hal_positive1_GetDectPIN(void)
     UT_LOG("Entering test_l1_mta_hal_positive1_GetDectPIN...");
 
     // Allocate memory for character array
-    char pin[128];
+    char pin[128] = {"\0"};
     // Invoke API with valid memory location
     UT_LOG("Invoking mta_hal_GetDectPIN with valid memory location - Passed");
     INT status = mta_hal_GetDectPIN(pin);
@@ -3336,7 +3338,7 @@ void test_l1_mta_hal_negative1_BatteryGetNumberofCycles(void) {
  *  |  01  | Invoking the mta_hal_BatteryGetPowerStatus with valid memory locations for Val | Val = valid memory , len = valid memory  |  RETURN_OK | Should be successful |
  */
 void test_l1_mta_hal_positive1_BatteryGetPowerStatus(void) {
-    CHAR Val[8];
+    CHAR Val[8] = {"\0"};
     ULONG len =0;
     INT ret =0;
 
@@ -3483,8 +3485,8 @@ void test_l1_mta_hal_negative1_BatteryGetCondition(void) {
 void test_l1_mta_hal_positive1_BatteryGetStatus(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetStatus...");
 
-    CHAR Val[8];
-    ULONG len;
+    CHAR Val[8] ={"\0"};
+    ULONG len = 0;
     UT_LOG("Invoking mta_hal_BatteryGetStatus with valid memory locations for Val and len...");
     INT result = mta_hal_BatteryGetStatus(Val, &len);
     UT_LOG("Result : %d", result );
@@ -3709,7 +3711,7 @@ void test_l1_mta_hal_negative1_BatteryGetInfo(void) {
 void test_l1_mta_hal_positive1_BatteryGetPowerSavingModeStatus(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetPowerSavingModeStatus...");
 
-    ULONG value;
+    ULONG value = 0;
     UT_LOG("Invoking mta_hal_BatteryGetPowerSavingModeStatus with pValue=%p", &value);
     INT result = mta_hal_BatteryGetPowerSavingModeStatus(&value);
     UT_LOG("Result : %d ", result);
