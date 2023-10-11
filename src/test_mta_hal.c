@@ -2649,15 +2649,15 @@ void test_l1_mta_hal_positive2_GetCallSignallingLogEnable(void) {
 * **Test Procedure:** @n
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
-* | 01 | Invoking the mta_hal_GetCallSignallingLogEnable with Invaid pBool Value | pBool = 2 | RETURN_ERR | Should return an error status |
+* | 01 | Invoking the mta_hal_GetCallSignallingLogEnable with Invaid pBool Value | pBool = NULL | RETURN_ERR | Should return an error status |
 */
 void test_l1_mta_hal_negative1_GetCallSignallingLogEnable(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_GetCallSignallingLogEnable...");
 
-    BOOLEAN pBool = 2; 
+    BOOLEAN *pBool = NULL; 
     // Call the API function
-    UT_LOG("Invoking the mta_hal_GetCallSignallingLogEnable API with 2");
-    INT result = mta_hal_GetCallSignallingLogEnable(&pBool);
+    UT_LOG("Invoking the mta_hal_GetCallSignallingLogEnable API with NULL");
+    INT result = mta_hal_GetCallSignallingLogEnable(pBool);
     UT_LOG("Result : %d ",result);
     // Verify the return value
     UT_ASSERT_EQUAL(result, RETURN_ERR);
