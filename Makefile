@@ -23,6 +23,7 @@ TOP_DIR := $(ROOT_DIR)
 
 SRC_DIRS = $(ROOT_DIR)/src
 INC_DIRS := $(ROOT_DIR)/../include
+TARGET_EXEC := mta_hal_test
 
 ifeq ($(TARGET),)
 $(info TARGET NOT SET )
@@ -50,6 +51,7 @@ export TARGET
 export TOP_DIR
 export HAL_LIB_DIR
 export CFLAGS
+export TARGET_EXEC
 
 .PHONY: clean list build
 
