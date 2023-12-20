@@ -19,7 +19,7 @@
 # */
 
 /**
-* @file test_mta_hal.c
+* @file test_l1_mta_hal.c
 * @page mta_hal Level 1 Tests
 *
 * ## Module's Role
