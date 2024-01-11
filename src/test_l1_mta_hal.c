@@ -245,6 +245,7 @@ void test_l1_mta_hal_negative1_GetDHCPV6Info(void) {
     UT_LOG("Exiting test_l1_mta_hal_negative1_GetDHCPV6Info...");
 }
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
     * @brief Test the functionality of the mta_hal_LineTableGetNumberOfEntries() function.
     *
@@ -262,7 +263,7 @@ void test_l1_mta_hal_negative1_GetDHCPV6Info(void) {
     * | Variation / Step | Description | Test Data | Expected Result | Notes |
     * | :----: | :---------: | :----------: |:--------------: | :-----: |
     * | 01 | Invoke mta_hal_LineTableGetNumberOfEntries | None | RETURN_OK |  Should be successful |
-    */
+    
 void test_l1_mta_hal_positive1_LineTableGetNumberOfEntries(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_LineTableGetNumberOfEntries...");
 
@@ -275,7 +276,9 @@ void test_l1_mta_hal_positive1_LineTableGetNumberOfEntries(void) {
     UT_ASSERT_EQUAL(numEntries >= 0, TRUE);
     UT_LOG("Exiting test_l1_mta_hal_positive1_LineTableGetNumberOfEntries...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
  * @brief Test the retrieval of a valid entry from the Line Table
  *
@@ -293,7 +296,7 @@ void test_l1_mta_hal_positive1_LineTableGetNumberOfEntries(void) {
  *  | Variation / Step | Description | Test Data | Expected Result | Notes |
  *  | :----: | :---------: | :----------: |:--------------: | :-----: |
  *  | 01 | Invoking the mta_hal_LineTableGetEntry with index as 4294967295 , entry = Valid pointer | index = 4294967295, entry = Valid pointer | RETURN_OK | Should be successful |
- */
+ 
 void test_l1_mta_hal_positive1_LineTableGetEntry(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_LineTableGetEntry...");
 
@@ -317,7 +320,9 @@ void test_l1_mta_hal_positive1_LineTableGetEntry(void) {
     }
     UT_LOG("Exiting test_l1_mta_hal_positive1_LineTableGetEntry...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief This test case is used to validate the LineTableGetEntry function with the lowest index value.
 *
@@ -335,7 +340,7 @@ void test_l1_mta_hal_positive1_LineTableGetEntry(void) {
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_LineTableGetEntry with index as 0 , entry = valid Pointer | index = 0, entry = Valid Pointer | RETURN_OK | Should be successful |
-*/
+
 void test_l1_mta_hal_positive2_LineTableGetEntry(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_LineTableGetEntry...");
 
@@ -359,7 +364,9 @@ void test_l1_mta_hal_positive2_LineTableGetEntry(void) {
     }
     UT_LOG("Exiting test_l1_mta_hal_positive2_LineTableGetEntry...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief Test the boundary case where the highest valid index is provided as input to `mta_hal_LineTableGetEntry` function.
 *
@@ -377,7 +384,7 @@ void test_l1_mta_hal_positive2_LineTableGetEntry(void) {
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_LineTableGetEntry with the highest valid index, entry = Valid Pointer | index = 4294967295-1, entry = Valid Pointer | Returns RETURN_OK | Should be successful |
-*/
+
 void test_l1_mta_hal_positive3_LineTableGetEntry(void) {
     UT_LOG("Entering test_l1_mta_hal_positive3_LineTableGetEntry...");
 
@@ -401,7 +408,9 @@ void test_l1_mta_hal_positive3_LineTableGetEntry(void) {
     }
     UT_LOG("Exiting test_l1_mta_hal_positive3_LineTableGetEntry...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief This test is to verify the behavior of the function mta_hal_LineTableGetEntry when an invalid lower index boundary (-1) is provided.
 *
@@ -419,7 +428,7 @@ void test_l1_mta_hal_positive3_LineTableGetEntry(void) {
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_LineTableGetEntry with underflow index | index = -1, entry = Valid Pointer | RETURN_ERR | Should return RETURN_ERR |
-*/
+
 void test_l1_mta_hal_negative1_LineTableGetEntry(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_LineTableGetEntry...");
 
@@ -445,7 +454,9 @@ void test_l1_mta_hal_negative1_LineTableGetEntry(void) {
     }
     UT_LOG("Exiting test_l1_mta_hal_negative1_LineTableGetEntry...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
     * @brief This test case tests the behavior of the API when an invalid upper index boundary is provided.
     *
@@ -465,7 +476,7 @@ void test_l1_mta_hal_negative1_LineTableGetEntry(void) {
     * | Variation / Step | Description | Test Data | Expected Result | Notes |
     * | :----: | :---------: | :----------: |:--------------: | :-----: |
     * | 01 | Invoking the mta_hal_LineTableGetEntry with over flow Value| index = 4294967296, entry = Valid Pointer | Api returns RETURN_ERR | Should be unsuccessful |
-    */
+    
 void test_l1_mta_hal_negative2_LineTableGetEntry(void) {
     UT_LOG("Entering test_l1_mta_hal_negative2_LineTableGetEntry...");
 
@@ -490,7 +501,9 @@ void test_l1_mta_hal_negative2_LineTableGetEntry(void) {
     }
     UT_LOG("Exiting test_l1_mta_hal_negative2_LineTableGetEntry...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
  * @brief Test objective: Verify the behavior of the function when the pEntry parameter is NULL.
  *
@@ -508,7 +521,7 @@ void test_l1_mta_hal_negative2_LineTableGetEntry(void) {
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Invoking the mta_hal_LineTableGetEntry with Invalid value index =0, pEntry = NULL | index = 0, pEntry = NULL | Api returns RETURN_ERR | Should be unsuccessful |
- */
+ 
 
 void test_l1_mta_hal_negative3_LineTableGetEntry(void) {
     UT_LOG("Entering test_l1_mta_hal_negative3_LineTableGetEntry...");
@@ -526,7 +539,9 @@ void test_l1_mta_hal_negative3_LineTableGetEntry(void) {
 
     UT_LOG("Exiting test_l1_mta_hal_negative3_LineTableGetEntry...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief Test case to verify the behavior of mta_hal_LineTableGetEntry function when provided an index beyond the existing entries
 *
@@ -544,7 +559,7 @@ void test_l1_mta_hal_negative3_LineTableGetEntry(void) {
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_LineTableGetEntry Invalid values | index = 101 , entry | Expected return status is RETURN_ERR | Should return an error status |
-*/
+
 
 void test_l1_mta_hal_negative4_LineTableGetEntry(void) {
     UT_LOG("Entering test_l1_mta_hal_negative4_LineTableGetEntry...");
@@ -562,6 +577,7 @@ void test_l1_mta_hal_negative4_LineTableGetEntry(void) {
 
     UT_LOG("Exiting test_l1_mta_hal_negative4_LineTableGetEntry...");
 }
+*/
 
 /**
 * @brief This test is to verify the functionality of the mta_hal_TriggerDiagnostics function.
@@ -1898,6 +1914,7 @@ void test_l1_mta_hal_negative4_GetHandsets(void)
     UT_LOG("Exiting test_l1_mta_hal_negative4_GetHandsets...");
 }
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief Unit test for the mta_hal_GetCalls function.
 *
@@ -1915,7 +1932,7 @@ void test_l1_mta_hal_negative4_GetHandsets(void)
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke the mta_hal_GetCalls with pCfg as NULL | instanceNumber = 42, count = 0, pCfg = NULL | RETURN_OK is returned | The function should execute successfully |
-*/
+
 void test_l1_mta_hal_positive1_GetCalls(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_GetCalls");
     
@@ -1937,7 +1954,9 @@ void test_l1_mta_hal_positive1_GetCalls(void) {
     }
     UT_LOG("Existing from the test_l1_mta_hal_positive1_GetCalls() ");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief This test case is for testing the boundary conditions of the mta_hal_GetCalls API.
 *
@@ -1955,7 +1974,7 @@ void test_l1_mta_hal_positive1_GetCalls(void) {
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetCalls with instanceNumber: 0, count: 0, pCfg: NULL | instanceNumber = 0, count = 0, pCfg = NULL | Success (RETURN_OK) | Should be successful |
-*/
+
 void test_l1_mta_hal_positive2_GetCalls(void) {
     UT_LOG("Entering into test_l1_mta_hal_positive2_GetCalls ");
     
@@ -1979,7 +1998,9 @@ void test_l1_mta_hal_positive2_GetCalls(void) {
     UT_LOG(" Existing from test_l1_mta_hal_positive2_GetCalls");
     
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
  * @brief Test case to verify mta_hal_GetCalls API with null ppCfg parameter.
  *
@@ -1997,7 +2018,7 @@ void test_l1_mta_hal_positive2_GetCalls(void) {
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * |01| Invoking mta_hal_GetCalls with pCfg as NULL | instanceNumber = 42, count = 0, pCfg = NULL | RETURN_ERR | Should be equal to RETURN_ERR
- */
+ 
 void test_l1_mta_hal_negative1_GetCalls(void) {
     UT_LOG(" Entering into test_l1_mta_hal_negative1_GetCalls");
     
@@ -2010,7 +2031,9 @@ void test_l1_mta_hal_negative1_GetCalls(void) {
     UT_ASSERT_EQUAL(result, RETURN_ERR);
     UT_LOG("Existing from test_l1_mta_hal_negative1_GetCalls");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
  * @brief Test the mta_hal_GetCalls function with NULL count and pCfg pointers.
  * 
@@ -2028,7 +2051,7 @@ void test_l1_mta_hal_negative1_GetCalls(void) {
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Invoking mta_hal_GetCalls with NULL count and pCfg pointers | instanceNumber = 42 | RETURN_ERR | Should return an error |
- */
+ 
 
 void test_l1_mta_hal_negative2_GetCalls(void) {
     UT_LOG(" Entering into test_l1_mta_hal_negative2_GetCalls ");
@@ -2040,7 +2063,9 @@ void test_l1_mta_hal_negative2_GetCalls(void) {
     UT_ASSERT_EQUAL(result, RETURN_ERR);
     UT_LOG("Existing from test_l1_mta_hal_negative2_GetCalls");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief This test is to verify the behavior of mta_hal_GetCalls function when the instance number is out of range.
 *
@@ -2058,7 +2083,7 @@ void test_l1_mta_hal_negative2_GetCalls(void) {
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Verify the behavior of mta_hal_GetCalls function with an out of range instance number | instanceNumber = 4294967296, count = 0, pCfg = NULL | RETURN_ERR | Function should return an error status |
-*/
+
 
 void test_l1_mta_hal_negative3_GetCalls(void) {
     UT_LOG("Entering into test_l1_mta_hal_negative3_GetCalls() ");
@@ -2072,6 +2097,7 @@ void test_l1_mta_hal_negative3_GetCalls(void) {
     UT_ASSERT_EQUAL(result, RETURN_ERR);
     UT_LOG("Existing from test_l1_mta_hal_negative3_GetCalls() ");
 }
+*/
 
 /**
 * @brief Test case to verify the functionality of the mta_hal_GetCALLP API
@@ -4188,6 +4214,7 @@ void test_l1_mta_hal_negative1_getConfigFileStatus(void) {
     UT_LOG("Exiting test_l1_mta_hal_negative1_getConfigFileStatus...");
 }
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief Test the functionality of mta_hal_getLineRegisterStatus when given a valid memory location and expected array size.
 *
@@ -4205,7 +4232,7 @@ void test_l1_mta_hal_negative1_getConfigFileStatus(void) {
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_getLineRegisterStatus with valid memory location and expected array size | output_status_array = valid memory location, array_size = 5 | RETURN_OK | All values in output_status_array should be within the range MTA_INIT to MTA_REJECTED |
-*/
+
 void test_l1_mta_hal_positive1_getLineRegisterStatus(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_getLineRegisterStatus...");
 
@@ -4226,7 +4253,9 @@ void test_l1_mta_hal_positive1_getLineRegisterStatus(void) {
 
     UT_LOG("Exiting test_l1_mta_hal_positive1_getLineRegisterStatus...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
  * @brief Test case to verify the behavior when the array size is zero.
  *
@@ -4244,7 +4273,7 @@ void test_l1_mta_hal_positive1_getLineRegisterStatus(void) {
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * |01| Invoking the mta_hal_getLineRegisterStatus with Valid date | output_status_array = 5, array_size = 0 | RETURN_OK | The function should return RETURN_OK without writing any values to the output_status_array.
- */
+ 
 void test_l1_mta_hal_positive2_getLineRegisterStatus(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_getLineRegisterStatus...");
 
@@ -4259,7 +4288,9 @@ void test_l1_mta_hal_positive2_getLineRegisterStatus(void) {
     UT_ASSERT_EQUAL(result, RETURN_OK);
     UT_LOG("Exiting test_l1_mta_hal_positive2_getLineRegisterStatus...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
  * @brief This test case is used to verify the behavior of the mta_hal_getLineRegisterStatus function when an invalid memory location is provided for the output status array.
  *
@@ -4277,7 +4308,7 @@ void test_l1_mta_hal_positive2_getLineRegisterStatus(void) {
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * |  01    | Invoke the mta_hal_getLineRegisterStatus with Invalid values | output_status_array = NULL, array_size = 5 | RETURN_ERR | Should be unsuccessful |
- */
+ 
 void test_l1_mta_hal_negative1_getLineRegisterStatus(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_getLineRegisterStatus...");
 
@@ -4294,7 +4325,9 @@ void test_l1_mta_hal_negative1_getLineRegisterStatus(void) {
     UT_ASSERT_EQUAL(result, RETURN_ERR);
     UT_LOG("Exiting test_l1_mta_hal_negative1_getLineRegisterStatus...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief Unit test to verify the behavior of mta_hal_getLineRegisterStatus when passed a negative array size.
 *
@@ -4312,7 +4345,7 @@ void test_l1_mta_hal_negative1_getLineRegisterStatus(void) {
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke the mta_hal_getLineRegisterStatus with negative Array size | output_status_array = valid, array_size = -1 | Error should be returned | -
-*/
+
 void test_l1_mta_hal_negative2_getLineRegisterStatus(void) {
     UT_LOG("Entering test_l1_mta_hal_negative2_getLineRegisterStatus...");
 
@@ -4329,7 +4362,9 @@ void test_l1_mta_hal_negative2_getLineRegisterStatus(void) {
     UT_ASSERT_EQUAL(result, RETURN_ERR);
     UT_LOG("Exiting test_l1_mta_hal_negative2_getLineRegisterStatus...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief Test case to verify the behavior when the size of the array is greater than the actual allocation size.
 *
@@ -4347,7 +4382,7 @@ void test_l1_mta_hal_negative2_getLineRegisterStatus(void) {
 * | Variation / Step | Description   | Test Data  | Expected Result  | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * |   01   | Verify mta_hal_getLineRegisterStatus API behavior when array size is greater than actual allocation | output_status_array = valid, array_size = 10 | RETURN_ERR | Should be failed.   |
-*/
+
 
 void test_l1_mta_hal_negative3_getLineRegisterStatus(void) {
     UT_LOG("Entering test_l1_mta_hal_negative3_getLineRegisterStatus...");
@@ -4366,7 +4401,9 @@ void test_l1_mta_hal_negative3_getLineRegisterStatus(void) {
 
     UT_LOG("Exiting test_l1_mta_hal_negative3_getLineRegisterStatus...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
  * @brief Test case to verify the functionality of mta_hal_devResetNow() API when the reset value is set to TRUE.
  *
@@ -4384,7 +4421,7 @@ void test_l1_mta_hal_negative3_getLineRegisterStatus(void) {
  *  | Variation / Step | Description | Test Data | Expected Result | Notes |
  *  | :----: | :---------: | :----------: |:--------------: | :-----: |
  *  | 01 | Invoking mta_hal_devResetNow with bResetValue = TRUE | bResetValue = TRUE | Return status: RETURN_OK | Should be successful |
- */
+ 
 void test_l1_mta_hal_positive1_devResetNow(void) {
     UT_LOG("Entering test_l1_mta_hal_positive1_devResetNow...");
 
@@ -4396,7 +4433,9 @@ void test_l1_mta_hal_positive1_devResetNow(void) {
 
     UT_LOG("Exiting test_l1_mta_hal_positive1_devResetNow...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
  * @brief Test to verify the behavior of the mta_hal_devResetNow function when the reset value is set to FALSE.
  *
@@ -4414,7 +4453,7 @@ void test_l1_mta_hal_positive1_devResetNow(void) {
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Invoking mta_hal_devResetNow with bResetValue = FALSE | bResetValue = FALSE | RETURN_OK | Should be successful |
- */
+ 
 void test_l1_mta_hal_positive2_devResetNow(void) {
     UT_LOG("Entering test_l1_mta_hal_positive2_devResetNow...");
 
@@ -4428,7 +4467,9 @@ void test_l1_mta_hal_positive2_devResetNow(void) {
 
     UT_LOG("Exiting test_l1_mta_hal_positive2_devResetNow...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
  * @brief Test for checking the behavior of the mta_hal_devResetNow function when an invalid boolean value is passed.
  * 
@@ -4446,7 +4487,7 @@ void test_l1_mta_hal_positive2_devResetNow(void) {
  * | Variation / Step | Description | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01 | Test with invalid boolean value | bResetValue = 2 | return status = RETURN_ERR | Should return an error status |
- */
+ 
 void test_l1_mta_hal_negative1_devResetNow(void) {
     UT_LOG("Entering test_l1_mta_hal_negative1_devResetNow...");
 
@@ -4459,7 +4500,9 @@ void test_l1_mta_hal_negative1_devResetNow(void) {
 
     UT_LOG("Exiting test_l1_mta_hal_negative1_devResetNow...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
  * @brief This test case is used to verify the behavior of the mta_hal_devResetNow function when it is called multiple times consecutively.
  *
@@ -4477,7 +4520,7 @@ void test_l1_mta_hal_negative1_devResetNow(void) {
  * | Variation / Step | Description  | Test Data | Expected Result | Notes |
  * | :----: | :---------: | :----------: |:--------------: | :-----: |
  * | 01  | Invoking mta_hal_devResetNow with bResetValue = TRUE twice  | bResetValue = TRUE  | RETURN_ERR | Should be Unsuccessful  |
- */
+ 
 void test_l1_mta_hal_negative2_devResetNow(void) {
     UT_LOG("Entering test_l1_mta_hal_negative2_devResetNow...");
 
@@ -4495,7 +4538,9 @@ void test_l1_mta_hal_negative2_devResetNow(void) {
 
     UT_LOG("Exiting test_l1_mta_hal_negative2_devResetNow...");
 }
+*/
 
+/*As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief Test case to check the behavior of mta_hal_devResetNow function when the reset value is toggled rapidly.
 *
@@ -4513,7 +4558,7 @@ void test_l1_mta_hal_negative2_devResetNow(void) {
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | mta_hal_devResetNow Toggle reset value rapidly | bResetValue = TRUE | RETURN_OK or RETURN_ERR | The return value can be either RETURN_OK or RETURN_ERR depending on the system behavior |
-*/
+
 void test_l1_mta_hal_negative3_devResetNow(void) {
     UT_LOG("Entering test_l1_mta_hal_negative3_devResetNow...");
 
@@ -4533,6 +4578,7 @@ void test_l1_mta_hal_negative3_devResetNow(void) {
     }
      UT_LOG("Existing test_l1_mta_hal_negative3_devResetNow...");
 }
+*/
 
 /**
 * @brief This test function is used to verify the functionality of the mta_hal_getMtaOperationalStatus API.
@@ -4782,6 +4828,7 @@ void test_l1_mta_hal_negative1_start_provisioning(void) {
     UT_LOG("Exiting test_l1_mta_hal_negative1_start_provisioning...");
 }
 
+/* As per MTA dev team, this API requires voice provisioned device, will move the test case to L3 */
 /**
 * @brief This test case is for testing the boundary conditions of the mta_hal_GetCalls API.
 *
@@ -4799,7 +4846,7 @@ void test_l1_mta_hal_negative1_start_provisioning(void) {
 * | Variation / Step | Description | Test Data | Expected Result | Notes |
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetCalls with instanceNumber: UINT32_MAX, count: 0, pCfg: NULL | instanceNumber = UINT32_MAX, count = 0, pCfg = NULL | Success (RETURN_OK) | Should be successful |
-*/
+
 void test_l1_mta_hal_positive3_GetCalls(void) {
     UT_LOG(" Entering from test_l1_mta_hal_positive3_GetCalls");
     ULONG instanceNumber2 = 4294967295;
@@ -4821,7 +4868,7 @@ void test_l1_mta_hal_positive3_GetCalls(void) {
     }
     UT_LOG(" Existing from test_l1_mta_hal_positive3_GetCalls");
 }
-
+*/
 
 static UT_test_suite_t * pSuite = NULL;
 
@@ -4844,14 +4891,6 @@ int test_mta_hal_l1_register(void)
     UT_add_test( pSuite, "l1_mta_hal_negative1_GetDHCPInfo", test_l1_mta_hal_negative1_GetDHCPInfo);
     UT_add_test( pSuite, "l1_mta_hal_positive1_GetDHCPV6Info", test_l1_mta_hal_positive1_GetDHCPV6Info);
     UT_add_test( pSuite, "l1_mta_hal_negative1_GetDHCPV6Info", test_l1_mta_hal_negative1_GetDHCPV6Info);
-    UT_add_test( pSuite, "l1_mta_hal_positive1_LineTableGetNumberOfEntries", test_l1_mta_hal_positive1_LineTableGetNumberOfEntries);
-    UT_add_test( pSuite, "l1_mta_hal_positive1_LineTableGetEntry", test_l1_mta_hal_positive1_LineTableGetEntry);
-    UT_add_test( pSuite, "l1_mta_hal_positive2_LineTableGetEntry", test_l1_mta_hal_positive2_LineTableGetEntry);
-    UT_add_test( pSuite, "l1_mta_hal_positive3_LineTableGetEntry", test_l1_mta_hal_positive3_LineTableGetEntry);
-    UT_add_test( pSuite, "l1_mta_hal_negative1_LineTableGetEntry", test_l1_mta_hal_negative1_LineTableGetEntry);
-    UT_add_test( pSuite, "l1_mta_hal_negative2_LineTableGetEntry", test_l1_mta_hal_negative2_LineTableGetEntry);
-    UT_add_test( pSuite, "l1_mta_hal_negative3_LineTableGetEntry", test_l1_mta_hal_negative3_LineTableGetEntry);
-    UT_add_test( pSuite, "l1_mta_hal_negative4_LineTableGetEntry", test_l1_mta_hal_negative4_LineTableGetEntry);
     UT_add_test( pSuite, "l1_mta_hal_positive1_TriggerDiagnostics", test_l1_mta_hal_positive1_TriggerDiagnostics);
     UT_add_test( pSuite, "l1_mta_hal_positive2_TriggerDiagnostics", test_l1_mta_hal_positive2_TriggerDiagnostics);
     UT_add_test( pSuite, "l1_mta_hal_positive3_TriggerDiagnostics", test_l1_mta_hal_positive3_TriggerDiagnostics);
@@ -4891,11 +4930,6 @@ int test_mta_hal_l1_register(void)
     UT_add_test( pSuite, "l1_mta_hal_negative2_GetHandsets", test_l1_mta_hal_negative2_GetHandsets);
     UT_add_test( pSuite, "l1_mta_hal_negative3_GetHandsets", test_l1_mta_hal_negative3_GetHandsets);
     UT_add_test( pSuite, "l1_mta_hal_negative4_GetHandsets", test_l1_mta_hal_negative4_GetHandsets);
-    UT_add_test( pSuite, "l1_mta_hal_positive1_GetCalls", test_l1_mta_hal_positive1_GetCalls);
-    UT_add_test( pSuite, "l1_mta_hal_positive2_GetCalls", test_l1_mta_hal_positive2_GetCalls);
-    UT_add_test( pSuite, "l1_mta_hal_negative1_GetCalls", test_l1_mta_hal_negative1_GetCalls);
-    UT_add_test( pSuite, "l1_mta_hal_negative2_GetCalls", test_l1_mta_hal_negative2_GetCalls);
-    UT_add_test( pSuite, "l1_mta_hal_negative3_GetCalls", test_l1_mta_hal_negative3_GetCalls);
     UT_add_test( pSuite, "l1_mta_hal_positive1_GetCALLP", test_l1_mta_hal_positive1_GetCALLP);
     UT_add_test( pSuite, "l1_mta_hal_negative1_GetCALLP", test_l1_mta_hal_negative1_GetCALLP);
     UT_add_test( pSuite, "l1_mta_hal_negative2_GetCALLP", test_l1_mta_hal_negative2_GetCALLP);
@@ -4958,25 +4992,13 @@ int test_mta_hal_l1_register(void)
     UT_add_test( pSuite, "l1_mta_hal_negative1_getDhcpStatus", test_l1_mta_hal_negative1_getDhcpStatus);
     UT_add_test( pSuite, "l1_mta_hal_positive1_getConfigFileStatus", test_l1_mta_hal_positive1_getConfigFileStatus);
     UT_add_test( pSuite, "l1_mta_hal_negative1_getConfigFileStatus", test_l1_mta_hal_negative1_getConfigFileStatus);
-    UT_add_test( pSuite, "l1_mta_hal_positive1_getLineRegisterStatus", test_l1_mta_hal_positive1_getLineRegisterStatus);
-    UT_add_test( pSuite, "l1_mta_hal_positive2_getLineRegisterStatus", test_l1_mta_hal_positive2_getLineRegisterStatus);
-    UT_add_test( pSuite, "l1_mta_hal_negative1_getLineRegisterStatus", test_l1_mta_hal_negative1_getLineRegisterStatus);
-    UT_add_test( pSuite, "l1_mta_hal_negative2_getLineRegisterStatus", test_l1_mta_hal_negative2_getLineRegisterStatus);
-    UT_add_test( pSuite, "l1_mta_hal_negative3_getLineRegisterStatus", test_l1_mta_hal_negative3_getLineRegisterStatus);
-    UT_add_test( pSuite, "l1_mta_hal_positive1_devResetNow", test_l1_mta_hal_positive1_devResetNow);
-    UT_add_test( pSuite, "l1_mta_hal_positive2_devResetNow", test_l1_mta_hal_positive2_devResetNow);
-    UT_add_test( pSuite, "l1_mta_hal_negative1_devResetNow", test_l1_mta_hal_negative1_devResetNow);
-    UT_add_test( pSuite, "l1_mta_hal_negative2_devResetNow", test_l1_mta_hal_negative2_devResetNow);
-    UT_add_test( pSuite, "l1_mta_hal_negative3_devResetNow", test_l1_mta_hal_negative3_devResetNow);
     UT_add_test( pSuite, "l1_mta_hal_positive1_getMtaOperationalStatus", test_l1_mta_hal_positive1_getMtaOperationalStatus);
     UT_add_test( pSuite, "l1_mta_hal_negative1_getMtaOperationalStatus", test_l1_mta_hal_negative1_getMtaOperationalStatus);
     UT_add_test( pSuite, "l1_mta_hal_positive1_start_provisioning", test_l1_mta_hal_positive1_start_provisioning);
     UT_add_test( pSuite, "l1_mta_hal_positive2_start_provisioning", test_l1_mta_hal_positive2_start_provisioning);
     UT_add_test( pSuite, "l1_mta_hal_positive3_start_provisioning", test_l1_mta_hal_positive3_start_provisioning);
     UT_add_test( pSuite, "l1_mta_hal_negative1_start_provisioning", test_l1_mta_hal_negative1_start_provisioning);
-    UT_add_test( pSuite, "l1_mta_hal_positive3_GetCalls", test_l1_mta_hal_positive3_GetCalls);
-
-
+ 
     return 0;
 }
 
