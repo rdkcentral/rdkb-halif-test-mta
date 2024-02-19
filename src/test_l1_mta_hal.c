@@ -281,7 +281,7 @@ void test_l1_mta_hal_positive1_GetServiceFlow(void) {
     INT status = mta_hal_GetServiceFlow(&Count, &ppCfg);
     UT_LOG("Return value : %d ", status);
     UT_LOG("checking wether the pointer is NULL pointer or not");
-    UT_ASSERT_PTR_NOT_NULL(ppCfg);
+    UT_ASSERT_PTR_NOT_NULL_FATAL(ppCfg);
     UT_LOG("Direction = %s",ppCfg->Direction);
     if(!strcmp("Upstream",ppCfg->Direction) || !strcmp("Downstream",ppCfg->Direction))
     {
@@ -1671,7 +1671,7 @@ void test_l1_mta_hal_positive1_BatteryGetCondition(void)
     UT_LOG("Result : %d ", result);
 
     UT_LOG("checking wether output character pointer 'Val' is NULL or not");
-    UT_ASSERT_PTR_NOT_NULL(Val);
+    UT_ASSERT_PTR_NOT_NULL_FATAL(Val);
 
     UT_LOG("Battery condition : %s ", Val);
     if(!strcmp(Val, "Good") || !strcmp(Val, "Bad"))
@@ -1780,7 +1780,7 @@ void test_l1_mta_hal_positive1_BatteryGetStatus(void) {
     UT_LOG("Result : %d", result );
 
     UT_LOG("checking wether output character pointer 'Val' is NULL or not");
-    UT_ASSERT_PTR_NOT_NULL(Val);
+    UT_ASSERT_PTR_NOT_NULL_FATAL(Val);
 
     UT_LOG("Value of len is %lu", len);
     UT_LOG("Batery status : %s ", Val);
@@ -1890,7 +1890,7 @@ void test_l1_mta_hal_positive1_BatteryGetLife(void) {
     UT_LOG("Return value: %d", result);
 
     UT_LOG("checking wether output character pointer 'Val' is NULL or not");
-    UT_ASSERT_PTR_NOT_NULL(Val);
+    UT_ASSERT_PTR_NOT_NULL_FATAL(Val);
 
     UT_LOG("Value of Val: %s", Val);
     UT_LOG("Value of len: %lu", len);
