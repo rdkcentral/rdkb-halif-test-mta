@@ -285,13 +285,13 @@ void test_l1_mta_hal_positive1_GetServiceFlow(void) {
     UT_LOG("Direction = %s",ppCfg->Direction);
     if(!strcmp("Upstream",ppCfg->Direction) || !strcmp("Downstream",ppCfg->Direction))
     {
-        UT_LOG("ppCfg->Direction is valid");
+        UT_LOG("ppCfg->Direction is a valid value : %s",ppCfg->Direction);
         UT_PASS("ppCfg->Direction is valid");
     }
     else
     {
-        UT_LOG("ppCfg->Direction is invalid");
-        UT_PASS("ppCfg->Direction is invalid");
+        UT_LOG("ppCfg->Direction is an invalid value: %s",ppCfg->Direction);
+        UT_FAIL("ppCfg->Direction is invalid");
     }
     UT_ASSERT_EQUAL(status, RETURN_OK);
 

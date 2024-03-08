@@ -31,4 +31,4 @@ This repository contains the Unit Test Suites (L1) for mta `HAL`.
 |SNo|Document Name|Document Description|Document Link|
 |---|-------------|--------------------|-------------|
 |1|`HAL` Specification Document|This document provides specific information on the APIs for which tests are written in this module|[MTAhalSpec.md](https://github.com/rdkcentral/rdkb-halif-mta/blob/main/docs/pages/MTAhalSpec.md "MTAhalSpec.md")|
-|2|`L1` Tests |`L1` Test Case File for this module |[test_l1_mta_hal.c](https://github.com/rdkcentral/rdkb-halif-test-mta/blob/feature/tdk-7142_l1_initial_revision/src/test_l1_mta_hal.c "test_l1_mta_hal.c")|
+|2|`L1` Tests |`L1` Test Case File for this module |[test_l1_mta_hal.c](src/test_l1_mta_hal.c)|
