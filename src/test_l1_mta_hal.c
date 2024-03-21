@@ -59,7 +59,8 @@ extern int init_mta_hal_init(void);
 * | :----: | :---------: | :----------: | :--------------: | :-----: |
 * | 01 | Invoking the mta_hal_InitDB | NONE | RETURN_OK  | Should Pass |
 */
-void test_l1_mta_hal_positive1_InitDB(void) {
+void test_l1_mta_hal_positive1_InitDB(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_InitDB...");
     INT ret = 0;
     UT_LOG("Invoking mta_hal_InitDB...");
@@ -88,7 +89,8 @@ void test_l1_mta_hal_positive1_InitDB(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_InitDB twice | None |  RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive2_InitDB(void) {
+void test_l1_mta_hal_positive2_InitDB(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive2_InitDB...");
 
     UT_LOG("Invoking mta_hal_InitDB... First time");
@@ -204,7 +206,8 @@ void test_l1_mta_hal_negative1_GetDHCPInfo(void)
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke the mta_hal_GetDHCPV6Info API  with valid pointer | pInfo = valid pointer | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_GetDHCPV6Info(void) {
+void test_l1_mta_hal_positive1_GetDHCPV6Info(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_GetDHCPV6Info...");
 
 
@@ -244,7 +247,8 @@ void test_l1_mta_hal_positive1_GetDHCPV6Info(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_GetDHCPV6Info  with NULL | pInfo = NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_GetDHCPV6Info(void) {
+void test_l1_mta_hal_negative1_GetDHCPV6Info(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_GetDHCPV6Info...");
     UT_LOG("Invoking the mta_hal_GetDHCPV6Info with NULL");
     INT result = mta_hal_GetDHCPV6Info(NULL);
@@ -271,7 +275,8 @@ void test_l1_mta_hal_negative1_GetDHCPV6Info(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetServiceFlow with valid parameters | Count = 0, &ppCfg = Valid double pointer | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_GetServiceFlow(void) {
+void test_l1_mta_hal_positive1_GetServiceFlow(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_GetServiceFlow...");
 
     ULONG Count = 0;
@@ -316,7 +321,8 @@ void test_l1_mta_hal_positive1_GetServiceFlow(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_GetServiceFlow with Count as NULL pointer | ppCfg = valid double pointer, *Count = NULL pointer | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_GetServiceFlow(void) {
+void test_l1_mta_hal_negative1_GetServiceFlow(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_GetServiceFlow...");
     ULONG *Count = NULL;
     PMTAMGMT_MTA_SERVICE_FLOW ppCfg = NULL;
@@ -348,7 +354,8 @@ void test_l1_mta_hal_negative1_GetServiceFlow(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_GetServiceFlow with NULL pointer ppcfg | ppCfg = NULL pointer, &Count = valid pointer | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative2_GetServiceFlow(void) {
+void test_l1_mta_hal_negative2_GetServiceFlow(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative2_GetServiceFlow...");
     ULONG Count = 0;
 
@@ -528,7 +535,8 @@ void test_l1_mta_hal_negative2_GetHandsets(void)
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetDSXLogs with valid input parameters | count = 0, pDSXLog = Valid double pointer | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_GetDSXLogs(void) {
+void test_l1_mta_hal_positive1_GetDSXLogs(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_GetDSXLogs...");
 
     ULONG count = 0;
@@ -562,7 +570,8 @@ void test_l1_mta_hal_positive1_GetDSXLogs(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetDSXLogs with invalid input parameters (NULL) for count | count = NULL, pDSXLog = valid double pointer | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_GetDSXLogs(void) {
+void test_l1_mta_hal_negative1_GetDSXLogs(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_GetDSXLogs...");
     ULONG *count = NULL;
     PMTAMGMT_MTA_DSXLOG pDSXLog = NULL;
@@ -591,7 +600,8 @@ void test_l1_mta_hal_negative1_GetDSXLogs(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetDSXLogs with invalid input parameters (NULL) for pDSXLog | count = 0, pDSXLog = NULL pointer| RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative2_GetDSXLogs(void) {
+void test_l1_mta_hal_negative2_GetDSXLogs(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative2_GetDSXLogs...");
     ULONG count = 0;
     UT_LOG("Invoking mta_hal_GetDSXLogs with  pDSXLog = NULL...");
@@ -619,7 +629,8 @@ void test_l1_mta_hal_negative2_GetDSXLogs(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Provide a valid pointer for pBool and call mta_hal_GetDSXLogEnable function | pBool = valid pointer | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_GetDSXLogEnable(void) {
+void test_l1_mta_hal_positive1_GetDSXLogEnable(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_GetDSXLogEnable...");
     BOOLEAN pBool = TRUE;
 
@@ -650,7 +661,8 @@ void test_l1_mta_hal_positive1_GetDSXLogEnable(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetDSXLogEnable with NULL | pBool = NULL  | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_GetDSXLogEnable(void) {
+void test_l1_mta_hal_negative1_GetDSXLogEnable(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_GetDSXLogEnable...");
     BOOLEAN *pBool = NULL;
     UT_LOG("Invoking mta_hal_GetDSXLogEnable with NULL pointer for pBool");
@@ -680,7 +692,8 @@ void test_l1_mta_hal_negative1_GetDSXLogEnable(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_SetDSXLogEnable with Bool Value TRUE | Bool = TRUE | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_SetDSXLogEnable(void) {
+void test_l1_mta_hal_positive1_SetDSXLogEnable(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_SetDSXLogEnable...\n");
     BOOLEAN Bool = TRUE;
 
@@ -710,7 +723,8 @@ void test_l1_mta_hal_positive1_SetDSXLogEnable(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * |  01  | Invoking the mta_hal_SetDSXLogEnable API with Bool Value = FALSE | Bool = FALSE | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive2_SetDSXLogEnable(void) {
+void test_l1_mta_hal_positive2_SetDSXLogEnable(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive2_SetDSXLogEnable...\n");
     BOOLEAN Bool = FALSE;
 
@@ -740,7 +754,8 @@ void test_l1_mta_hal_positive2_SetDSXLogEnable(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_SetDSXLogEnable with invalid boolean value | Bool = 2 | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_SetDSXLogEnable(void) {
+void test_l1_mta_hal_negative1_SetDSXLogEnable(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_SetDSXLogEnable...\n");
     BOOLEAN Bool = 2;
 
@@ -770,7 +785,8 @@ void test_l1_mta_hal_negative1_SetDSXLogEnable(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * |  01    | Invoking the mta_hal_ClearDSXLog with TRUE Bool | Bool = TRUE | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_ClearDSXLog(void) {
+void test_l1_mta_hal_positive1_ClearDSXLog(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_ClearDSXLog...");
     BOOLEAN Bool = TRUE;
 
@@ -800,7 +816,8 @@ void test_l1_mta_hal_positive1_ClearDSXLog(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_ClearDSXLog with Bool parameter set to FALSE | Bool = FALSE | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive2_ClearDSXLog(void) {
+void test_l1_mta_hal_positive2_ClearDSXLog(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive2_ClearDSXLog...");
     BOOLEAN Bool = FALSE;
 
@@ -830,7 +847,8 @@ void test_l1_mta_hal_positive2_ClearDSXLog(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01  | Invoking mta_hal_ClearDSXLog  with Invalid value | Bool = 2 | RETURN_ERR  | Should Fail  |
 */
-void test_l1_mta_hal_negative1_ClearDSXLog(void) {
+void test_l1_mta_hal_negative1_ClearDSXLog(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_ClearDSXLog...");
     BOOLEAN Bool = 2;
 
@@ -860,7 +878,8 @@ void test_l1_mta_hal_negative1_ClearDSXLog(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_GetCallSignallingLogEnable with value as TRUE | pBool = TRUE | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_GetCallSignallingLogEnable(void) {
+void test_l1_mta_hal_positive1_GetCallSignallingLogEnable(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_GetCallSignallingLogEnable...");
     BOOLEAN pBool = TRUE;
 
@@ -891,7 +910,8 @@ void test_l1_mta_hal_positive1_GetCallSignallingLogEnable(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_GetCallSignallingLogEnable with pBool as NULL pointer | pBool = NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_GetCallSignallingLogEnable(void) {
+void test_l1_mta_hal_negative1_GetCallSignallingLogEnable(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_GetCallSignallingLogEnable...");
     BOOLEAN *pBool = NULL;
 
@@ -921,7 +941,8 @@ void test_l1_mta_hal_negative1_GetCallSignallingLogEnable(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke the mta_hal_SetCallSignallingLogEnable API with enable value TRUE | enable = TRUE | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_SetCallSignallingLogEnable(void) {
+void test_l1_mta_hal_positive1_SetCallSignallingLogEnable(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_SetCallSignallingLogEnable...");
 
     BOOLEAN enable = TRUE;
@@ -951,7 +972,8 @@ void test_l1_mta_hal_positive1_SetCallSignallingLogEnable(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * |  01    | Invoking the mta_hal_SetCallSignallingLogEnable API with FALSE | enable = FALSE | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive2_SetCallSignallingLogEnable(void) {
+void test_l1_mta_hal_positive2_SetCallSignallingLogEnable(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive2_SetCallSignallingLogEnable...");
 
     BOOLEAN enable = FALSE;
@@ -981,7 +1003,8 @@ void test_l1_mta_hal_positive2_SetCallSignallingLogEnable(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_SetCallSignallingLogEnable with invalid boolean value as input | enable = 2 | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_SetCallSignallingLogEnable(void) {
+void test_l1_mta_hal_negative1_SetCallSignallingLogEnable(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_SetCallSignallingLogEnable...");
     BOOLEAN enable = 2;
 
@@ -1011,7 +1034,8 @@ void test_l1_mta_hal_negative1_SetCallSignallingLogEnable(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Call the mta_hal_ClearCallSignallingLog() function with Bool parameter set to TRUE. | Bool = TRUE | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_ClearCallSignallingLog(void) {
+void test_l1_mta_hal_positive1_ClearCallSignallingLog(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_ClearCallSignallingLog...");
     BOOLEAN Bool = TRUE;
 
@@ -1041,7 +1065,8 @@ void test_l1_mta_hal_positive1_ClearCallSignallingLog(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Call mta_hal_ClearCallSignallingLog function with Bool set to FALSE | Bool = FALSE | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive2_ClearCallSignallingLog(void) {
+void test_l1_mta_hal_positive2_ClearCallSignallingLog(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive2_ClearCallSignallingLog...");
     BOOLEAN Bool = FALSE;
 
@@ -1071,7 +1096,8 @@ void test_l1_mta_hal_positive2_ClearCallSignallingLog(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Call mta_hal_ClearCallSignallingLog with an invalid BOOLEAN value | Bool = 2 | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_ClearCallSignallingLog(void) {
+void test_l1_mta_hal_negative1_ClearCallSignallingLog(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_ClearCallSignallingLog...");
 
     BOOLEAN Bool = 2;
@@ -1101,7 +1127,8 @@ void test_l1_mta_hal_negative1_ClearCallSignallingLog(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_GetMtaLog with valid inputs | count = 0, pLog = valid double pointer |  RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_GetMtaLog(void) {
+void test_l1_mta_hal_positive1_GetMtaLog(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_GetMtaLog...");
     ULONG count = 0;
     PMTAMGMT_MTA_MTALOG_FULL pLog = NULL;
@@ -1132,7 +1159,8 @@ void test_l1_mta_hal_positive1_GetMtaLog(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke the mta_hal_GetMtaLog function with count as NULL pointer| *count = NULL, pLog = valid double pointer | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_GetMtaLog(void) {
+void test_l1_mta_hal_negative1_GetMtaLog(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_GetMtaLog...");
     ULONG *count = NULL;
     PMTAMGMT_MTA_MTALOG_FULL pLog = NULL;
@@ -1163,7 +1191,8 @@ void test_l1_mta_hal_negative1_GetMtaLog(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke the mta_hal_GetMtaLog function with pLog = NULL | count = valid pointer, pLog = NULL pointer | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative2_GetMtaLog(void) {
+void test_l1_mta_hal_negative2_GetMtaLog(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative2_GetMtaLog...");
     ULONG count = 0;
 
@@ -1193,7 +1222,8 @@ void test_l1_mta_hal_negative2_GetMtaLog(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_BatteryGetInstalled API with valid parameter | Val = 0 | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_BatteryGetInstalled(void) {
+void test_l1_mta_hal_positive1_BatteryGetInstalled(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetInstalled...");
 
     BOOLEAN Val = 0;
@@ -1225,7 +1255,8 @@ void test_l1_mta_hal_positive1_BatteryGetInstalled(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_BatteryGetInstalled with NULL pointer | val = NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetInstalled(void) {
+void test_l1_mta_hal_negative1_BatteryGetInstalled(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetInstalled...");
 
     BOOLEAN *Val = NULL;
@@ -1255,7 +1286,8 @@ void test_l1_mta_hal_negative1_BatteryGetInstalled(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_BatteryGetTotalCapacity with valid  parameters | val = 0 | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_BatteryGetTotalCapacity(void) {
+void test_l1_mta_hal_positive1_BatteryGetTotalCapacity(void) 
+{
 
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetTotalCapacity...");
     ULONG val =0 ;
@@ -1287,7 +1319,8 @@ void test_l1_mta_hal_positive1_BatteryGetTotalCapacity(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_BatteryGetTotalCapacity with NULL pointer| val = NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetTotalCapacity(void) {
+void test_l1_mta_hal_negative1_BatteryGetTotalCapacity(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetTotalCapacity...");
     ULONG* val = NULL;
 
@@ -1317,7 +1350,8 @@ void test_l1_mta_hal_negative1_BatteryGetTotalCapacity(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * |  01  | Invoking mta_hal_BatteryGetActualCapacity with valid memory location | capacity = 0 | RETURN_OK | should Pass |
 */
-void test_l1_mta_hal_positive1_BatteryGetActualCapacity(void) {
+void test_l1_mta_hal_positive1_BatteryGetActualCapacity(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetActualCapacity...");
 
     ULONG capacity = 0;
@@ -1349,7 +1383,8 @@ void test_l1_mta_hal_positive1_BatteryGetActualCapacity(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_BatteryGetActualCapacity with NULL pointer | Val = NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetActualCapacity(void) {
+void test_l1_mta_hal_negative1_BatteryGetActualCapacity(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetActualCapacity...");
     ULONG *capacity = NULL;
     UT_LOG("Invoking mta_hal_BatteryGetTotalCapacity with NULL pointer for Val...");
@@ -1378,7 +1413,8 @@ void test_l1_mta_hal_negative1_BatteryGetActualCapacity(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_BatteryGetRemainingCharge API with a valid memory location for Val | val = 0 |  RETURN_OK  | Should Pass |
 */
-void test_l1_mta_hal_positive1_BatteryGetRemainingCharge(void) {
+void test_l1_mta_hal_positive1_BatteryGetRemainingCharge(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetRemainingCharge...");
     ULONG val = 0;
     UT_LOG("Invoking mta_hal_BatteryGetRemainingCharge with valid memory location for Val = %d", val);
@@ -1406,7 +1442,8 @@ void test_l1_mta_hal_positive1_BatteryGetRemainingCharge(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Verify behavior of mta_hal_BatteryGetRemainingCharge API when a NULL pointer is passed | val=NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetRemainingCharge(void) {
+void test_l1_mta_hal_negative1_BatteryGetRemainingCharge(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetRemainingCharge...");
     ULONG* val = NULL;
     UT_LOG("Invoking mta_hal_BatteryGetRemainingCharge with NULL pointer for Val");
@@ -1434,7 +1471,8 @@ void test_l1_mta_hal_negative1_BatteryGetRemainingCharge(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_BatteryGetRemainingTime function  with valid value | Val=0 | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_BatteryGetRemainingTime(void) {
+void test_l1_mta_hal_positive1_BatteryGetRemainingTime(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetRemainingTime...");
 
     ULONG val = 0;
@@ -1463,7 +1501,8 @@ void test_l1_mta_hal_positive1_BatteryGetRemainingTime(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_BatteryGetRemainingTime with NULL pointer | val = NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetRemainingTime(void) {
+void test_l1_mta_hal_negative1_BatteryGetRemainingTime(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetRemainingTime...");
 
     ULONG* val = NULL;
@@ -1492,7 +1531,8 @@ void test_l1_mta_hal_negative1_BatteryGetRemainingTime(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_BatteryGetNumberofCycles with valid parameter | val = 0 | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_BatteryGetNumberofCycles(void) {
+void test_l1_mta_hal_positive1_BatteryGetNumberofCycles(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetNumberofCycles...");
     ULONG val = 0;
 
@@ -1523,7 +1563,8 @@ void test_l1_mta_hal_positive1_BatteryGetNumberofCycles(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_BatteryGetNumberofCycles when a null pointer is passed. | val = NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetNumberofCycles(void) {
+void test_l1_mta_hal_negative1_BatteryGetNumberofCycles(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetNumberofCycles...");
     ULONG* val = NULL;
 
@@ -1553,7 +1594,8 @@ void test_l1_mta_hal_negative1_BatteryGetNumberofCycles(void) {
 *  | :----: | :---------: | :----------: |:--------------: | :-----: |
 *  |  01  | Invoking the mta_hal_BatteryGetPowerStatus with valid memory locations for Val and len | Val = valid memory , len = valid memory  |  RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_BatteryGetPowerStatus(void) {
+void test_l1_mta_hal_positive1_BatteryGetPowerStatus(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetPowerStatus...");
     CHAR Val[8] = {"\0"};
     ULONG len =0;
@@ -1595,7 +1637,8 @@ void test_l1_mta_hal_positive1_BatteryGetPowerStatus(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke the mta_hal_BatteryGetPowerStatus API with NULL pointers for Val and valid pointer for len | Val = NULL pointer , len = valid pointer | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetPowerStatus(void) {
+void test_l1_mta_hal_negative1_BatteryGetPowerStatus(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetPowerStatus...");
     INT ret =0;
     CHAR *Val = NULL;
@@ -1627,7 +1670,8 @@ void test_l1_mta_hal_negative1_BatteryGetPowerStatus(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke the mta_hal_BatteryGetPowerStatus API with NULL pointers for len and valid pointer for val | Val = valid pointer , len = NULL pointer | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative2_BatteryGetPowerStatus(void) {
+void test_l1_mta_hal_negative2_BatteryGetPowerStatus(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative2_BatteryGetPowerStatus...");
     INT ret =0;
     CHAR Val[8] = {"\0"};
@@ -1708,7 +1752,8 @@ void test_l1_mta_hal_positive1_BatteryGetCondition(void)
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01   | Invoking mta_hal_BatteryGetCondition with NULL pointer for len  | Val = valid pointer , *len = NULL   | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetCondition(void) {
+void test_l1_mta_hal_negative1_BatteryGetCondition(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetCondition...");
     CHAR Val[32] = {"\0"};
     ULONG *len = NULL;
@@ -1739,7 +1784,8 @@ void test_l1_mta_hal_negative1_BatteryGetCondition(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01   | Invoking mta_hal_BatteryGetCondition with NULL pointer for val  | Val = NULL pointer, *len = valid pointer   | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative2_BatteryGetCondition(void) {
+void test_l1_mta_hal_negative2_BatteryGetCondition(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative2_BatteryGetCondition...");
     CHAR *Val = NULL;
     ULONG len = 32;
@@ -1770,7 +1816,8 @@ void test_l1_mta_hal_negative2_BatteryGetCondition(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_BatteryGetStatus with valid parameters | Val = Valid pointer, len = Valid pointer | RETURN_OK | Should pass |
 */
-void test_l1_mta_hal_positive1_BatteryGetStatus(void) {
+void test_l1_mta_hal_positive1_BatteryGetStatus(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetStatus...");
 
     CHAR Val[12] ={"\0"};
@@ -1817,7 +1864,8 @@ void test_l1_mta_hal_positive1_BatteryGetStatus(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_BatteryGetStatus with NULL pointer for len | Val = valid pointer , len = NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetStatus(void) {
+void test_l1_mta_hal_negative1_BatteryGetStatus(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetStatus...");
 
     CHAR Val[12] = {"\0"};
@@ -1848,7 +1896,8 @@ void test_l1_mta_hal_negative1_BatteryGetStatus(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_BatteryGetStatus with NULL pointer for val | Val = NULL pointer , len = valid pointer | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative2_BatteryGetStatus(void) {
+void test_l1_mta_hal_negative2_BatteryGetStatus(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative2_BatteryGetStatus...");
 
     CHAR* Val = NULL;
@@ -1879,7 +1928,8 @@ void test_l1_mta_hal_negative2_BatteryGetStatus(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoke mta_hal_BatteryGetLife with valid memory locations for Val and len | Val = valid pointer , len = valid pointer | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_BatteryGetLife(void) {
+void test_l1_mta_hal_positive1_BatteryGetLife(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetLife...");
 
     CHAR Val[32] = {"\0"};
@@ -1927,7 +1977,8 @@ void test_l1_mta_hal_positive1_BatteryGetLife(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the  mta_hal_BatteryGetLife with NULL pointer len  | Val = valid pointer, len = NULL  | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetLife(void) {
+void test_l1_mta_hal_negative1_BatteryGetLife(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetLife...");
     CHAR Val[32] = {"\0"};
     ULONG *len = NULL;
@@ -1959,7 +2010,8 @@ void test_l1_mta_hal_negative1_BatteryGetLife(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the  mta_hal_BatteryGetLife with NULL pointer Val  | Val = NULL pointer, len = valid pointer  | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative2_BatteryGetLife(void) {
+void test_l1_mta_hal_negative2_BatteryGetLife(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative2_BatteryGetLife...");
     CHAR *Val = NULL;
     ULONG len = 32;
@@ -1991,7 +2043,8 @@ void test_l1_mta_hal_negative2_BatteryGetLife(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the  mta_hal_BatteryGetInfo with valid pointer | pInfo= valid pointer | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_BatteryGetInfo(void) {
+void test_l1_mta_hal_positive1_BatteryGetInfo(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetInfo...");
 
     PMTAMGMT_MTA_BATTERY_INFO pInfo = (PMTAMGMT_MTA_BATTERY_INFO) malloc(sizeof(MTAMGMT_MTA_BATTERY_INFO));
@@ -2029,7 +2082,8 @@ void test_l1_mta_hal_positive1_BatteryGetInfo(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking the mta_hal_BatteryGetInfo API with NULL | pInfo = NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetInfo(void) {
+void test_l1_mta_hal_negative1_BatteryGetInfo(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative3_BatteryGetInfo...");
     PMTAMGMT_MTA_BATTERY_INFO pInfo = NULL;
 
@@ -2060,7 +2114,8 @@ void test_l1_mta_hal_negative1_BatteryGetInfo(void) {
 * | 01 | Invoking the mta_hal_BatteryGetPowerSavingModeStatus with valid pointer | pValue = Valid pointer | RETURN_OK | Should Pass |
 *
 */
-void test_l1_mta_hal_positive1_BatteryGetPowerSavingModeStatus(void) {
+void test_l1_mta_hal_positive1_BatteryGetPowerSavingModeStatus(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_BatteryGetPowerSavingModeStatus...");
     ULONG pValue = 0;
 
@@ -2091,7 +2146,8 @@ void test_l1_mta_hal_positive1_BatteryGetPowerSavingModeStatus(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_BatteryGetPowerSavingModeStatus with NULL | pValue=NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus(void) {
+void test_l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus...");
     ULONG *pValue = NULL;
 
@@ -2121,7 +2177,8 @@ void test_l1_mta_hal_negative1_BatteryGetPowerSavingModeStatus(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_Get_MTAResetCount with valid pointer for resetcnt | resetcnt = 0 | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_Get_MTAResetCount(void) {
+void test_l1_mta_hal_positive1_Get_MTAResetCount(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_Get_MTAResetCount...");
     ULONG resetcnt = 0;
 
@@ -2152,7 +2209,8 @@ void test_l1_mta_hal_positive1_Get_MTAResetCount(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_Get_MTAResetCount with NULL pointer for resetcnt | resetcnt = NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_Get_MTAResetCount(void) {
+void test_l1_mta_hal_negative1_Get_MTAResetCount(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_Get_MTAResetCount...");
     UT_LOG("Invoking mta_hal_Get_MTAResetCount with NULL pointer for resetcnt...");
     INT status = mta_hal_Get_MTAResetCount(NULL);
@@ -2179,7 +2237,8 @@ void test_l1_mta_hal_negative1_Get_MTAResetCount(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Call mta_hal_Get_LineResetCount API  with Valid pointer | resetcnt = 0 | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_Get_LineResetCount(void) {
+void test_l1_mta_hal_positive1_Get_LineResetCount(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_Get_LineResetCount...");
     ULONG resetcnt = 0;
 
@@ -2209,7 +2268,8 @@ void test_l1_mta_hal_positive1_Get_LineResetCount(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Call mta_hal_Get_LineResetCount with null pointer | resetcnt = NULL | RETURN_ERR | Should Fail |
 */
-void test_l1_mta_hal_negative1_Get_LineResetCount(void) {
+void test_l1_mta_hal_negative1_Get_LineResetCount(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_Get_LineResetCount...");
     ULONG *resetcnt = NULL;
 
@@ -2239,7 +2299,8 @@ void test_l1_mta_hal_negative1_Get_LineResetCount(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Set InstanceNumber to 0 and call mta_hal_ClearCalls function | InstanceNumber = 0 | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_ClearCalls(void) {
+void test_l1_mta_hal_positive1_ClearCalls(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_ClearCalls...");
     ULONG InstanceNumber = 0;
 
@@ -2269,7 +2330,8 @@ void test_l1_mta_hal_positive1_ClearCalls(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_ClearCalls with Maximum InstanceNumber| InstanceNumber = (4294967296-1) | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive2_ClearCalls(void) {
+void test_l1_mta_hal_positive2_ClearCalls(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive2_ClearCalls...");
     ULONG InstanceNumber = (4294967296-1);
 
@@ -2299,7 +2361,8 @@ void test_l1_mta_hal_positive2_ClearCalls(void) {
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Call mta_hal_ClearCalls function with a specific InstanceNumber | InstanceNumber = 1000 | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive3_ClearCalls(void) {
+void test_l1_mta_hal_positive3_ClearCalls(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive3_ClearCalls...");
     ULONG InstanceNumber = 1000;
 
@@ -2449,7 +2512,8 @@ void test_l1_mta_hal_negative2_getDhcpStatus(void)
 * | :----: | :---------: | :----------: |:--------------: | :-----: |
 * | 01 | Invoking mta_hal_getConfigFileStatus with Valid data | poutput_status = Valid pointer | RETURN_OK | Should Pass |
 */
-void test_l1_mta_hal_positive1_getConfigFileStatus(void) {
+void test_l1_mta_hal_positive1_getConfigFileStatus(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_positive1_getConfigFileStatus...");
 
     MTAMGMT_MTA_STATUS poutput_status = 0;
@@ -2491,7 +2555,8 @@ void test_l1_mta_hal_positive1_getConfigFileStatus(void) {
 * | 01 | Invoking mta_hal_getConfigFileStatus with NULL | poutput_status = NULL  | RETURN_ERR  | Should Fail |
 *
 */
-void test_l1_mta_hal_negative1_getConfigFileStatus(void) {
+void test_l1_mta_hal_negative1_getConfigFileStatus(void) 
+{
     UT_LOG("Entering test_l1_mta_hal_negative1_getConfigFileStatus...");
     UT_LOG("Invoking mta_hal_getConfigFileStatus with invalid memory location for poutput_status...");
     INT ret = mta_hal_getConfigFileStatus(NULL);
