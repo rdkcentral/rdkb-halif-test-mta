@@ -29,7 +29,7 @@
 * **Pre-Conditions:**  None@n
 * **Dependencies:** None@n
 *
-* Ref to API Definition specification documentation : [halSpec.md](../../../docs/halSpec.md)
+* Ref to API Definition specification documentation : [MTAhalSpec.md](../../../docs/pages/MTAhalSpec.md)
 */
 
 #include <ut.h>
