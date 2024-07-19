@@ -65,4 +65,4 @@ list:
 
 clean:
 	@echo UT [$@]
-	make -C ./ut-core clean
+	make -C ./ut-core cleanall
