@@ -19,14 +19,10 @@
 #include <ut.h>
 #include <ut_log.h>
 #include <stdlib.h>
-#include "cJSON.h"
-#include "mta_hal.h"
 #include <stdbool.h>
-
-extern bool batterySupported;
+#include "mta_hal.h"
 
 extern int register_hal_l1_tests( void );
-extern int get_batterySupported(void);
 
 int init_mta_hal_init(void)
 {
@@ -34,12 +30,12 @@ int init_mta_hal_init(void)
     ret = mta_hal_InitDB();
     if (ret == 0)
     {
-        UT_LOG("mta_hal_InitDB returned success");
+        UT_LOG_DEBUG("mta_hal_InitDB returned success");
         return 0;
     }
     else
     {
-        UT_LOG("mta_hal_InitDB returned failure");
+        UT_LOG_DEBUG("mta_hal_InitDB returned failure");
         UT_FAIL("mta_hal_InitDB initialization failed");
         return -1;
     }
@@ -49,15 +45,6 @@ int main(int argc, char** argv)
 {
     printf("In main");
     int registerReturn = 0;
-
-    if (get_batterySupported() == 0)
-    {
-        UT_LOG("Got the batterySupported value : %d", batterySupported);
-    }
-    else
-    {
-        printf("Failed to get batterySupported value\n");
-    }
 
     /* Register tests as required, then call the UT-main to support switches and triggering */
     UT_init( argc, argv );
@@ -78,5 +65,3 @@ int main(int argc, char** argv)
     printf("END main");
     return 0;
 }
-
-

@@ -27,4 +27,3 @@ int register_hal_l1_tests( void )
 
     return registerFailed;
 }
-
